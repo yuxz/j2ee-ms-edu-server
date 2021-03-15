@@ -1,0 +1,16 @@
+#server:
+#  port: 88
+#  
+#spring:
+#  application: 
+#    name: edu-gateway
+#  cloud:
+#    nacos:
+#      server-addr: 127.0.0.1:8848       
+#  http:
+#    encoding:
+#      charset: UTF-8
+#      force: true
+#      enabled: true  
+  
+
