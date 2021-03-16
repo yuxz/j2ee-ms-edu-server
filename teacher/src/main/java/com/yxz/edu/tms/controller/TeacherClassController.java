@@ -1,6 +1,7 @@
 package com.yxz.edu.tms.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
@@ -19,6 +20,7 @@ import com.yxz.base.common.valid.AddGroup;
 import com.yxz.base.common.valid.UpdateGroup;
 import com.yxz.edu.tms.entity.TeacherClassEntity;
 import com.yxz.edu.tms.service.TeacherClassService;
+import com.yxz.edu.tms.vo.TeacherClassListVo;
 import com.yxz.edu.tms.vo.TeacherClassVo;
 
 /**
@@ -39,14 +41,23 @@ public class TeacherClassController {
      */
     @RequestMapping("/list/{classId}")
     //@RequiresPermissions("tms:teacherclass:list")
-    public R list(@RequestParam Map<String, Object> params, @PathVariable("classId") Long classId){
+    public R list( @PathVariable("classId") Long classId){
 //        PageUtils page = teacherClassService.queryPage(params);
-        PageUtils page = teacherClassService.queryPage(params,classId);
+        List<TeacherClassListVo> list = teacherClassService.queryIncludingByClass(classId);
+        
+        return R.ok().put("data", list);
+    }
+
+    ///tms/teacherclass/list/" + this.classId + "/includingOfClass
+    @RequestMapping("/list/{classId}/includingByClass")
+    //@RequiresPermissions("tms:teacherclass:list")
+    public R listIncludingByClass(@RequestParam Map<String, Object> params, @PathVariable("classId") Long classId){
+//        PageUtils page = teacherClassService.queryPage(params);
+        PageUtils page = teacherClassService.queryPageNotIncludingByClass(params,classId);
         
         return R.ok().put("page", page);
     }
-
-
+    
     /**
      * 信息
      */
@@ -70,6 +81,20 @@ public class TeacherClassController {
 
         return R.ok();
     }
+    
+    /**
+     * 保存
+     */
+    @RequestMapping("/saveBatch")
+    //@RequiresPermissions("tms:teacherclass:save")
+    public R save(@Validated({AddGroup.class}) @RequestBody List<TeacherClassVo> teacherClassVos){
+//    	TeacherClassEntity  teacherClassEntity = new  TeacherClassEntity();
+//    	BeanUtils.copyProperties( teacherClassVo,  teacherClassEntity);
+		teacherClassService.saveBatch(teacherClassVos);
+
+        return R.ok();
+    }
+
 
     /**
      * 修改
@@ -91,6 +116,7 @@ public class TeacherClassController {
     @RequestMapping("/delete")
     //@RequiresPermissions("tms:teacherclass:delete")
     public R delete(@RequestBody Long[] ids){
+    	System.out.println("delete---------" + Arrays.asList(ids));
 		teacherClassService.removeByIds(Arrays.asList(ids));
 
         return R.ok();

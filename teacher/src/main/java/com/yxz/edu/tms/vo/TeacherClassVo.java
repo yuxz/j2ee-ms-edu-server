@@ -23,7 +23,7 @@ public class TeacherClassVo {
 	/**
 	 * id
 	 */
-		private Long id;
+	private Long id;
 	/**
 	 * 班级id
 	 */
