@@ -40,11 +40,18 @@ public class ClassroomController {
     @RequestMapping("/list")
     //@RequiresPermissions("ims:classroom:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = classroomService.queryPage(params);
+        PageUtils page = classroomService.queryPageClassRoom(params);
 
         return R.ok().put("page", page);
     }
 
+//    @RequestMapping("/list")
+//    //@RequiresPermissions("ims:classroom:list")
+//    public R list(@RequestParam Map<String, Object> params){
+//        PageUtils page = classroomService.queryPage(params);
+//
+//        return R.ok().put("page", page);
+//    }
 
     /**
      * 信息

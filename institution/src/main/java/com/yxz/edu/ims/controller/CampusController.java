@@ -40,10 +40,18 @@ public class CampusController {
     @RequestMapping("/list")
     //@RequiresPermissions("ims:campus:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = campusService.queryPage(params);
+        PageUtils page = campusService.queryPageCampus(params);
 
         return R.ok().put("page", page);
     }
+//    @RequestMapping("/list")
+//    //@RequiresPermissions("ims:campus:list")
+//    public R list(@RequestParam Map<String, Object> params){
+//        PageUtils page = campusService.queryPage(params);
+//
+//        return R.ok().put("page", page);
+//    }
+
 
 
     /**

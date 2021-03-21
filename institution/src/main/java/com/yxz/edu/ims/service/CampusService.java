@@ -16,5 +16,7 @@ import java.util.Map;
 public interface CampusService extends IService<CampusEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+	PageUtils queryPageCampus(Map<String, Object> params);
 }
 

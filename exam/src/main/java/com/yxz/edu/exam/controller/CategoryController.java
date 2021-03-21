@@ -75,7 +75,7 @@ public class CategoryController {
 		CategoryChildrenVo categoryChildrenVo = new CategoryChildrenVo();
 		BeanUtils.copyProperties(categoryEntity, categoryChildrenVo);
 		
-		categoryChildrenVo.setParentCategoryName(categoryService.getById(categoryChildrenVo.getParentCid()).getName());
+		categoryChildrenVo.setParentCategoryName(categoryService.getById(categoryChildrenVo.getParentId()).getName());
         return R.ok().put("data", categoryChildrenVo);
     }
 

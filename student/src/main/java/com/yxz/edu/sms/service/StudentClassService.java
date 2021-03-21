@@ -1,10 +1,13 @@
 package com.yxz.edu.sms.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yxz.base.common.utils.PageUtils;
 import com.yxz.edu.sms.entity.StudentClassEntity;
-
-import java.util.Map;
+import com.yxz.edu.sms.vo.StudentClassListVo;
+import com.yxz.edu.sms.vo.StudentClassVo;
 
 /**
  * 班级学生
@@ -16,5 +19,11 @@ import java.util.Map;
 public interface StudentClassService extends IService<StudentClassEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+	List<StudentClassListVo> queryIncludingByClass(Long classId);
+
+	PageUtils queryPageNotIncludingByClass(Map<String, Object> params, Long classId);
+
+	void saveBatch(List<StudentClassVo> teacherClassVos);
 }
 

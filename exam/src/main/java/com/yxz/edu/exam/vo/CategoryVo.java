@@ -41,11 +41,11 @@ public class CategoryVo {
 	/**
 	 * 父分类id
 	 */
-	private Long parentCid;
+	private Long parentId;
 	/**
 	 * 层级
 	 */
-	private Integer catLevel;
+	private Integer level;
 	/**
 	 * 排序
 	 */
@@ -53,7 +53,7 @@ public class CategoryVo {
 	/**
 	 * 试卷数量
 	 */
-	private Integer goodsCount;
+	private Integer totalCount;
 	/**
 	 * 图标地址
 	 */
@@ -65,11 +65,11 @@ public class CategoryVo {
 	/**
 	 * 创建时间
 	 */
-	private Date createTime;
+	private Date created;
 	/**
 	 * 更改时间
 	 */
-	private Date updateTime;
+	private Date updated;
 	/**
 	 * 创建人
 	 */

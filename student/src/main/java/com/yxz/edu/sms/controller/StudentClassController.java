@@ -1,6 +1,7 @@
 package com.yxz.edu.sms.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -13,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import com.yxz.base.common.valid.AddGroup;
-import com.yxz.base.common.valid.UpdateGroup;
 import com.yxz.base.common.utils.PageUtils;
 import com.yxz.base.common.utils.R;
+import com.yxz.base.common.valid.AddGroup;
+import com.yxz.base.common.valid.UpdateGroup;
 import com.yxz.edu.sms.entity.StudentClassEntity;
 import com.yxz.edu.sms.service.StudentClassService;
+import com.yxz.edu.sms.vo.StudentClassListVo;
 import com.yxz.edu.sms.vo.StudentClassVo;
 
 /**
@@ -38,14 +39,24 @@ public class StudentClassController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @RequestMapping("/list/{classId}")
     //@RequiresPermissions("sms:studentclass:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = studentClassService.queryPage(params);
-
+    public R list(@RequestParam Map<String, Object> params,@PathVariable("classId") Long classId){
+//        PageUtils page = studentClassService.queryPage(params);
+        List<StudentClassListVo> list = studentClassService.queryIncludingByClass(classId);
+        return R.ok().put("data", list);
+    }
+    ///tms/studentclass/list/" + this.classId + "/includingOfClass
+    @RequestMapping("/list/{classId}/includingByClass")
+    //@RequiresPermissions("tms:teacherclass:list")
+    public R listIncludingByClass(@RequestParam Map<String, Object> params, @PathVariable("classId") Long classId){
+    	
+        PageUtils page = studentClassService.queryPageNotIncludingByClass(params,classId);
+        
         return R.ok().put("page", page);
     }
-
+    
+    
 
     /**
      * 信息
@@ -67,6 +78,19 @@ public class StudentClassController {
     	StudentClassEntity  studentClassEntity = new  StudentClassEntity();
     	BeanUtils.copyProperties( studentClassVo,  studentClassEntity);
 		studentClassService.save(studentClassEntity);
+
+        return R.ok();
+    }
+    
+    /**
+     * 批量保存
+     */
+    @RequestMapping("/saveBatch")
+    //@RequiresPermissions("tms:teacherclass:save")
+    public R saveBatch(@Validated({AddGroup.class}) @RequestBody List<StudentClassVo> teacherClassVos){
+//    	TeacherClassEntity  teacherClassEntity = new  TeacherClassEntity();
+//    	BeanUtils.copyProperties( teacherClassVo,  teacherClassEntity);
+		studentClassService.saveBatch(teacherClassVos);
 
         return R.ok();
     }

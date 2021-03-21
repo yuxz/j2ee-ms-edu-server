@@ -8,14 +8,14 @@
         <result property="id" column="id"/>
         <result property="institutionId" column="institution_id"/>
         <result property="name" column="name"/>
-        <result property="parentCid" column="parent_cid"/>
-        <result property="catLevel" column="cat_level"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="level" column="level"/>
         <result property="sort" column="sort"/>
         <result property="goodsCount" column="goods_count"/>
         <result property="icon" column="icon"/>
         <result property="logicDeleted" column="logic_deleted"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+        <result property="created" column="created"/>
+        <result property="updated" column="updated"/>
         <result property="userId" column="user_id"/>
     </resultMap>
 

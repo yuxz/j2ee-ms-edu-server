@@ -16,5 +16,7 @@ import java.util.Map;
 public interface ClassroomService extends IService<ClassroomEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+	PageUtils queryPageClassRoom(Map<String, Object> params);
 }
 

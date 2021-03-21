@@ -29,6 +29,14 @@ public class StudentVo {
 	 */
 	private Long institutionId;
 	/**
+	 * 分校id
+	 */
+	private Long campusId;
+	/**
+	 * 班级/课程类型id
+	 */
+	private Long classTypeId;
+	/**
 	 * 学生姓名
 	 */
 	private String name;

@@ -7,6 +7,8 @@
     <resultMap type="com.yxz.edu.sms.entity.StudentEntity" id="studentMap">
         <result property="id" column="id"/>
         <result property="institutionId" column="institution_id"/>
+        <result property="campusId" column="campus_id"/>
+        <result property="classTypeId" column="class_type_id"/>
         <result property="name" column="name"/>
         <result property="password" column="password"/>
         <result property="gender" column="gender"/>

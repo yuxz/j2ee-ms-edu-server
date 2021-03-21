@@ -45,7 +45,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 		//
 		//BeanUtils.copyProperties(allCategories, target);
     	List<CategoryChildrenVo> categoryTree = allCategories.stream()
-    			.filter(categoryEntity -> categoryEntity.getParentCid() == 0)
+    			.filter(categoryEntity -> categoryEntity.getParentId() == 0)
     			.map(categoryEntity -> {
     				CategoryChildrenVo categoryChildrenVo = new CategoryChildrenVo();
     				BeanUtils.copyProperties(categoryEntity, categoryChildrenVo);
@@ -64,7 +64,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
 	private List<CategoryChildrenVo> getChildren(CategoryChildrenVo parent, List<CategoryEntity> allCategories) {
 		
-		return allCategories.stream().filter(categoryEntity -> categoryEntity.getParentCid() == parent.getId())
+		return allCategories.stream().filter(categoryEntity -> categoryEntity.getParentId() == parent.getId())
 				.map(categoryEntity-> {
 					CategoryChildrenVo categoryChildrenVo = new CategoryChildrenVo();
 					BeanUtils.copyProperties(categoryEntity, categoryChildrenVo);
@@ -105,8 +105,8 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 		if (catagoryId!=0) {	
 			fullPath.add(catagoryId);
 			CategoryEntity selectById = this.getById(catagoryId);
-			if (selectById.getParentCid() != 0 ) {
-				getParentCategoryId(selectById.getParentCid(),fullPath);
+			if (selectById.getParentId() != 0 ) {
+				getParentCategoryId(selectById.getParentId(),fullPath);
 			}			
 		}		
 	}

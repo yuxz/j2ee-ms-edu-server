@@ -12,6 +12,8 @@ create table sms_student
 (
    id                   bigint not null auto_increment comment 'id',
    institution_id       bigint comment '教育机构id',
+   campus_id            bigint comment '分校id',
+   class_type_id        bigint comment '班级/课程类型id',  
    name                 varchar(64) comment '学生姓名',
    password             varchar(64) comment '密码',
    gender               tinyint comment '性别',

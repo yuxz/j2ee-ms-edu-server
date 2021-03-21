@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yxz.base.cms.dao.ContentDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yxz.base.cms.entity.ContentEntity" id="contentMap">
+        <result property="id" column="id"/>
+        <result property="catagoryId" column="catagory_id"/>
+        <result property="contentTypeId" column="content_type_id"/>
+        <result property="title" column="title"/>
+        <result property="subtitle" column="subtitle"/>
+        <result property="titleDesc" column="title_desc"/>
+        <result property="url" column="url"/>
+        <result property="content" column="content"/>
+        <result property="ispublished" column="ispublished"/>
+        <result property="published" column="published"/>
+        <result property="logicDeleted" column="logic_deleted"/>
+        <result property="created" column="created"/>
+        <result property="updated" column="updated"/>
+        <result property="userId" column="user_id"/>
+    </resultMap>
+
+
+</mapper>

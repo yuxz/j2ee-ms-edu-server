@@ -1,21 +1,30 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.yxz.edu</groupId>
-  <artifactId>ems</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>ems</name>
-  <description>education system
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.yxz.edu</groupId>
+	<artifactId>ems</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>ems</name>
+	<description>education system
 </description>
-  <modules>
+	<modules>
 
-  
-  <module>exam</module>
-  <module>gateway</module>
-  <module>system</module>
-  <module>institution</module>
-  <module>third-party</module>
-  <module>common</module>
-  <module>teacher</module>
-  </modules>
+		<!-- base modules -->
+		<module>common</module>
+		<module>gateway</module>
+		<module>system</module>
+		<module>iam</module>
+		<module>third-party</module>
+		<module>member</module>
+		<module>cms</module>
+
+		<!-- bussiness modules -->
+		<module>institution</module>
+		<module>exam</module>
+		<module>teacher</module>
+		<module>student</module>
+
+	</modules>
 </project>
