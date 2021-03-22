@@ -25,7 +25,7 @@ import com.yxz.base.mms.service.MemberLoginLogService;
  * @date 2019-10-08 09:47:05
  */
 @RestController
-@RequestMapping("member/memberloginlog")
+@RequestMapping("mms/memberloginlog")
 public class MemberLoginLogController {
     @Autowired
     private MemberLoginLogService memberLoginLogService;

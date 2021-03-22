@@ -29,4 +29,6 @@ public interface MemberService extends IService<MemberEntity> {
 
 	void checkUsernameUnique(String userName) throws UsernameExistedException;
 
+	PageUtils queryPageBySourceType(Map<String, Object> params,String sourceType);
+
 }

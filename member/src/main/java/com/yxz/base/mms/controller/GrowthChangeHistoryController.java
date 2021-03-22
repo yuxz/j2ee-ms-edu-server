@@ -26,7 +26,7 @@ import com.yxz.base.mms.service.GrowthChangeHistoryService;
  * @date 2019-10-08 09:47:05
  */
 @RestController
-@RequestMapping("member/growthchangehistory")
+@RequestMapping("mms/growthchangehistory")
 public class GrowthChangeHistoryController {
     @Autowired
     private GrowthChangeHistoryService growthChangeHistoryService;

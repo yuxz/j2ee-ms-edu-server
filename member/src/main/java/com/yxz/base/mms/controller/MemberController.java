@@ -32,7 +32,7 @@ import com.yxz.base.mms.service.MemberService;
  * @date 2019-10-08 09:47:05
  */
 @RestController
-@RequestMapping("member/si")
+@RequestMapping("mms/member")
 public class MemberController {
     @Autowired
     private MemberService memberService;
@@ -82,11 +82,11 @@ public class MemberController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @RequestMapping("/list/{sourceType}")
     //@RequiresPermissions("member:member:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = memberService.queryPage(params);
-
+    public R list(@RequestParam Map<String, Object> params,@PathVariable("sourceType") String sourceType){
+//        PageUtils page = memberService.queryPage(params);
+        PageUtils page = memberService.queryPageBySourceType(params,sourceType);
         return R.ok().put("page", page);
     }
 
@@ -124,6 +124,7 @@ public class MemberController {
         return R.ok();
     }
 
+    
     /**
      * 删除
      */

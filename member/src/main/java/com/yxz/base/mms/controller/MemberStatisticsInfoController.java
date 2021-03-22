@@ -25,7 +25,7 @@ import com.yxz.base.mms.service.MemberStatisticsInfoService;
  * @date 2019-10-08 09:47:05
  */
 @RestController
-@RequestMapping("member/memberstatisticsinfo")
+@RequestMapping("mms/memberstatisticsinfo")
 public class MemberStatisticsInfoController {
     @Autowired
     private MemberStatisticsInfoService memberStatisticsInfoService;

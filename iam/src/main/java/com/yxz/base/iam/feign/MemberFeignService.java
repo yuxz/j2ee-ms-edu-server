@@ -2,6 +2,7 @@ package com.yxz.base.iam.feign;
 
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,13 +16,13 @@ import com.yxz.base.iam.vo.UserSignUpVo;
 @FeignClient(value = "base-member",fallback = MemberFallbackService.class)
 public interface MemberFeignService {
 
-    @RequestMapping("member/member/signup")
+    @PostMapping("/mms/member/signup")
     R signup(@RequestBody UserSignUpVo registerVo);
 
 
-    @RequestMapping("member/member/login")
+    @RequestMapping("/mms/member/login")
      R login(@RequestBody UserLoginVo loginVo);
 
-    @RequestMapping("member/member/oauth2/login")
+    @RequestMapping("/mms/member/oauth2/login")
     R login(@RequestBody SocialUser socialUser);
 }

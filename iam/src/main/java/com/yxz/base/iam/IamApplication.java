@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 @EnableRedisHttpSession
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.yxz.base.iam.feign")
 @EnableDiscoveryClient
 @SpringBootApplication
 public class IamApplication {

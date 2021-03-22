@@ -25,7 +25,7 @@ import com.yxz.base.mms.service.MemberLevelService;
  * @date 2019-10-08 09:47:05
  */
 @RestController
-@RequestMapping("member/memberlevel")
+@RequestMapping("mms/memberlevel")
 public class MemberLevelController {
     @Autowired
     private MemberLevelService memberLevelService;

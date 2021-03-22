@@ -90,4 +90,12 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
 		}
 	}
 
+	@Override
+	public PageUtils queryPageBySourceType(Map<String, Object> params, String sourceType) {
+		IPage<MemberEntity> page = this.page(new Query<MemberEntity>().getPage(params),
+				new QueryWrapper<MemberEntity>().eq("source_type", sourceType));
+
+		return new PageUtils(page);
+	}
+
 }

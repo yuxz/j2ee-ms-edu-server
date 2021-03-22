@@ -1,8 +1,9 @@
 package com.yxz.edu.gateway.filter;
 
-import com.yxz.base.common.constant.IamServerConstant;
-import com.yxz.base.common.utils.JwtUtils;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -12,13 +13,13 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
-import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
-import reactor.core.publisher.Mono;
 
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
+import com.yxz.base.common.constant.IamServerConstant;
+import com.yxz.base.common.utils.JwtUtils;
+
+import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Mono;
 
 /**
  * 认证过滤器

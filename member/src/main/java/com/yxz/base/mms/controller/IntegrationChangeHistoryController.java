@@ -25,7 +25,7 @@ import com.yxz.base.mms.service.IntegrationChangeHistoryService;
  * @date 2019-10-08 09:47:05
  */
 @RestController
-@RequestMapping("member/integrationchangehistory")
+@RequestMapping("mms/integrationchangehistory")
 public class IntegrationChangeHistoryController {
     @Autowired
     private IntegrationChangeHistoryService integrationChangeHistoryService;

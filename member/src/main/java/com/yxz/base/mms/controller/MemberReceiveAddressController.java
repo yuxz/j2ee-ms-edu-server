@@ -25,7 +25,7 @@ import com.yxz.base.mms.service.MemberReceiveAddressService;
  * @date 2019-10-08 09:47:05
  */
 @RestController
-@RequestMapping("member/memberreceiveaddress")
+@RequestMapping("mms/memberreceiveaddress")
 public class MemberReceiveAddressController {
     @Autowired
     private MemberReceiveAddressService memberReceiveAddressService;

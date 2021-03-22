@@ -25,7 +25,7 @@ import com.yxz.base.mms.service.MemberCollectSubjectService;
  * @date 2019-10-08 09:47:05
  */
 @RestController
-@RequestMapping("member/membercollectsubject")
+@RequestMapping("mms/membercollectsubject")
 public class MemberCollectSubjectController {
     @Autowired
     private MemberCollectSubjectService memberCollectSubjectService;

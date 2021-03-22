@@ -13,9 +13,12 @@ public class SmsComponent {
 	private String host;
 	private String path;
 	private String sign;
-	private String appCodeString;
+	private String skin;
+	private String appcode;
 	
+//	TODO
 	public void sendSms(String phone, String code) {
+//		ng method
 		
 	}
 
