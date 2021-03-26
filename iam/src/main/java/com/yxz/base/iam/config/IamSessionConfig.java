@@ -18,7 +18,7 @@ public class IamSessionConfig {
     public CookieSerializer cookieSerializer() {
         DefaultCookieSerializer serializer = new DefaultCookieSerializer();
         serializer.setCookieName("YXZSESSIONID");
-        serializer.setDomainName("edutraining.com");
+        serializer.setDomainName("edu.com");
         return serializer;
     }
 }

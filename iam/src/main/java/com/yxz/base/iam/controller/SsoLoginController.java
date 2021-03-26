@@ -93,4 +93,14 @@ public class SsoLoginController {
         //登录失败，再次来到login.html
         return "forward:/login.html";
     }
+    
+    //TODO SSO Logout
+    @PostMapping("/doLogout")
+    public String doLogout(String username,
+                          String password,
+                          String url, Model model,
+                          HttpServletResponse response){
+    
+    	return "";
+    }
 }

@@ -6,7 +6,7 @@ public class MemberConstant {
 
 
     public enum  AttrEnum{
-        TEACHER_MEMBER(1,"教師"),STUDENT_MEMBER(2,"學生"),SIGNUP_MEMBER(3,"注冊賬號");
+    	MEMBER_INSTITUTION(1,"教師"), MEMBER_TEACHER(2,"教師"),MEMBER_STUDENT(3,"學生"),MEMBER_SIGNUP(4,"其他");
         private int code;
         private String msg;
 

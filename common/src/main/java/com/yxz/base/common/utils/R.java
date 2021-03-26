@@ -8,10 +8,11 @@
 
 package com.yxz.base.common.utils;
 
-import org.apache.http.HttpStatus;
-
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.http.HttpStatus;
 
 /**
  * 返回数据
@@ -64,6 +65,14 @@ public class R extends HashMap<String, Object> {
 	public  Integer getCode() {
 
 		return (Integer) this.get("code");
+	}
+	public String getData() {
+		Collection<Object> values = this.values();
+		String s= "";
+		for(Object val : values) {
+			s= s + (String)val;
+		}
+		return s;
 	}
 
 }

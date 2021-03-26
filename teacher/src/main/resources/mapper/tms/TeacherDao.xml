@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.yxz.edu.tms.dao.TeacherDao">
+<mapper namespace="com.yxz.edu.teacher.dao.TeacherDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.yxz.edu.tms.entity.TeacherEntity" id="teacherMap">
+    <resultMap type="com.yxz.edu.teacher.entity.TeacherEntity" id="teacherMap">
         <result property="id" column="id"/>
         <result property="institutionId" column="institution_id"/>
-        <result property="name" column="name"/>
-        <result property="password" column="password"/>
+        <result property="name" column="name"/>        
         <result property="gender" column="gender"/>
         <result property="birth" column="birth"/>
         <result property="mobile" column="mobile"/>
         <result property="email" column="email"/>
-        <result property="hireTime" column="hire_time"/>
-        <result property="leaveTime" column="leave_time"/>
+        <result property="hired" column="hired"/>
+        <result property="leaved" column="leaved"/>
+        <result property="isLeaved" column="is_leaved"/>
         <result property="note" column="note"/>
         <result property="token" column="token"/>
         <result property="isActived" column="is_actived"/>
         <result property="logicDeleted" column="logic_deleted"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+        <result property="created" column="created"/>
+        <result property="updated" column="updated"/>
         <result property="userId" column="user_id"/>
     </resultMap>
 

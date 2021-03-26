@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.13.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
+	<groupId>com.yxz</groupId>
+	<artifactId>base-dependencies</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>dependencies</name>
+	<url>http://www.edu.com</url>
+	<description>dependencies service</description>
+	<inceptionYear>2020-Now</inceptionYear>
+
+	<properties>
+		<!-- Environment Settings -->
+		<java.version>1.8</java.version>
+
+		<!-- Spring Settings -->
+		<spring-cloud.version>Hoxton.SR10</spring-cloud.version>
+		<spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
+		<!-- Environment Settings -->
+		<aliyun.version>3.11.3</aliyun.version>
+		<aws-java.version>1.11.969</aws-java.version>
+		<mysql.version>8.0.17</mysql.version>
+		<mybatis-plus.version>3.2.0</mybatis-plus.version>
+		<lombok.version>1.18.8</lombok.version>
+		<apache-httpclient.version>4.5.13</apache-httpclient.version>
+		<apache-httpcore.version>4.4.14</apache-httpcore.version>
+		<commons-lang.version>2.6</commons-lang.version>
+		<jackson.version>2.9.6</jackson.version>
+		<javax-servlet.version>2.5</javax-servlet.version>
+		<javax-validation.version>2.0.1.Final</javax-validation.version>
+		<jjwt.version>0.9.0</jjwt.version>
+		<swagger2.version>2.8.0</swagger2.version>
+	</properties>
+
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Spring Cloud Begin -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba.cloud</groupId>
+				<artifactId>spring-cloud-alibaba-dependencies</artifactId>
+				<version>${spring-cloud-alibaba.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Spring Cloud End -->
+			<dependency>
+				<groupId>com.aliyun.oss</groupId>
+				<artifactId>aliyun-sdk-oss</artifactId>
+				<version>${aliyun.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.amazonaws</groupId>
+				<artifactId>aws-java-sdk-bom</artifactId>
+				<version>${aws-java.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Environment Begin -->
+			<!-- 导入mysql驱动 -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+			</dependency>
+
+			<!-- mybatis-plus -->
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybatis-plus.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore</artifactId>
+				<version>${apache-httpcore.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${apache-httpclient.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons-lang.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${javax-servlet.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>${javax-validation.version}</version>
+			</dependency>
+
+
+
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt</artifactId>
+				<version>${jjwt.version}</version>
+			</dependency>
+			<!-- Environment End -->
+
+
+			<!-- Swagger2 Begin -->
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${swagger2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${swagger2.version}</version>
+			</dependency>
+			<!-- Swagger2 End -->
+		</dependencies>
+
+
+
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

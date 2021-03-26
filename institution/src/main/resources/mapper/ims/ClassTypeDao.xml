@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.yxz.edu.ims.dao.ClassTypeDao">
+<mapper namespace="com.yxz.edu.institution.dao.ClassTypeDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.yxz.edu.ims.entity.ClassTypeEntity" id="classTypeMap">
+    <resultMap type="com.yxz.edu.institution.entity.ClassTypeEntity" id="classTypeMap">
         <result property="id" column="id"/>
         <result property="institutionId" column="institution_id"/>
         <result property="campusId" column="campus_id"/>
         <result property="name" column="name"/>
         <result property="note" column="note"/>
         <result property="logicDeleted" column="logic_deleted"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+        <result property="created" column="created"/>
+        <result property="updated" column="updated"/>
         <result property="userId" column="user_id"/>
     </resultMap>
 

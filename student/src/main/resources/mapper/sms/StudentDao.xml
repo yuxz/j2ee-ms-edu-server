@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.yxz.edu.sms.dao.StudentDao">
+<mapper namespace="com.yxz.edu.student.dao.StudentDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.yxz.edu.sms.entity.StudentEntity" id="studentMap">
+    <resultMap type="com.yxz.edu.student.entity.StudentEntity" id="studentMap">
         <result property="id" column="id"/>
         <result property="institutionId" column="institution_id"/>
         <result property="campusId" column="campus_id"/>
@@ -16,11 +16,12 @@
         <result property="mobile" column="mobile"/>
         <result property="email" column="email"/>
         <result property="note" column="note"/>
+        <result property="registered" column="registered"/>
         <result property="isActived" column="is_actived"/>
         <result property="token" column="token"/>
         <result property="logicDeleted" column="logic_deleted"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+        <result property="created" column="created"/>
+        <result property="updated" column="updated"/>
         <result property="userId" column="user_id"/>
     </resultMap>
 

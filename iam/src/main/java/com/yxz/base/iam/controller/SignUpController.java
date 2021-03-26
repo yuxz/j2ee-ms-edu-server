@@ -68,20 +68,29 @@ public class SignUpController {
 			BindingResult result,
 			RedirectAttributes redirectAttributes,
 			HttpSession httpSession) {
-		System.out.println("signup----------------");
-		R r = memberFeignService.signup(vo);
-		if (result.hasErrors()) {
-			
+		
+		if (result.hasErrors()) {			
 			Map<String, String> errors = result.getFieldErrors().stream().collect(Collectors.toMap(
 					fieldError -> fieldError.getField(), 
 					fieldError -> fieldError.getDefaultMessage()));		
-//			model.addAttribute("errors",errors);
 			redirectAttributes.addFlashAttribute("errors", errors); 			
+			return "redirect:http://iam.edu.com/signup.html";
+		};
+		
+		R r = memberFeignService.signup(vo);
+		if(r.getCode() == 0) {					
+			return "redirect:http://iam.edu.com/login.html";
+		}
+		else {					
+			
+			Map<String, String> errors = new HashMap<>();
+			errors.put("msg", r.getData());//TODO
+			redirectAttributes.addFlashAttribute("errors",errors);
 			return "redirect:http://iam.edu.com/signup.html";
 		}
 		
-//	/	R r = memberFeignService.signup(vo);
-		
+		//手机验证码注册---------start
+		/*
 		//1. check phone verification code
 		String code = vo.getCode();
 		String existedCode = redisTemplate.opsForValue().get(IamServerConstant.SMS_CODE_CACHE_PREFIX_STRING + vo.getPhone());
@@ -119,5 +128,6 @@ public class SignUpController {
 			redirectAttributes.addFlashAttribute("errors", errors); 			
 			return "redirect:http://iam.edu.com/signup.html";
 		}
+		*/
 	}
 }

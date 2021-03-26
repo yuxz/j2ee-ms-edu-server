@@ -1,678 +1,774 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" href="/static/index/css/swiper-3.4.2.min.css">
-  <link rel="stylesheet" href="/static/index/css/GL.css">
-  <script src="/static/index/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EDU | INSTITUTION</title>
 
-  <script src="/static/index/js/swiper-3.4.2.jquery.min.js" type="text/javascript" charset="utf-8"></script>
-
-  <script src="/static/index/js/swiper-3.4.2.min.js"></script>
-
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/static/yxz/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="/static/yxz/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="/static/yxz/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="/static/yxz/plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/static/yxz/dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/static/yxz/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="/static/yxz/plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="/static/yxz/plugins/summernote/summernote-bs4.min.css">
+   <style>
+        .card-height {
+            height: 428px;
+            max-height: 428px;
+            /* margin: auto; */
+        }
+        .users-list-name-clear {
+    	clear: left;
+    	}
+    	.users-list-li-width{
+    	width: auto;
+    	}
+    </style>
 </head>
+<body class="layout-navbar-fixed sidebar-collapse text-sm">
+<div class="wrapper">
 
-<body>
-  <div class="top_find">
-    <div class="top_find_son">
-      <img src="/static/index/img/top_find_logo.png" alt="">
-      <div class="input_find">
-        <input type="text" placeholder="卸妆水" />
-        <span style="background: url(../static/index/img/img_12.png) 0 -1px;"></span>
-        <a href="#"><img src="/static/index/img/img_09.png" /></a>
-      </div>
-    </div>
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="/static/yxz/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
   </div>
-  <ul class="left_floor">
-    <li class="left_floor_xiang">享品质</li>
-    <li class="left_floor_fu">服饰美妆</li>
-    <li class="left_floor_jia">家电手机</li>
-    <li class="left_floor_dian">电脑数码</li>
-    <li class="left_floor_3C">3C运动</li>
-    <li class="left_floor_ai">爱吃</li>
-    <li class="left_floor_mu">母婴家居</li>
-    <li class="left_floor_tu">图书汽车</li>
-    <li class="left_floor_you">游戏金融</li>
-    <li class="left_floor_lv">旅行健康</li>
-    <li class="left_floor_hai">还没逛够</li>
-    <li class="left_floor_ding">顶部</li>
-  </ul>
-  <header>
-    <div class="head">
-      <a href="#"><img src="/static/index/img/img_01.png" /></a>
-      <p>X</p>
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light border-bottom-0 text-sm">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+       <li class="nav-item d-none d-sm-inline-block">
+        <a href="http://edu.com" class="nav-link">EDU</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="http://edu.com" class="nav-link"></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link"></a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+          <i class="fas fa-search"></i>
+        </a>
+        <div class="navbar-search-block">
+          <form class="form-inline">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
+
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="/static/yxz/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="/static/yxz/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="/static/yxz/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+          <i class="fas fa-th-large"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+     
     </div>
-    <!--头部-->
-    <div class="header_head">
-      <div class="header_head_box">
-        <a href="#" class="img"><img src="/static/index/img/logo.jpg" /></a>
-        <b class="header_head_p">
-  						<a href="#">
-  							<img src="/static/index/img/img_05.png" style="border-radius: 50%;"/>
-  							<!--<span class="glyphicon glyphicon-map-marker"></span>-->
-  							 北京</a>
-  						<div class="header_head_p_cs">
-  							<a href="#" style="background: #C81623;color: #fff;">北京</a>
-  							<a href="#">上海</a>
-  							<a href="#">天津</a>
-  							<a href="#">重庆</a>
-  							<a href="#">河北</a>
-  							<a href="#">山西</a>
-  							<a href="#">河南</a>
-  							<a href="#">辽宁</a>
-  							<a href="#">吉林</a>
-  							<a href="#">黑龙江</a>
-  							<a href="#">内蒙古</a>
-  							<a href="#">江苏</a>
-  							<a href="#">山东</a>
-  							<a href="#">安徽</a>
-  							<a href="#">浙江</a>
-  							<a href="#">福建</a>
-  							<a href="#">湖北</a>
-  							<a href="#">湖南</a>
-  							<a href="#">广东</a>
-  							<a href="#">广西</a>
-  							<a href="#">江西</a>
-  							<a href="#">四川</a>
-  							<a href="#">海南</a>
-  							<a href="#">贵州</a>
-  							<a href="#">云南</a>
-  							<a href="#">西藏</a>
-  							<a href="#">陕西</a>
-  							<a href="#">甘肃</a>
-  							<a href="#">青海</a>
-  							<a href="#">宁夏</a>
-  							<a href="#">新疆</a>
-  							<a href="#">港澳</a>
-  							<a href="#">台湾</a>
-  							<a href="#">钓鱼岛</a>
-  							<a href="#">海外</a>
-  						</div>
-  					</b>
-        <ul>
-          <li>
-            <a href="http://iam.edu.com/login.html">你好，请登录</a>
-          </li>
-          <li>
-            <a href="http://iam.edu.com/signup.html" class="li_2">免费注册</a>
-          </li>
-          <span>|</span>
-          <li>
-            <a href="#">我的订单</a>
-          </li>
+    <!-- /.content-header -->
 
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>40</h3>
 
-        </ul>
-      </div>
-    </div>
-    <!--搜索导航-->
-    <div class="header_sous">
-      <div class="header_form">
-        <input id="searchText" type="text" placeholder="" />
-        <span style="background: url(../static/index/img/img_12.png) 0 -1px;"></span>
-        <!--<button><i class="glyphicon"></i></button>-->
-        <a href="#" ><img src="/static/index/img/img_09.png" onclick="search()" /></a>
-      </div>
-      <div class="header_ico">
-        <div class="header_gw">
-          <img src="/static/index/img/img_15.png" />
-          <span><a href="/购物车\One_JDshop.html">我的购物车</a></span>
-          <span>0</span>
-        </div>
-        <div class="header_ko">
-          <p>购物车中还没有商品，赶紧选购吧！</p>
-        </div>
-      </div>
-      <div class="header_form_nav">
-        <ul>
-          <li>
-            <a href="#" class="aaaaa">满999减300</a>
-          </li>
-          <li>
-            <a href="#">金立S11</a>
-          </li>
-          <li>
-            <a href="#">农用物资</a>
-          </li>
-          <li>
-            <a href="#">保暖特惠</a>
-          </li>
-          <li>
-            <a href="#">洗衣机节</a>
-          </li>
-          <li>
-            <a href="#">七度空间卫生巾</a>
-          </li>
-          <li>
-            <a href="#">自动波箱油</a>
-          </li>
-          <li>
-            <a href="#">超市</a>
-          </li>
-        </ul>
-      </div>
-      <nav>
-        <ul>
-          <li>
-            <a href="#">秒杀</a>
-          </li>
-          <li>
-            <a href="#">优惠券</a>
-          </li>
-          <li>
-            <a href="#">闪购</a>
-          </li>
-          <li>
-            <a href="#">拍卖</a>
-          </li>
-        </ul>
-        <div class="spacer">|</div>
-        <ul>
-          <li>
-            <a href="#">服饰</a>
-          </li>
-          <li>
-            <a href="#">超市</a>
-          </li>
-          <li>
-            <a href="#">生鲜</a>
-          </li>
-          <li>
-            <a href="#">全球购</a>
-          </li>
-        </ul>
-        <div class="spacer">|</div>
-        <ul>
-          <li>
-            <a href="#">金融</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="right">
-        <a href="#"><img src="/static/index/img/img_21.png" /></a>
-      </div>
-    </div>
-    <!--轮播主体内容-->
-    <div class="header_main">
-      <div class="header_banner">
-        <div class="header_main_left">
-          <ul>
-            <li>
-              <a href="#" class="header_main_left_a" ctg-data="3"><b>家用电器</b></a>
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="2,4"><b>手机</b> / <b>运营商</b> / <b>数码</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="6"><b>电脑</b> / <b>办公</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="5,7"><b>家居</b> / <b>家具</b> / <b>家装</b> / <b>厨具</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a"  ctg-data="9"><b>男装</b> / <b>女装</b> / <b>童装</b> / <b>内衣</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a"  ctg-data="8"><b>美妆个护 </b>/ <b>宠物</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a"  ctg-data="11,13,10,15"><b>鞋</b> / <b>箱包</b> / <b>钟表</b> / <b>珠宝</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a"  ctg-data="17"> <b>运动</b> / <b>户外</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="16,21"><b>汽车</b> / <b>汽车用品</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="12,18"><b>母婴</b> / <b>玩具乐器</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="14,20"><b>食品</b> / <b>酒类</b> / <b>生鲜</b> / <b>特产</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ><b>礼品鲜花</b> / <b>农资绿植</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a"><b>医药保健</b> / <b>计生情趣</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="1"><b>图书</b> / <b>音像</b>/ <b>电子书</b></a>
-
-            </li>
-            <li class="header_li2">
-              <a href="#" class="header_main_left_a" ctg-data="19"><b>彩票</b> / <b>酒店</b> / <b>旅游</b> / <b>生活</b></a>
-
-            </li>
-
-          </ul>
-
-        </div>
-        <div class="header_main_center">
-          <div class="swiper-container swiper1">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <a href="#"><img src="/static/index/img/lunbo.png" /></a>
+                <p>Classes</p>
               </div>
-
-              <div class="swiper-slide">
-                <a href="#"><img src="/static/index/img/lunbo3.png" /></a>
+              <div class="icon">
+                <i class="ion ion-university"></i>
               </div>
-
-              <div class="swiper-slide">
-                <a href="#"><img src="/static/index/img/lunbo6.png" /></a>
-              </div>
-              <div class="swiper-slide">
-                <a href="#"><img src="/static/index/img/lunbo7.png" /></a>
-              </div>
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-next swiper-button-white"></div>
-            <div class="swiper-button-prev swiper-button-white"></div>
-          </div>
-          <div class="header_main_center_b">
-            <a href="#"><img src="/static/index/img/5a13bf0bNe1606e58.jpg" /></a>
-            <a href="#"><img src="/static/index/img/5a154759N5385d5d6.jpg" /></a>
-          </div>
-        </div>
-        <div class="header_main_right">
-          <div class="header_main_right_user">
-            <div class="user_info">
-              <div class="user_info_tou">
-                <a href="#"><img class="" src="/static/index/img/touxiang.png"></a>
-              </div>
-              <div class="user_info_show">
-                <p class="">Hi, 欢迎来到!</p>
-                <p>
-                  <a href="http://iam.edu.com/login.html" class="">登录</a>
-                  <a href="http://iam.edu.com/signup.html" class="">注册</a>
-                </p>
-              </div>
-            </div>
-            <div class="user_info_hide">
-              <a href="#">新人福利</a>
-              <a href="#">PLUS会员</a>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <div class="header_main_right_new">
-            <div class="header_new">
-              <div class="header_new_t">
-                <p class="active">
-                  <a href="#">促销</a>
-                </p>
-                <p>
-                  <a href="#">公告</a>
-                </p>
-                <a href="#">更多</a>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>72</h3>
+                <p>Teachers</p>
               </div>
-              <div class="header_new_connter">
-                <div class="header_new_connter_1">
-                  <ul>
-                    <li>
-                      <a href="#">全民纸巾大作战</a>
-                    </li>
-                    <li>
-                      <a href="#">家具建材满999减300元</a>
-                    </li>
-                    <li>
-                      <a href="#">黑科技冰箱，下单立减千元</a>
-                    </li>
-                    <li>
-                      <a href="#">抢102减101神券！</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="header_new_connter_1" style="display: none;">
-                  <ul>
-                    <li>
-                      <a href="#">关于召回普利司通（天津）轮胎有限公司2个规格乘用车轮胎的公告</a>
-                    </li>
-                    <li>
-                      <a href="#">物流推出配送员统一外呼电话"95056”</a>
-                    </li>
-                    <li>
-                      <a href="#">天府大件运营中心开仓公告</a>
-                    </li>
-                    <li>
-                      <a href="#">大件物流“送装一体”服务全面升级！</a>
-                    </li>
-                  </ul>
-                </div>
+              <div class="icon">
+                <i class="ion ion-person"></i>
               </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <div class="header_main_right_ser">
-            <div class="ser_box">
-              <ul>
-                <li class="ser_box_item">
-                  <a href="#">
-  											<img src="/static/index/img/huafei.png" />
-  											<span>话费</span>
-  										</a>
-                </li>
-                <li class="ser_box_item">
-                  <a href="#">
-  											<img src="/static/index/img/jipiao.png" />
-  											<span>机票</span>
-  										</a>
-                </li>
-                <li class="ser_box_item">
-                  <a href="#">
-  											<img src="/static/index/img/jiudian.png" />
-  											<span>酒店</span>
-  										</a>
-                </li>
-                <li class="ser_box_item">
-                  <a href="#">
-  											<img src="/static/index/img/youxi.png" />
-  											<span>游戏</span>
-  										</a>
-                </li>
-                <li class="ser_box_item1">
-                  <a href="#">
-  											<img src="/static/index/img/qiyegou.png" />
-  											<span>企业购</span>
-  										</a>
-                </li>
-                <li class="ser_box_item1">
-                  <a href="#">
-  											<img src="/static/index/img/jiayouka.png" />
-  											<span>加油卡</span>
-  										</a>
-                </li>
-                <li class="ser_box_item1">
-                  <a href="#">
-  											<img src="/static/index/img/dianyingpiao.png" />
-  											<span>电影票</span>
-  										</a>
-                </li>
-                <li class="ser_box_item1">
-                  <a href="#">
-  											<img src="/static/index/img/huochepiao.png" style="height:20px;" />
-  											<span>火车票</span>
-  										</a>
-                </li>
-                <li class="ser_box_item1">
-                  <a href="#">
-  											<img src="/static/index/img/zhongchou.png" />
-  											<span>众筹</span>
-  										</a>
-                </li>
-                <li class="ser_box_item1">
-                  <a href="#">
-  											<img src="/static/index/img/licai.png" style="height:22px;" />
-  											<span>理财</span>
-  										</a>
-                </li>
-                <li class="ser_box_item1">
-                  <a href="#">
-  											<img src="/static/index/img/lipinka.png" style="height:14px;" />
-  											<span>礼品卡</span>
-  										</a>
-                </li>
-                <li class="ser_box_item1">
-                  <a href="#">
-  											<img src="/static/index/img/baitiao.png" style="height:20px;" />
-  											<span>白条</span>
-  										</a>
-                </li>
-              </ul>
-              <div class="ser_box_aaa">
-                <div class="ser_box_aaa_one">
-                  <div class="ser_box_aaa_nav">
-                    <ol>
-                      <li class="active">
-                        <a href="#">话费</a>
-                      </li>
-                      <li>
-                        <a href="#">机票</a>
-                      </li>
-                      <li>
-                        <a href="#">酒店</a>
-                      </li>
-                      <li>
-                        <a href="#">游戏</a>
-                      </li>
-                    </ol>
-                    <div class="ser_ol">
-                      <div class="ser_ol_li">
-                        <ul>
-                          <div class="guanbi">X</div>
-                          <a class="active">话费充值</a>
-                          <a>流量充值</a>
-                          <a>套餐变更</a>
-                          <div class="ser_ol_div">
-                            <p>号码<input type="text" /></p>
-                            <p style="margin: 10px 0;">面值
-                              <select name="">
-  																	<option value="">100元</option>
-  																	<option value="">20元</option>
-  																	<option value="">50元</option>
-  																	<option value="">10元</option>
-  																	<option value="">2元</option>
-  																</select>
-                              <span>￥98.0-￥100.0</span></p>
-                          </div>
-                          <button>快速充值</button>
-                          <p class="p">抢99减50元话费</p>
-                        </ul>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>1280</h3>
+                <p>Students</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-stalker"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>28</h3>
 
-                      </div>
-                      <div class="ser_ol_li">
-                        <ul>
-                          <div class="guanbi">X</div>
-                          <a class="active">国际机票</a>
-                          <a>国际/港澳</a>
-                          <a>特惠活动</a>
-                          <div class="ser_ol_div1">
-                            <p>
-                              <input type="radio" name="a" style="vertical-align:middle;" />单程
-                              <input type="radio" name="a" style="vertical-align:middle;" />往返
-                            </p>
-                            <input type="text" placeholder="出发城市" />
-                            <input type="text" placeholder="到达城市" />
-                            <input type="text" placeholder="日期" />
-                          </div>
-                          <button>机票查询</button>
-                          <span class="p">当季热门特惠机票</span>
-                        </ul>
-                      </div>
-                      <div class="ser_ol_li">
-                        <ul>
-                          <div class="guanbi">X</div>
-                          <a class="active" style="width: 50%;">国内港澳台</a>
-                          <a style="width: 50%;">促销活动</a>
-                          <div class="ser_ol_div1">
-                            <input type="text" placeholder="出发城市" style="margin-top: 10px;" />
-                            <input type="text" placeholder="到达城市" />
-                            <input type="text" placeholder="日期" />
-                            <input type="text" placeholder="酒店 商圈 地标" />
-                          </div>
-                          <button>酒店查询</button>
-                          <span class="p">订酒店到</span>
-                        </ul>
-                      </div>
-                      <div class="ser_ol_li">
-                        <ul>
-                          <div class="guanbi">X</div>
-                          <a class="active">点卡</a>
-                          <a>QQ</a>
-                          <a>页游</a>
-                          <div class="ser_ol_div1">
-                            <input type="text" placeholder="游戏" style="margin-top: 15px;" />
-                            <br />面值
-                            <select name="" style="margin: 8px 0;">
-  																<option value="">面值</option>
-  																<option value="">面值</option>
-  																<option value="">面值</option>
-  															</select><span style="color: #C81623;">￥0.00</span>
-                            <p>
-                              <input type="radio" name="a" style="width: 15px;vertical-align:middle;" />直充
-                              <input type="radio" name="a" style="width: 15px;vertical-align:middle;" />卡密
-                            </p>
-                          </div>
-                          <button>快速充值</button>
-                          <span class="p">吃鸡就要快人一步</span>
-                        </ul>
-                      </div>
+                <p>Employees</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        
+                    <div class="row">
+                        <!-- Left col -->
+                        <div class="col-md-4">
+                            <!-- DIRECT CHAT -->
+                            <div class="card direct-chat direct-chat-primary card-height">
+                                <div class="card-header">
+                                    <h3 class="card-title">Direct Chat</h3>
+
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <!-- Conversations are loaded here -->
+                                    <div class="direct-chat-messages">
+                                        <!-- Message. Default to the left -->
+                                        <div class="direct-chat-msg">
+                                            <div class="direct-chat-infos clearfix">
+                                                <span class="direct-chat-name float-left">Alexander Pierce</span>
+                                                <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
+                                            </div>
+                                            <!-- /.direct-chat-infos -->
+                                            <img class="direct-chat-img" src="/static/yxz/dist/img/user1-128x128.jpg" alt="message user image">
+                                            <!-- /.direct-chat-img -->
+                                            <div class="direct-chat-text">
+                                                Is this template really for free? That's unbelievable!
+                                            </div>
+                                            <!-- /.direct-chat-text -->
+                                        </div>
+                                        <!-- /.direct-chat-msg -->
+
+                                        <!-- Message to the right -->
+                                        <div class="direct-chat-msg right">
+                                            <div class="direct-chat-infos clearfix">
+                                                <span class="direct-chat-name float-right">Sarah Bullock</span>
+                                                <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
+                                            </div>
+                                            <!-- /.direct-chat-infos -->
+                                            <img class="direct-chat-img" src="/static/yxz/dist/img/user3-128x128.jpg" alt="message user image">
+                                            <!-- /.direct-chat-img -->
+                                            <div class="direct-chat-text">
+                                                You better believe it!
+                                            </div>
+                                            <!-- /.direct-chat-text -->
+                                        </div>
+                                        <!-- /.direct-chat-msg -->
+
+                                        <!-- Message. Default to the left -->
+                                        <div class="direct-chat-msg">
+                                            <div class="direct-chat-infos clearfix">
+                                                <span class="direct-chat-name float-left">Alexander Pierce</span>
+                                                <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
+                                            </div>
+                                            <!-- /.direct-chat-infos -->
+                                            <img class="direct-chat-img" src="/static/yxz/dist/img/user1-128x128.jpg" alt="message user image">
+                                            <!-- /.direct-chat-img -->
+                                            <div class="direct-chat-text">
+                                                Working with AdminLTE on a great new app! Wanna join?
+                                            </div>
+                                            <!-- /.direct-chat-text -->
+                                        </div>
+                                        <!-- /.direct-chat-msg -->
+
+                                        <!-- Message to the right -->
+                                        <div class="direct-chat-msg right">
+                                            <div class="direct-chat-infos clearfix">
+                                                <span class="direct-chat-name float-right">Sarah Bullock</span>
+                                                <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
+                                            </div>
+                                            <!-- /.direct-chat-infos -->
+                                            <img class="direct-chat-img" src="/static/yxz/dist/img/user3-128x128.jpg" alt="message user image">
+                                            <!-- /.direct-chat-img -->
+                                            <div class="direct-chat-text">
+                                                I would love to.
+                                            </div>
+                                            <!-- /.direct-chat-text -->
+                                        </div>
+                                        <!-- /.direct-chat-msg -->
+
+                                    </div>
+                                    <!--/.direct-chat-messages-->
+
+                                    <!-- Contacts are loaded here -->
+                                    <div class="direct-chat-contacts">
+                                        <ul class="contacts-list">
+                                            <li>
+                                                <a href="#">
+                                                    <img class="contacts-list-img" src="/static/yxz/dist/img/user1-128x128.jpg" alt="User Avatar">
+
+                                                    <div class="contacts-list-info">
+                                                        <span class="contacts-list-name">
+                            Count Dracula
+                            <small class="contacts-list-date float-right">2/28/2015</small>
+                          </span>
+                                                        <span class="contacts-list-msg">How have you been? I was...</span>
+                                                    </div>
+                                                    <!-- /.contacts-list-info -->
+                                                </a>
+                                            </li>
+                                            <!-- End Contact Item -->
+                                            <li>
+                                                <a href="#">
+                                                    <img class="contacts-list-img" src="/static/yxz/dist/img/user7-128x128.jpg" alt="User Avatar">
+
+                                                    <div class="contacts-list-info">
+                                                        <span class="contacts-list-name">
+                            Sarah Doe
+                            <small class="contacts-list-date float-right">2/23/2015</small>
+                          </span>
+                                                        <span class="contacts-list-msg">I will be waiting for...</span>
+                                                    </div>
+                                                    <!-- /.contacts-list-info -->
+                                                </a>
+                                            </li>
+                                            <!-- End Contact Item -->
+                                            <li>
+                                                <a href="#">
+                                                    <img class="contacts-list-img" src="/static/yxz/dist/img/user3-128x128.jpg" alt="User Avatar">
+
+                                                    <div class="contacts-list-info">
+                                                        <span class="contacts-list-name">
+                            Nadia Jolie
+                            <small class="contacts-list-date float-right">2/20/2015</small>
+                          </span>
+                                                        <span class="contacts-list-msg">I'll call you back at...</span>
+                                                    </div>
+                                                    <!-- /.contacts-list-info -->
+                                                </a>
+                                            </li>
+                                            <!-- End Contact Item -->
+                                            <li>
+                                                <a href="#">
+                                                    <img class="contacts-list-img" src="/static/yxz/dist/img/user5-128x128.jpg" alt="User Avatar">
+
+                                                    <div class="contacts-list-info">
+                                                        <span class="contacts-list-name">
+                            Nora S. Vans
+                            <small class="contacts-list-date float-right">2/10/2015</small>
+                          </span>
+                                                        <span class="contacts-list-msg">Where is your new...</span>
+                                                    </div>
+                                                    <!-- /.contacts-list-info -->
+                                                </a>
+                                            </li>
+                                            <!-- End Contact Item -->
+                                            <li>
+                                                <a href="#">
+                                                    <img class="contacts-list-img" src="/static/yxz/dist/img/user6-128x128.jpg" alt="User Avatar">
+
+                                                    <div class="contacts-list-info">
+                                                        <span class="contacts-list-name">
+                            John K.
+                            <small class="contacts-list-date float-right">1/27/2015</small>
+                          </span>
+                                                        <span class="contacts-list-msg">Can I take a look at...</span>
+                                                    </div>
+                                                    <!-- /.contacts-list-info -->
+                                                </a>
+                                            </li>
+                                            <!-- End Contact Item -->
+                                            <li>
+                                                <a href="#">
+                                                    <img class="contacts-list-img" src="/static/yxz/dist/img/user8-128x128.jpg" alt="User Avatar">
+
+                                                    <div class="contacts-list-info">
+                                                        <span class="contacts-list-name">
+                            Kenneth M.
+                            <small class="contacts-list-date float-right">1/4/2015</small>
+                          </span>
+                                                        <span class="contacts-list-msg">Never mind I found...</span>
+                                                    </div>
+                                                    <!-- /.contacts-list-info -->
+                                                </a>
+                                            </li>
+                                            <!-- End Contact Item -->
+                                        </ul>
+                                        <!-- /.contacts-list -->
+                                    </div>
+                                    <!-- /.direct-chat-pane -->
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <form action="#" method="post">
+                                        <div class="input-group">
+                                            <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                                            <span class="input-group-append">
+                      <button type="button" class="btn btn-primary">Send</button>
+                    </span>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.card-footer-->
+                            </div>
+                            <!--/.direct-chat -->
+                        </div>
+                        <div class="col-md-4">
+                            <!-- TO DO List -->
+                            <div class="card card-height">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        To Do List
+                                    </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <ul class="todo-list" data-widget="todo-list">
+                                        <li>
+                                            <!-- drag handle -->
+                                            <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                            <!-- checkbox -->
+                                            <div class="icheck-primary d-inline ml-2">
+                                                <input type="checkbox" value="" name="todo1" id="todoCheck1">
+                                                <label for="todoCheck1"></label>
+                                            </div>
+                                            <!-- todo text -->
+                                            <span class="text">Design a nice theme</span>
+                                            <!-- Emphasis label -->
+                                            <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
+                                            <!-- General tools such as edit or delete-->
+                                            <div class="tools">
+                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-trash-o"></i>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                            <div class="icheck-primary d-inline ml-2">
+                                                <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
+                                                <label for="todoCheck2"></label>
+                                            </div>
+                                            <span class="text">Make the theme responsive</span>
+                                            <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
+                                            <div class="tools">
+                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-trash-o"></i>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                            <div class="icheck-primary d-inline ml-2">
+                                                <input type="checkbox" value="" name="todo3" id="todoCheck3">
+                                                <label for="todoCheck3"></label>
+                                            </div>
+                                            <span class="text">Let theme shine like a star</span>
+                                            <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
+                                            <div class="tools">
+                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-trash-o"></i>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                            <div class="icheck-primary d-inline ml-2">
+                                                <input type="checkbox" value="" name="todo4" id="todoCheck4">
+                                                <label for="todoCheck4"></label>
+                                            </div>
+                                            <span class="text">Let theme shine like a star</span>
+                                            <small class="badge badge-success"><i class="far fa-clock"></i> 3 days</small>
+                                            <div class="tools">
+                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-trash-o"></i>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer clearfix">
+                                </div>
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <div class="col-md-4">
+                            <!-- TO DO List -->
+                            <div class="card card-height">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        Notice
+                                    </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <ul class="todo-list" data-widget="todo-list">
+                                        <li>
+                                            <!-- drag handle -->
+                                            <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                            <!-- checkbox -->
+                                            <div class="icheck-primary d-inline ml-2">
+                                                <input type="checkbox" value="" name="todo1" id="todoCheck1">
+                                                <label for="todoCheck1"></label>
+                                            </div>
+                                            <!-- todo text -->
+                                            <span class="text">Design a nice theme</span>
+                                            <!-- Emphasis label -->
+                                            <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
+                                            <!-- General tools such as edit or delete-->
+                                            <div class="tools">
+                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-trash-o"></i>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                            <div class="icheck-primary d-inline ml-2">
+                                                <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
+                                                <label for="todoCheck2"></label>
+                                            </div>
+                                            <span class="text">Make the theme responsive</span>
+                                            <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
+                                            <div class="tools">
+                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-trash-o"></i>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                            <div class="icheck-primary d-inline ml-2">
+                                                <input type="checkbox" value="" name="todo3" id="todoCheck3">
+                                                <label for="todoCheck3"></label>
+                                            </div>
+                                            <span class="text">Let theme shine like a star</span>
+                                            <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
+                                            <div class="tools">
+                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-trash-o"></i>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                            <div class="icheck-primary d-inline ml-2">
+                                                <input type="checkbox" value="" name="todo4" id="todoCheck4">
+                                                <label for="todoCheck4"></label>
+                                            </div>
+                                            <span class="text">Let theme shine like a star</span>
+                                            <small class="badge badge-success"><i class="far fa-clock"></i> 3 days</small>
+                                            <div class="tools">
+                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-trash-o"></i>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer clearfix">
+                                </div>
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.Left col -->
+                        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+
+                        <!-- right col -->
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="header_banner1">
-        <a href="#" class="a">
-  						<img src="/static/index/img/5a1e5ce2N034ce344.png" class="aa" />
-  					</a>
-        <div class="header_banner1_div">
-          <p>X</p>
-        </div>
-      </div>
-    </div>
-  </header>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!-- DIRECT CHAT -->
+                            <div class="card-height card direct-chat direct-chat-warning ">
+                                <div class="card-header">
+                                    <h3 class="card-title">Question</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    AAA
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    footer
+                                </div>
+                                <!-- /.card-footer-->
+                            </div>
+                            <!--/.direct-chat -->
+                        </div>
+                        <div class="col-md-4">
+                            <!-- DIRECT CHAT -->
+                            <div class="card direct-chat direct-chat-warning card-height">
+                                <div class="card-header">
+                                    <h3 class="card-title">Courseware</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    AAA
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    footer
+                                </div>
+                                <!-- /.card-footer-->
+                            </div>
+                            <!--/.direct-chat -->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-height">
+                                <div class="card-header border-0">
+                                    <div class="d-flex justify-content-between ">
+                                        <h3 class="card-title center">Statics</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <p class="d-flex flex-column">
+                                            <span class="text-bold text-lg">820</span>
+                                            <span>Visitors Over Time</span>
+                                        </p>
+                                        <p class="ml-auto d-flex flex-column text-right">
+                                            <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 12.5%
+                    </span>
+                                            <span class="text-muted">Since last week</span>
+                                        </p>
+                                    </div>
+                                    <!-- /.d-flex -->
 
-  <div class="section_second">
-    <!-- 第一层 -->
-    <div class="section_second_header">
-      <p class="section_second_header_img"></p>
-      <div class="section_second_header_left">
-        <p></p>
-        <span class="">秒杀</span>
-        <span>总有你想不到的低价</span>
-        <span>
-        </span>
-      </div>
-      <div class="section_second_header_right">
-        <p>当前场次</p>
-        <span class="section_second_header_right_hours">00</span>
-        <span class="section_second_header_right_mao">：</span>
-        <span class="section_second_header_right_minutes">00</span>
-        <span class="section_second_header_right_mao">：</span>
-        <span class="section_second_header_right_second">00</span>
-        <p>后结束</p>
-      </div>
-    </div>
-    <div class="section_second_list">
-      <div class="swiper-container swiper_section_second_list_left">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <ul>
-              <li>
-                <img src="/static/index/img/section_second_list_img1.jpg" alt="">
-                <p>花王 (Merries) 妙而舒 纸尿裤 大号 L54片 尿不湿（9-14千克） （日本官方直采） 花王 (Merries) 妙而舒 纸尿裤 大号 L54片 尿不湿（9-14千</p>
-                <span>¥83.9</span><s>¥99.9</s>
-              </li>
-              <li>
-                <img src="/static/index/img/section_second_list_img2.jpg" alt="">
-                <p>华为mate9 4GB+32GB版 月光银 移动联通电信4G手机 双卡</p>
-                <span>¥17.90</span><s>¥29.90</s>
-              </li>
-              <li>
-                <img src="/static/index/img/section_second_list_img3.jpg" alt="">
-                <p>超能 植翠低泡洗衣液（鲜艳亮丽）2kg/袋装（新老包装随机</p>
-                <span>¥20.70</span><s>¥44.90</s>
-              </li>
-              <li>
-                <img src="/static/index/img/section_second_list_img4.jpg" alt="">
-                <p>长城（GreatWall）红酒 特选5年橡木桶解百纳干红葡萄酒 整</p>
-                <span>¥399.00</span><s>¥599.00</s>
-              </li>
-              <li>
-                <img src="/static/index/img/section_second_list_img5.jpg" alt="">
-                <p>惠普(HP)暗影精灵2代Pro 15.6英寸游戏笔记本电脑(i5-7300H</p>
-                <span>¥5999.00</span><s>¥6499.00</s>
-              </li>
-            </ul>
-          </div>
-          <div class="swiper-slide">
-            <ul>
-              <li>
-                <img src="/static/index/img/section_second_list_img6.jpg" alt="">
-                <p>Apple iMac 21.5英寸一体机（2017新款四核Core i5 处理器/8GB内存/1TB/RP555显卡/4K屏 MNDY2CH/A） Apple iMac 21.5英寸一体机（2017新款四核Core i5 处理</p>
-                <span>¥9588.00</span><s>¥10288.00</s>
-              </li>
-              <li>
-                <img src="/static/index/img/section_second_list_img7.jpg" alt="">
-                <p>中柏（Jumper）EZpad 4S Pro 10.6英寸二合一平板电脑（X5 z</p>
-                <span>¥848.00</span><s>¥899.00</s>
-              </li>
-              <li>
-                <img src="/static/index/img/section_second_list_img8.jpg" alt="">
-                <p>飞利浦（PHILIPS）电动牙刷HX6761/03亮白型成人充电式声波震动牙刷粉色 飞利浦（PHILIPS）电动牙刷HX6761/03亮白型成人充电式声波
-                </p>
-                <span>¥379.00</span><s>¥698.00</s>
-              </li>
-              <li>
-                <img src="/static/index/img/section_second_list_img9.jpg" alt="">
-                <p>美的(Midea) 258升 变频智能三门冰箱 一级能效 风冷无霜 中门</p>
-                <span>¥3088.00</span><s>¥3299.00</s>
-              </li>
-              <li>
-                <img src="/static/index/img/section_second_list_img10.jpg" alt="">
-                <p>【第二件减50元】蒙羊 内蒙古羔羊羊肋排 2.4斤</p>
-                <span>¥99.90</span><s>¥199.00</s>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="swiper-button-prev second_list">
-          <p></p>
-        </div>
-        <div class="swiper-button-next second_list">
-          <p></p>
-        </div>
-      </div>
-      <ul class="section_second_list_right">
-        <li>
-          <img src="/static/index/img/section_second_list_right_img.jpg" alt="">
-        </li>
-        <li>
-          <img src="/static/index/img/section_second_list_right_img.png" alt="">
-        </li>
-        <div class="section_second_list_right_button">
-          <p class="section_second_list_right_button_active"></p>
-          <p></p>
-        </div>
-      </ul>
-    </div>
- 
- 
+                                    <div class="position-relative mb-4">
+                                        <canvas id="visitors-chart" height="200"></canvas>
+                                    </div>
+
+                                    <div class="d-flex flex-row justify-content-end">
+                                        <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> This Week
+                  </span>
+
+                                        <span>
+                    <i class="fas fa-square text-gray"></i> Last Week
+                  </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>                    
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
   </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer text-sm">
+    <strong>Copyright &copy; 2018-2021 <a href="https://adminlte.io">edusoft.com</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">      
+    </div>
+  </footer>
 
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
 
- 
-</body>
-<script type="text/javascript">
-  function search() {
-      var keyword=$("#searchText").val()
-      window.location.href="http://search.gulimall.com/search.html?keyword="+keyword;
-  }
-
+<!-- jQuery -->
+<script src="/static/yxz/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/static/yxz/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
 </script>
-<script type="text/javascript" src="/static/index/js/text.js"></script>
-<script type="text/javascript" src="/static/index/js/header.js"></script>
-<script type="text/javascript" src="/static/index/js/secend.js"></script>
-<script type="text/javascript" src="/static/index/js/zz.js"></script>
-<script type="text/javascript" src="/static/index/jsindex.js"></script>
-<script type="text/javascript" src="/static/index/js/left,top.js"></script>
-<script type="text/javascript" src="/static/index/js/catalogLoader.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/static/yxz/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="/static/yxz/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="/static/yxz/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="/static/yxz/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="/static/yxz/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="/static/yxz/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="/static/yxz/plugins/moment/moment.min.js"></script>
+<script src="/static/yxz/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="/static/yxz/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="/static/yxz/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="/static/yxz/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/yxz/dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/static/yxz/dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="/static/yxz/dist/js/pages/dashboard.js"></script>
+</body>
 </html>

@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.yxz.base</groupId>
-	<artifactId>system</artifactId>
-	<version>3.0.0</version>
+	<parent>
+		<groupId>com.yxz</groupId>
+		<artifactId>base-dependencies</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../dependencies/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>base-system</artifactId>
 	<packaging>jar</packaging>
+
 	<description>system management service</description>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.4.RELEASE</version>
-	</parent>
+
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<mybatisplus.version>3.3.1</mybatisplus.version>
-		<mysql.version>8.0.17</mysql.version>
 		<mssql.version>4.0</mssql.version>
 		<oracle.version>11.2.0.3</oracle.version>
 		<druid.version>1.1.13</druid.version>
@@ -42,7 +43,7 @@
 		<hutool.version>4.1.1</hutool.version>
 		<lombok.version>1.18.4</lombok.version>
 
-		<!--wagon plugin 配置-->
+		<!--wagon plugin 配置 -->
 		<service-path>/work/renren</service-path>
 		<pack-name>${project.artifactId}-${project.version}.jar</pack-name>
 		<remote-addr>192.168.1.10:22</remote-addr>
@@ -51,17 +52,13 @@
 	</properties>
 
 	<dependencies>
-	   <dependency>
-			<groupId>com.yxz.base</groupId>
-			<artifactId>common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<groupId>com.yxz</groupId>
+			<artifactId>base-common</artifactId>
+			<version>${project.parent.version}</version>
 		</dependency>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -83,15 +80,50 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-devtools</artifactId>-->
-			<!--<optional>true</optional>-->
-		<!--</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!--<dependency> -->
+		<!--<groupId>org.springframework.boot</groupId> -->
+		<!--<artifactId>spring-boot-devtools</artifactId> -->
+		<!--<optional>true</optional> -->
+		<!--</dependency> -->
+
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!--oracle驱动 -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>${oracle.version}</version>
+		</dependency>
+		<!--mssql驱动 -->
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>sqljdbc4</artifactId>
+			<version>${mssql.version}</version>
+		</dependency>
+		<!--postgresql驱动 -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
-			<version>${mybatisplus.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>com.baomidou</groupId>
@@ -99,33 +131,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
-		</dependency>
-		 <!--oracle驱动-->
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>${oracle.version}</version>
-		</dependency>
-		 <!--mssql驱动-->
-		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>sqljdbc4</artifactId>
-			<version>${mssql.version}</version>
-		</dependency>
-		 <!--postgresql驱动-->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
-			<version>${druid.version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
@@ -140,7 +146,6 @@
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
-			<version>${commons.lang.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -155,7 +160,6 @@
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-			<version>${commons.codec.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-configuration</groupId>
@@ -175,7 +179,6 @@
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
-			<version>${jwt.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.axet</groupId>
@@ -185,12 +188,10 @@
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
-			<version>${swagger.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${swagger.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.qiniu</groupId>
@@ -200,7 +201,6 @@
 		<dependency>
 			<groupId>com.aliyun.oss</groupId>
 			<artifactId>aliyun-sdk-oss</artifactId>
-			<version>${aliyun.oss.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.qcloud</groupId>
@@ -216,12 +216,10 @@
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-			<version>${joda.time.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
-			<version>${gson.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -236,7 +234,6 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>${lombok.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -274,13 +271,14 @@
 					<url><![CDATA[scp://${remote-username}:${remote-passwd}@${remote-addr}${service-path}]]></url>
 					<commands>
 						<!-- Kill Old Process -->
-						<command>kill -9 `ps -ef |grep ${project.artifactId}.jar|grep -v "grep" |awk '{print $2}'`</command>
+						<command>kill -9 `ps -ef |grep ${project.artifactId}.jar|grep -v
+							"grep" |awk '{print $2}'`</command>
 						<!-- Restart jar package，write result into renren.log -->
 						<command><![CDATA[nohup java -jar ${service-path}/${pack-name} --spring.profiles.active=test > ${service-path}/renren.log 2>&1 & ]]></command>
 						<command><![CDATA[netstat -nptl]]></command>
 						<command><![CDATA[ps -ef | grep java | grep -v grep]]></command>
 					</commands>
-					<!-- 运行命令 mvn clean package wagon:upload-single wagon:sshexec-->
+					<!-- 运行命令 mvn clean package wagon:upload-single wagon:sshexec -->
 					<displayCommandOutputs>true</displayCommandOutputs>
 				</configuration>
 			</plugin>
@@ -289,14 +287,14 @@
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.4.14</version>
-				<!--<executions>-->
-					<!--<execution>-->
-						<!--<phase>package</phase>-->
-						<!--<goals>-->
-							<!--<goal>build</goal>-->
-						<!--</goals>-->
-					<!--</execution>-->
-				<!--</executions>-->
+				<!--<executions> -->
+				<!--<execution> -->
+				<!--<phase>package</phase> -->
+				<!--<goals> -->
+				<!--<goal>build</goal> -->
+				<!--</goals> -->
+				<!--</execution> -->
+				<!--</executions> -->
 				<configuration>
 					<imageName>renren/fast</imageName>
 					<dockerDirectory>${project.basedir}</dockerDirectory>

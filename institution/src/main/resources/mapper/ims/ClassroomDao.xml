@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.yxz.edu.ims.dao.ClassroomDao">
+<mapper namespace="com.yxz.edu.institution.dao.ClassroomDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.yxz.edu.ims.entity.ClassroomEntity" id="classroomMap">
+    <resultMap type="com.yxz.edu.institution.entity.ClassroomEntity" id="classroomMap">
         <result property="id" column="id"/>
         <result property="institutionId" column="institution_id"/>
         <result property="campusId" column="campus_id"/>
