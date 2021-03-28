@@ -8,22 +8,42 @@
         <result property="id" column="id"/>
         <result property="institutionId" column="institution_id"/>
         <result property="campusId" column="campus_id"/>
+        <result property="campusScheduleId" column="campus_schedule_id"/>
         <result property="classTypeId" column="class_type_id"/>
         <result property="name" column="name"/>
-        <result property="password" column="password"/>
-        <result property="gender" column="gender"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="cname" column="cname"/>
         <result property="birth" column="birth"/>
-        <result property="mobile" column="mobile"/>
+        <result property="gender" column="gender"/>
         <result property="email" column="email"/>
-        <result property="note" column="note"/>
+        <result property="mobile" column="mobile"/>
+        <result property="suburb" column="suburb"/>
+        <result property="postcode" column="postcode"/>
+        <result property="contractOne" column="contract_one"/>
+        <result property="contractTwo" column="contract_two"/>
+        <result property="school" column="school"/>
+        <result property="currentLevel" column="current_level"/>
+        <result property="parent" column="parent"/>
+        <result property="yearLevel" column="year_level"/>
         <result property="registered" column="registered"/>
-        <result property="isActived" column="is_actived"/>
+        <result property="note" column="note"/>
+        <result property="field1" column="field1"/>
+        <result property="field2" column="field2"/>
+        <result property="field3" column="field3"/>
+        <result property="field4" column="field4"/>
+        <result property="field5" column="field5"/>
+        <result property="field6" column="field6"/>
         <result property="token" column="token"/>
+        <result property="isActived" column="is_actived"/>
         <result property="logicDeleted" column="logic_deleted"/>
         <result property="created" column="created"/>
         <result property="updated" column="updated"/>
         <result property="userId" column="user_id"/>
     </resultMap>
-
+    
+    <select id="selectSchools" resultType="com.yxz.edu.student.entity.StudentEntity">
+		SELECT distinct school FROM sms_student 
+	</select>
 
 </mapper>

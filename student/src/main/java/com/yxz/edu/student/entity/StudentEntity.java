@@ -12,7 +12,7 @@ import lombok.Data;
  * 
  * @author XINZHONG YU
  * @email yxz20180810@gmail.com
- * @date 2021-03-15 19:17:49
+ * @date 2021-03-28 16:27:28
  */
 
 @Data
@@ -26,7 +26,6 @@ public class StudentEntity implements Serializable {
 	
 @TableId
 	private Long id;
-	
 	/**
 	 * 教育机构id
 	 */
@@ -36,6 +35,10 @@ public class StudentEntity implements Serializable {
 	 */
 	private Long campusId;
 	/**
+	 * 分校schedule id
+	 */
+	private Long campusScheduleId;
+	/**
 	 * 班级/课程类型id
 	 */
 	private Long classTypeId;
@@ -44,42 +47,105 @@ public class StudentEntity implements Serializable {
 	 */
 	private String name;
 	/**
-	 * 密码
+	 * FamilyName
 	 */
-	private String password;
+	private String firstName;
 	/**
-	 * 性别
+	 * GivenName
 	 */
-	private Integer gender;
+	private String lastName;
+	/**
+	 * 中文姓名
+	 */
+	private String cname;
 	/**
 	 * 生日
 	 */
 	private Date birth;
 	/**
-	 * 手机号码
+	 * 性别
 	 */
-	private String mobile;
+	private Integer gender;
 	/**
 	 * 邮箱
 	 */
 	private String email;
 	/**
-	 * 备注
+	 * 手机号码
 	 */
-	
-	private String note;
+	private String mobile;
+	/**
+	 * suburb
+	 */
+	private String suburb;
+	/**
+	 * postcode
+	 */
+	private String postcode;
+	/**
+	 * contract1
+	 */
+	private String contractOne;
+	/**
+	 * contract2
+	 */
+	private String contractTwo;
+	/**
+	 * day school
+	 */
+	private String school;
+	/**
+	 * current year level in day school
+	 */
+	private Integer currentLevel;
+	/**
+	 * parent or guardian name
+	 */
+	private String parent;
+	/**
+	 * 年级
+	 */
+	private Integer yearLevel;
 	/**
 	 * 注册时间
 	 */
 	private Date registered;
 	/**
-	 * 是否激活
+	 * 备注
 	 */
-	private Integer isActived;
+	private String note;
+	/**
+	 * field1
+	 */
+	private String field1;
+	/**
+	 * field2
+	 */
+	private String field2;
+	/**
+	 * field3
+	 */
+	private String field3;
+	/**
+	 * field4
+	 */
+	private String field4;
+	/**
+	 * field5
+	 */
+	private String field5;
+	/**
+	 * field6
+	 */
+	private String field6;
 	/**
 	 * token
 	 */
 	private String token;
+	/**
+	 * 是否激活
+	 */
+	private Integer isActived;
 	/**
 	 * 是否被删除[0-已删，1未删]
 	 */

@@ -1,10 +1,12 @@
 package com.yxz.edu.student.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yxz.base.common.utils.PageUtils;
 import com.yxz.edu.student.entity.StudentEntity;
-
-import java.util.Map;
+import com.yxz.edu.student.vo.SchoolsVo;
 
 /**
  * 学生
@@ -16,5 +18,7 @@ import java.util.Map;
 public interface StudentService extends IService<StudentEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+	List<SchoolsVo> querySchools();
 }
 

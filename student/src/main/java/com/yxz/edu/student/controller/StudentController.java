@@ -1,6 +1,7 @@
 package com.yxz.edu.student.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -21,6 +22,7 @@ import com.yxz.base.common.valid.UpdateGroup;
 import com.yxz.edu.student.entity.StudentEntity;
 import com.yxz.edu.student.feign.MemberFeignService;
 import com.yxz.edu.student.service.StudentService;
+import com.yxz.edu.student.vo.SchoolsVo;
 import com.yxz.edu.student.vo.StudentVo;
 import com.yxz.edu.student.vo.UserSignUpVo;
 
@@ -42,6 +44,16 @@ public class StudentController {
     /**
      * 列表
      */
+    @RequestMapping("/schools")
+    public R schools(){
+        List<SchoolsVo> schools = studentService.querySchools();
+
+        return R.ok().put("list", schools);
+    }
+
+    /**
+     * 列表
+     */
     @RequestMapping("/list")
     //@RequiresPermissions("sms:student:list")
     public R list(@RequestParam Map<String, Object> params){
@@ -49,6 +61,7 @@ public class StudentController {
 
         return R.ok().put("page", page);
     }
+
 
 
     /**

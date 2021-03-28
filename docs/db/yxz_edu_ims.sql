@@ -2,6 +2,8 @@ drop table if exists ims_institution;
 
 drop table if exists ims_campus;
 
+drop table if exists ims_campus_training_schedule;
+
 drop table if exists ims_class;
 
 drop table if exists ims_class_type;
@@ -60,6 +62,26 @@ create table ims_campus
 
 alter table ims_campus comment '校区';
 
+/*==============================================================*/
+/* Table: ims_campus_training_schedule                                            */
+/*==============================================================*/
+create table ims_campus_training_schedule
+(
+   id                   bigint not null auto_increment comment 'id',
+   institution_id       bigint comment '教育机构id',
+   campus_id			bigint comment '校区id',
+   name                 varchar(100) comment 'week',  
+   started			    varchar(20) comment 'Start time',  
+   ended                 varchar(20) comment 'End  time',  
+   note                 varchar(255) comment '备注',     
+   logic_deleted        tinyint comment '是否被删除[0-已删，1未删]',
+   created              datetime comment '创建时间',
+   updated              datetime comment '更改时间',
+   user_id              bigint comment '创建人',
+   primary key (id)
+);
+
+alter table ims_campus_training_schedule comment 'campus training schedule';
 
 /*==============================================================*/
 /* Table: ims_class                                             */

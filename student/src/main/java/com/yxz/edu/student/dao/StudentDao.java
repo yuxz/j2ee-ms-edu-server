@@ -3,6 +3,8 @@ package com.yxz.edu.student.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yxz.edu.student.entity.StudentEntity;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -15,4 +17,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface StudentDao extends BaseMapper<StudentEntity> {
 	
+	List<StudentEntity> selectSchools();
 }

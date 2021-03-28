@@ -16,6 +16,7 @@ import com.yxz.base.common.utils.Query;
 import com.yxz.edu.student.dao.StudentDao;
 import com.yxz.edu.student.entity.StudentEntity;
 import com.yxz.edu.student.service.StudentService;
+import com.yxz.edu.student.vo.SchoolsVo;
 import com.yxz.edu.student.vo.StudentListVo;
 
 @Service("studentService")
@@ -70,6 +71,25 @@ public class StudentServiceImpl extends ServiceImpl<StudentDao, StudentEntity> i
 		pageUtils.setList(collect);
 
 		return pageUtils;
+	}
+
+	@Override
+	public List<SchoolsVo> querySchools() {
+		// TODO Auto-generated method stu
+		List<StudentEntity> studentEntities = baseMapper.selectSchools();
+		if(studentEntities != null) {
+			List<SchoolsVo> schools = studentEntities.stream()
+					.filter(student-> !StringUtils.isEmpty(student.getSchool()))
+					.map((student)->{
+						SchoolsVo schoolsVo = new SchoolsVo();
+						schoolsVo.setValue(student.getSchool());
+						return schoolsVo;
+						
+					})					
+					.collect(Collectors.toList());
+			return schools;
+		}
+		return null;
 	}
 
 }
