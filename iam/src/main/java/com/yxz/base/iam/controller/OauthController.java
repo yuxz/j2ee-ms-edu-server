@@ -53,17 +53,17 @@ public class OauthController {
                 System.out.println("----------------"+memberResponseVo);
                 session.setAttribute(IamServerConstant.LOGIN_USER, memberResponseVo);
                 
-                return "redirect:http://gulimall.com";
+                return "redirect:http://edu.com";
             }else {
                 //2.2 否则返回登录页
                 errors.put("msg", "登录失败，请重试");
                 session.setAttribute("errors", errors);
-                return "redirect:http://auth.gulimall.com/login.html";
+                return "redirect:http://auth.edu.com/login.html";
             }
         }else {
             errors.put("msg", "获得第三方授权失败，请重试");
             session.setAttribute("errors", errors);
-            return "redirect:http://auth.gulimall.com/login.html";
+            return "redirect:http://auth.edu.com/login.html";
         }
 
 

@@ -1,17 +1,26 @@
-#spring:
-#  cloud:
-#    nacos:
-#      discovery:
-#        server-addr: 127.0.0.1:8848
-#    alicloud:
-#      access-key: LTAI4FwvfjSycd1APnuG9bjj
-#      secret-key: O6xaxyiWfSIitcOkSuK27ju4hXT5Hl
-#      oss:
-#        endpoint: oss-cn-beijing.aliyuncs.com
-#        bucket: yxz-edu
-#
-#  application:
-#    name: edu-third-party
-#
-#server:
-#  port: 30000
+server:
+  port: 30001
+  
+spring:
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848   
+
+# logging:
+#   level:
+#     com:
+#       yxz:
+#        edu:
+#         thirdparty: debug    
+
+cloud:
+  aws:
+    region:
+      static: ap-southeast-2
+    stack:
+      auto: false
+    credentials:  
+      access-key: AKIATWY3C25KAEY2D432
+      secret-key: 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
+    s3: 
+      bucket-name: yxz-edu

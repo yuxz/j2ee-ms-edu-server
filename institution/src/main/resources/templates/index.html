@@ -1,28 +1,31 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EDU | Student</title>
+  <title>AdminLTE 3 | Dashboard 3</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="/static/yxz/plugins/fontawesome-free/css/all.min.css">
+  <!-- Google Font: Source Sans Pro -->  
+  <!--link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/static/yxz/dist/css/adminlte.min.css">
- <!--flag style-->
-  <link rel="stylesheet" href="/static/yxz/plugins/flag-icon-css/css/flag-icon.min.css">
+  <link rel="stylesheet" href="/static/yxz/dist/css/home-main-style.css">
 </head>
-<body class="hold-transition layout-top-nav">
-<div class="wrapper">
+<body class="layout-top-nav text-sm">
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+ <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white border-bottom-0" style="padding-top:1.0rem;">
     <div class="container">
       <a href="/static/yxz/index3.html" class="navbar-brand">
         <img src="/static/yxz/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -52,7 +55,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>  
          
        <li class="nav-item">
-          <a href="#" class="btn btn-primary">Login</a>
+          <a href="http://iam.edu.com/login.html" class="btn btn-primary">Login</a>
        </li>
 	  <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
@@ -109,41 +112,286 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
   </nav>
   <!-- /.navbar -->
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-          
-          </div><!-- /.col -->          
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
+   
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content">
-      <div class="container" style="overflow:hidden">
-     	<img alt="" src="/static/yxz/dist/img/home.png">
-      </div><!-- /.container-fluid -->
-    </div>
+    <section class="home-image content">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+           <h4 class="home-image-title">Edu Training</h4>
+		   <p class="home-image-body">Features which ultimately Features which ultimately Features which ultimately 
+			Features which ultimately Features which ultimately Features which ultimately 
+			Features which ultimately Features which ultimately Features which ultimately </p>
+          </div>
+          <!-- /.col-md-12 -->      
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
     <!-- /.content -->
+	
+	<!-- Amazing content -->
+    <section class="amazing content">
+      <div class="container">
+	  <h1 class="section-header wow fadeIn  animated" data-wow-offset="120" data-wow-duration="1.5s" style="visibility: visible; animation-duration: 1.5s; animation-name: fadeIn;">Amazing Features</h1>
+      <hr class="amazing-hr">
+      <h6>Features which ultimately save your time, paperwork and travel</h6>
+      <hr class="amazing-hr">
+          <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12 text-right features-left wow fadeInLeft  animated" data-wow-offset="10" data-wow-duration="1.5s" style="visibility: visible; animation-duration: 1.5s; animation-name: fadeInLeft;">
+        <div class="feature_highlight">
+          <div class="col-md-10 col-sm-10 col-xs-10">
+              <h4 class="col-md-12 col-sm-12 col-xs-12 amazing_head"> Daily Tasks </h4>
+              <p class="col-md-12 col-sm-12 col-xs-12 amazing_content_left">Forget your papers - the single EDU App does it! Features permit you to easily allocate tasks no matter where you are</p>
+          </div>
+          <div class="col-md-2 col-sm-2 col-xs-2"><img src="/static/yxz/dist/img/task.png" title="Daily Tasks" alt="Daily Tasks"></div>
+          </div>
+          <div class="feature_highlight">
+          <div class="col-md-10 col-sm-10 col-xs-10">
+            <h4 class="col-md-12 col-sm-12 col-xs-12 amazing_head"> Cloud Storage </h4>
+            <p class="col-md-12 col-sm-12 col-xs-12 amazing_content_left">Reliable, Efficient and Cost-Effective Storage, easy access to your data even when you are not in the field</p>
+          </div>
+          <div class="col-md-2 col-sm-2 col-xs-2"><img src="/static/yxz/dist/img/cloud.PNG" title="Cloud Storage" alt="Cloud Storage"></div>
+          </div>
+          <div class="feature_highlight">
+          <div class="col-md-10 col-sm-10 col-xs-10">
+            <h4 class="col-md-12 col-sm-12 col-xs-12 amazing_head"> Daily Report </h4>
+            <p class="col-md-12  col-sm-12 col-xs-12 amazing_content_left">Track your Project - Allows for consistent productivity evaluation</p>
+          </div>
+          <div class="col-md-2 col-sm-2 col-xs-2"><img src="/static/yxz/dist/img/daily-report.PNG" title="Daily Report" alt="Daily Report"></div>
+          </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="phone-img wow bounceIn  animated" data-wow-offset="120" data-wow-duration="1.5s" style="visibility: visible; animation-duration: 1.5s; animation-name: bounceIn;">
+          <img src="/static/yxz/dist/img/home-new.png" alt="EDU Android App" title="EDU Android App" class="ful-width1">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12 text-left features-right wow fadeInRight  animated" data-wow-duration="1.5s" style="visibility: visible; animation-duration: 1.5s; animation-name: fadeInRight;">
+        <div class="feature_highlight">
+        <div class="col-md-2 col-sm-2 col-xs-2"><img src="/static/yxz/dist/img/drawing.PNG" title="Manage Plan" alt="Manage Plan"></div>
+        <div class="col-md-10 col-sm-10 col-xs-10">
+          <h4 class="col-md-12 col-sm-12 col-xs-12 amazing_head"> Manage Plan</h4>
+          <p class="col-md-12 col-sm-12 col-xs-12 amazing_content_right"> Revisions simplified - We understand that drawings are at the foundation of your projects</p>
+        </div>
+        </div>
+        <div class="feature_highlight">
+        <div class="col-md-2 col-sm-2 col-xs-2"><img src="/static/yxz/dist/img/labor.png" title="Labor Reports" alt="Labor Reports"></div>
+        <div class="col-md-10 col-sm-10 col-xs-10">
+          <h4 class="col-md-12 col-sm-12 col-xs-12 amazing_head"> Labor Reports</h4>
+          <p class="col-md-12 col-sm-12 col-xs-12 amazing_content_right">Smart scheduling, tracking and reporting to support productivity</p>
+        </div>
+        </div>
+        <div class="feature_highlight">
+        <div class="col-md-2 col-sm-2 col-xs-2"><img src="/static/yxz/dist/img/statistical.png" title="Project Statistics" alt="Project Statistics"></div>
+        <div class="col-md-10 col-sm-10 col-xs-10">
+          <h4 class="col-md-12 col-sm-12 col-xs-12 amazing_head"> Project Statistics</h4>
+          <p class="col-md-12 col-sm-12 col-xs-12 amazing_content_right">Graphing and visuals can enhance reporting - Flexible and customized reporting options allow impressive tracking and sharing</p>
+        </div> 
+        </div>       
+      </div>
+    </div>
+  
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+	
+	<!-- Main content -->
+    <section class="content">
+      <div class="container">
+	  
+	  <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+	
+	<!-- module content -->
+    <section class="modules content">
+      <div class="container">	  
+      <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12 bottom"><h1>Modules that empower your business</h1><hr class="amazing-hr"></div>
+	</div>
+	<div class="row">    
+        <div class="col-md-2 col-sm-2 col-xs-6">		
+          <img src="/static/yxz/dist/img/labor.png" title="Manage Labor Controller" alt="Manage Labor Controller">		
+          <h6>Manage Labor Controller</h6>
+        </div>        
+        <div class="col-md-2 col-sm-2 col-xs-6">
+         <img src="/static/yxz/dist/img/equipment.png" title="Manage Suppliers" alt="Manage Suppliers">
+         <h6>Manage Suppliers</h6>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-6">		
+          <img src="/static/yxz/dist/img/task.png" title="Manage Daily Task" alt="Manage Daily Task">
+          <h6>Manage Daily Task</h6>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-6">		
+         <img src="/static/yxz/dist/img/daily-report.PNG" title="Manage Daily Reports" alt="Manage Daily Reports">
+          <h6>Manage Daily Reports</h6>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-6">		
+          <img src="/static/yxz/dist/img/drawing.PNG" title="Manage Plan Drawing" alt="Manage Plan Drawing">
+          <h6>Manage Plan Drawing</h6>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-6">
+          <img src="/static/yxz/dist/img/statistical.png" title="Project Statistical Report" alt="Project Statistical Report">
+          <h6>Project Statistical Report</h6>
+        </div>
+   
+  </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+	
+	<!-- gallery content -->
+    <section class="gallery content">
+      <div class="container">
+	  <div class="row margin_zero">
+    <div class="col-md-3 col-sm-3 col-xs-12 padding_zero gallery1 hovereffect">
+      <img src="/static/yxz/dist/img/sec1.jpg" class="ful-width" title="Planning" alt="Planning">      
+      <div class="overlay">
+        <h2>Planning</h2>
+        <p> 
+          Plan your work and stop unnecessary revisions
+        </p> 
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12 padding_zero gallery2 hovereffect">
+      <img src="/static/yxz/dist/img/sec2.jpg" class="ful-width" title="Productivity Management" alt="Productivity Management">
+      <div class="overlay">
+        <h2>Productivity</h2>
+        <p> 
+          Increase production and efficiency in a smart way, business growth is now in your hands
+        </p> 
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12 padding_zero gallery3 hovereffect">
+      <img src="/static/yxz/dist/img/sec3.jpg" class="ful-width" title="Work Reporting" alt="Work Reporting">
+      <div class="overlay">
+        <h2>Reporting</h2>
+        <p> 
+          Stop worrying about reporting with papers, technology gives you a better solution
+        </p> 
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12 padding_zero gallery4 hovereffect">
+      <img src="/static/yxz/dist/img/sec4.jpg" class="ful-width" title="Work Monitoring" alt="Work Monitoring">
+      <div class="overlay">
+        <h2>Monitor</h2>
+        <p> 
+          Get real time updates and monitor each and every action on your projects
+        </p> 
+      </div>
+    </div>
+  </div>
+	  <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+	
+	<!-- manage content -->
+    <section class="manage content">
+      <div class="container">
+	  <div class="row">  
+		<div class="col-md-6 col-sm-7 col-xs-12">
+		<h1 class="col-md-12">Easy Way to Connect<br>Office and Field</h1><hr class="col-md-12 amazing-hr">
+		  <p class="col-md-12">The app offers you the virtual view of your project anywhere anytime.  What an advantage!<br>The mobile application allows your crew to document and input project data in the field.  It permits teams to connect enhancing productivity through information sharing. <br>Better teamwork, reduced rework, enhanced profitability!</p>
+		</div>
+		<div class="col-md-6 col-sm-5 col-xs-12">
+		  <img src="/static/yxz/dist/img/laptop-mobile.PNG" alt="manage" title="ZAAR Web and Android Application">
+		</div>
+	  </div>
+	  <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+	
+	<!-- free_trial content -->
+    <section class="content">
+      <div class="container">
+	  
+	  <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+	
+	
+	<!-- free_trial content -->
+    <section class="content">
+      <div class="container">
+	  
+	  <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->	
+	
+	
   </div>
   <!-- /.content-wrapper -->
 
-
+ 
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-      Anything you want
+     <div class="container">
+      <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <ul class="footer_left_section">
+          <li>About</li>
+          <li>Edu is the world’s one of its kind construction app for all the field crews. We are here to bring out the ultimate change in the construction and filed ...<a href="http://www.edusoft.com/company">Read More </a></li>
+          <li><span class="glyphicon glyphicon-envelope" title="Email Us"></span> sales@edusoft.com / service@edusoft.com</li>
+          <li>Copyright © 2021 EDU Technologies</li>
+        </ul>
+      </div>
+      <div class="col-md-4  col-sm-4 col-xs-12">
+        <ul class="footer_center_section">
+          <!-- <li><a href="">Blog</a></li> -->
+          <li><a href="http://help.edusoft.com/">FAQ</a></li>
+          <li><a href="http://help.edusoft.com/support/">Support</a></li>
+          <!-- <li><a href="">Developer</a></li> -->
+          <li><a href="http://www.edusoft.com/sitemap">Sitemap</a></li>
+          <li><a href="http://www.edusoft.com/feedback">Feedback</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4  col-sm-4 col-xs-12">
+        <ul class="footer_right_section">
+          <li>Follow Us</li>
+          <li id="social">
+          <a href="https://www.facebook.com/constructionreportmanager/" target="_blank">
+		  <i class="fas fa-facebook"></i>
+		  </a>
+          <a href="https://twitter.com/edusoftapp" target="_blank">
+		  <i class="far fa-twitter"></i>
+		  </span></a> 
+          <a href="https://www.linkedin.com/company/edusoftr-technologies" target="_blank">
+		  <i class="fas fa-linkedin"></i>
+		  </a> 
+          <a href="https://www.youtube.com/channel/UCHSd2DBrvm157MLO77dvXsw" target="_blank">
+		  <i class="fas fa-youtube"></i>
+		  </a> 
+          <a href="https://plus.google.com/u/0/+EDUTECHNOLOGIES" target="_blank">
+		  <i class="fas fa-google"></i>
+		 </a></li>
+          <li>Call Us</li>
+          <li id="tel_no">INDIA +91 97913 42299  <br>USA +1 - (410) 387-2229</li>
+          <li id="privacy_foo"><a href="http://www.edusoft.com/" data-toggle="modal" data-target="#ppmodal">Privacy Policy</a> | <a href="http://www.edusoft.com/" data-toggle="modal" data-target="#tandc">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
     </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2018-2021 <a href="https://edusoft.io">edusoft.com</a>.</strong> All rights reserved.
+  </div>
   </footer>
 </div>
 <!-- ./wrapper -->
@@ -151,17 +399,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="/static/yxz/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/static/yxz/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/static/yxz/dist/js/adminlte.min.js"></script>
+<script src="/static/yxz/dist/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/static/yxz/dist/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE -->
+<script src="/static/yxz/dist/js/adminlte.js"></script>
 
-<!-- jQuery Knob -->
-<script src="/static/yxz/plugins/jquery-knob/jquery.knob.min.js"></script>
-
-	<script src="/static/yxz/plugins/sparklines/sparkline.js"></script>
-	<!-- AdminLTE for demo purposes -->
+<!-- OPTIONAL SCRIPTS -->
+<script src="/static/yxz/dist/plugins/chart.js/Chart.min.js"></script>
+<!-- AdminLTE for demo purposes -->
 <script src="/static/yxz/dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="/static/yxz/dist/js/pages/dashboard3.js"></script>
 </body>
 </html>

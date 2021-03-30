@@ -5,10 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.aliyun.oss.OSSClient;
 
 @SpringBootTest
 class ThirdPartyApplicationTests {
@@ -19,8 +16,8 @@ class ThirdPartyApplicationTests {
 
     }
 
-    @Autowired
-    OSSClient ossClient;
+//    @Autowired
+//    OSSClient ossClient;
 
     @Test
     public void testUpload() throws FileNotFoundException {
@@ -36,10 +33,10 @@ class ThirdPartyApplicationTests {
         // 上传文件流。
         InputStream inputStream = new FileInputStream("C:\\Users\\lfy\\Pictures\\Camera Roll\\59f2db04139a2.jpg");
 
-        ossClient.putObject("gulimall-hello", "hahaha.jpg", inputStream);
-
-        // 关闭OSSClient。
-        ossClient.shutdown();
+//        ossClient.putObject("gulimall-hello", "hahaha.jpg", inputStream);
+//
+//        // 关闭OSSClient。
+//        ossClient.shutdown();
 
         System.out.println("上传完成...");
     }

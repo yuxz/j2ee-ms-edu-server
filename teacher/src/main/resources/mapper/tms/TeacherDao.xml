@@ -7,17 +7,28 @@
     <resultMap type="com.yxz.edu.teacher.entity.TeacherEntity" id="teacherMap">
         <result property="id" column="id"/>
         <result property="institutionId" column="institution_id"/>
-        <result property="name" column="name"/>        
+        <result property="campusId" column="campus_id"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="name" column="name"/>
+        <result property="cname" column="cname"/>
         <result property="gender" column="gender"/>
         <result property="birth" column="birth"/>
         <result property="mobile" column="mobile"/>
         <result property="email" column="email"/>
+        <result property="qq" column="qq"/>
+        <result property="postId" column="post_id"/>
         <result property="hired" column="hired"/>
         <result property="leaved" column="leaved"/>
         <result property="isLeaved" column="is_leaved"/>
-        <result property="note" column="note"/>
-        <result property="token" column="token"/>
         <result property="isActived" column="is_actived"/>
+        <result property="note" column="note"/>
+        <result property="field1" column="field1"/>
+        <result property="field2" column="field2"/>
+        <result property="field3" column="field3"/>
+        <result property="field4" column="field4"/>
+        <result property="field5" column="field5"/>
+        <result property="field6" column="field6"/>
         <result property="logicDeleted" column="logic_deleted"/>
         <result property="created" column="created"/>
         <result property="updated" column="updated"/>

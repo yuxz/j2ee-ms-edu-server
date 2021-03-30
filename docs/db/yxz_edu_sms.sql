@@ -13,7 +13,8 @@ create table sms_student
    id                   bigint not null auto_increment comment 'id',
    institution_id       bigint comment '教育机构id',
    campus_id            bigint comment '分校id',
-   class_type_id        bigint comment '班级/课程类型id',  
+   campus_schedule_id    bigint comment 'campus_schedule_id',  
+   class_type_id        bigint comment '班级/课程类型id',     
    name                 varchar(64) comment '学生姓名',
    first_name  			varchar(64) comment 'FamilyName',
    last_name  			varchar(64) comment 'GivenName',
@@ -27,7 +28,7 @@ create table sms_student
    contract_one         varchar(100) comment 'contract1',
    contract_two			varchar(100) comment 'contract2',
    school				varchar(100) comment 'school',
-   current_levle		varchar(100) comment 'current year level in day school',
+   current_level		varchar(100) comment 'current year level in day school',
    parent               varchar(64) comment 'parent or guardian name',
    registered           datetime comment '注册时间',
    year_level 			tinyint      comment '年级',
@@ -47,7 +48,7 @@ create table sms_student
    primary key (id)
 );
 
-alter table sms_student comment '学生';
+alter table sms_student comment 'Student';
 
 /*==============================================================*/
 /* Table: sms_student_class                                     */

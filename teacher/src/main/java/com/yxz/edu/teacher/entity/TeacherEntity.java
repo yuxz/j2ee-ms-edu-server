@@ -8,11 +8,11 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * 教师
+ * Teacher
  * 
  * @author XINZHONG YU
  * @email yxz20180810@gmail.com
- * @date 2021-03-15 16:32:08
+ * @date 2021-03-29 13:59:24
  */
 
 @Data
@@ -27,68 +27,111 @@ public class TeacherEntity implements Serializable {
 @TableId
 	private Long id;
 	/**
-	 * 教育机构id
+	 * Institution
 	 */
 	private Long institutionId;
 	/**
-	 * 教师姓名
+	 * Campus
+	 */
+	private Long campusId;
+	/**
+	 * Family Name
+	 */
+	private String firstName;
+	/**
+	 * Given Name
+	 */
+	private String lastName;
+	/**
+	 * English Name
 	 */
 	private String name;
-	
 	/**
-	 * 性别
+	 * Chinese Name
+	 */
+	private String cname;
+	/**
+	 * Gender
 	 */
 	private Integer gender;
 	/**
-	 * 生日
+	 * Date of Birth
 	 */
 	private Date birth;
 	/**
-	 * 手机号码
+	 * Mobile
 	 */
 	private String mobile;
 	/**
-	 * 邮箱
+	 * Email
 	 */
 	private String email;
 	/**
-	 * 入职时间
+	 * QQ
+	 */
+	private String qq;
+	/**
+	 * Position
+	 */
+	private Long postId;
+	/**
+	 * Hire Date
 	 */
 	private Date hired;
 	/**
-	 * 离职时间
+	 * Leaved Date
 	 */
 	private Date leaved;
 	/**
-	 * 是否激活
+	 * whether Leaved
 	 */
 	private Integer isLeaved;
 	/**
-	 * 备注
-	 */
-	private String note;
-	/**
-	 * token
-	 */
-	private String token;
-	/**
-	 * 是否激活
+	 * Whether to Active Account
 	 */
 	private Integer isActived;
 	/**
-	 * 是否被删除[0-已删，1未删]
+	 * Memo
+	 */
+	private String note;
+	/**
+	 * field1
+	 */
+	private String field1;
+	/**
+	 * field2
+	 */
+	private String field2;
+	/**
+	 * field3
+	 */
+	private String field3;
+	/**
+	 * field4
+	 */
+	private String field4;
+	/**
+	 * field5
+	 */
+	private String field5;
+	/**
+	 * field6
+	 */
+	private String field6;
+	/**
+	 * whether be deleted[0-deleted，1.not deleted]
 	 */
 	private Integer logicDeleted;
 	/**
-	 * 创建时间
+	 * Created Time
 	 */
 	private Date created;
 	/**
-	 * 更改时间
+	 * Updated Time
 	 */
 	private Date updated;
 	/**
-	 * 创建人
+	 * Creator
 	 */
 	private Long userId;
 
