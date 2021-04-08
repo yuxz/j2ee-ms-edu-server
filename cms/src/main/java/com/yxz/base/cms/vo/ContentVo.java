@@ -27,7 +27,7 @@ public class ContentVo {
 	/**
 	 * 分类id
 	 */
-	private Long catagoryId;
+	private Long categoryId;
 	/**
 	 * 内容类型id
 	 */
@@ -76,5 +76,12 @@ public class ContentVo {
 	 * 创建人
 	 */
 	private Long userId;
+	
+	
+	/**
+	 * category完整路径 [2, 32, 191]
+	 */
+
+	private Long[] categoryFullPath;
 
 }

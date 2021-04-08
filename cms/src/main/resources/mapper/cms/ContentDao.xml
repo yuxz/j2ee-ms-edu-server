@@ -6,7 +6,7 @@
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.yxz.base.cms.entity.ContentEntity" id="contentMap">
         <result property="id" column="id"/>
-        <result property="catagoryId" column="catagory_id"/>
+        <result property="categoryId" column="category_id"/>
         <result property="contentTypeId" column="content_type_id"/>
         <result property="title" column="title"/>
         <result property="subtitle" column="subtitle"/>

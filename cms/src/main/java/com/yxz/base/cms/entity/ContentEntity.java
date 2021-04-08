@@ -1,5 +1,6 @@
 package com.yxz.base.cms.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -29,7 +30,7 @@ public class ContentEntity implements Serializable {
 	/**
 	 * 分类id
 	 */
-	private Long catagoryId;
+	private Long categoryId;
 	/**
 	 * 内容类型id
 	 */
@@ -78,5 +79,12 @@ public class ContentEntity implements Serializable {
 	 * 创建人
 	 */
 	private Long userId;
+	
+    //TODO STASTICS
+	/**
+	 * 数量统计 
+	 */
+	@TableField(exist = false)
+	private Integer totalCount;
 
 }

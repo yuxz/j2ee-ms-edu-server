@@ -19,6 +19,7 @@ import com.yxz.base.common.valid.UpdateGroup;
 import com.yxz.base.common.utils.PageUtils;
 import com.yxz.base.common.utils.R;
 import com.yxz.base.cms.entity.ContentEntity;
+import com.yxz.base.cms.service.CategoryService;
 import com.yxz.base.cms.service.ContentService;
 import com.yxz.base.cms.vo.ContentVo;
 
@@ -34,6 +35,9 @@ import com.yxz.base.cms.vo.ContentVo;
 public class ContentController {
     @Autowired
     private ContentService contentService;
+    
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      * 列表
@@ -45,6 +49,17 @@ public class ContentController {
 
         return R.ok().put("page", page);
     }
+    
+    @RequestMapping("/list/{categoryId}")
+    //@RequiresPermissions("cms:content:list")
+    public R listByCategory(@RequestParam Map<String, Object> params, @PathVariable("categoryId") Long categoryId){
+        PageUtils page = contentService.queryPage(params, categoryId);
+       
+        contentService.totalCount();
+
+        return R.ok().put("page", page);
+    }
+
 
 
     /**
@@ -54,7 +69,12 @@ public class ContentController {
     //@RequiresPermissions("cms:content:info")
     public R info(@PathVariable("id") Long id){
 		ContentEntity content = contentService.getById(id);
-
+		ContentVo contentVo = new ContentVo();
+		BeanUtils.copyProperties(content, contentVo);
+		// get the  whole path of category
+		Long[] fullPath = categoryService.getFullPath(id);		
+		contentVo.setCategoryFullPath(fullPath);
+		
         return R.ok().put("content", content);
     }
 

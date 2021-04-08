@@ -7,9 +7,17 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.TimeZone;
 
 import javax.annotation.PostConstruct;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 
+import org.apache.shiro.codec.Hex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -26,13 +34,17 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.yxz.base.thirdparty.component.AwsS3Component;
 
 @Controller
 @RequestMapping("thirdparty")
 public class AwsDashboardController {
    
-	@Value("${cloud.aws.s3.bucket-name}")
-    private String bucketName;
+	
+	
+	@Autowired
+	AwsS3Component awsS3Component;
+	
 	
    @Autowired
    AmazonS3Client s3Client;
@@ -42,28 +54,28 @@ public class AwsDashboardController {
    public void DashboardController(
            @Value("${custom.bucket-name}") String bucketName,
            AmazonS3Client amazonS3Client) {
-       this.bucketName = bucketName;
+      // this.bucketName = bucketName;
        this.s3Client = amazonS3Client;
    }
 
    @PostConstruct
    public void postConstruct() {
        this.bucketLocation = String.format("https://%s.s3.%s.amazonaws.com",
-               bucketName, this.s3Client.getBucketLocation(bucketName));
+    		   awsS3Component.getBucketName(), this.s3Client.getBucketLocation(awsS3Component.getBucketName()));
    }
    
    @GetMapping("/list")
    public String getDashboardView( Model model ) {
 //      ModelAndView modelAndView = new ModelAndView("dashboard");
-	  System.out.println("bucket:---"+ bucketName);
+	  System.out.println("bucket:---"+awsS3Component.getBucketName());
 	  //bucketName ="yxz-edu";
 	  this.bucketLocation = String.format("https://%s.s3.%s.amazonaws.com",
-              bucketName, this.s3Client.getBucketLocation(bucketName));
+			  awsS3Component.getBucketName(), this.s3Client.getBucketLocation(awsS3Component.getBucketName()));
 	  
 	  model.addAttribute("message", "Spring Boot with AWS");
-	  model.addAttribute("bucketName", bucketName);
+	  model.addAttribute("bucketName", awsS3Component.getBucketName());
 	  model.addAttribute("bucketLocation", bucketLocation);
-	  model.addAttribute("availableFiles", s3Client.listObjects(bucketName).getObjectSummaries());
+	  model.addAttribute("availableFiles", s3Client.listObjects(awsS3Component.getBucketName()).getObjectSummaries());
       return "hello";
    }
    
@@ -80,7 +92,7 @@ public class AwsDashboardController {
            //s3Client.putObject(bucketName, stringObjKeyName, "Uploaded String Object");
 
            // Upload a file as a new object with ContentType and title specified.
-           PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName, new File(fileName));
+           PutObjectRequest request = new PutObjectRequest(awsS3Component.getBucketName(), fileObjKeyName, new File(fileName));
            ObjectMetadata metadata = new ObjectMetadata();
 //           metadata.setContentType("plain/text");
            metadata.setContentType("image/jpeg");
@@ -116,7 +128,7 @@ public class AwsDashboardController {
 //       System.out.format("Downloading %s from S3 bucket %s...\n", key_name, bucket_name);
 //       final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion(Regions.DEFAULT_REGION).build();
        try {
-           S3Object o = s3Client.getObject(bucketName, key_name);
+           S3Object o = s3Client.getObject(awsS3Component.getBucketName(), key_name);
            S3ObjectInputStream s3is = o.getObjectContent();
            FileOutputStream fos = new FileOutputStream(new File(fileName));
            byte[] read_buf = new byte[1024];
@@ -160,7 +172,7 @@ public class AwsDashboardController {
 
            // Generate the pre-signed URL.
            System.out.println("Generating pre-signed URL.");
-           GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, objectKey)
+           GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(awsS3Component.getBucketName(), objectKey)
                    .withMethod(HttpMethod.PUT)
                    .withExpiration(expiration);
            URL url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
@@ -180,7 +192,7 @@ public class AwsDashboardController {
            System.out.println("HTTP response code: " + connection.getResponseCode());
 
            // Check to make sure that the object was uploaded successfully.
-           S3Object object = s3Client.getObject(bucketName, objectKey);
+           S3Object object = s3Client.getObject(awsS3Component.getBucketName(), objectKey);
            System.out.println("Object " + object.getKey() + " created in bucket " + object.getBucketName());
        } catch (AmazonServiceException e) {
            // The call was transmitted successfully, but Amazon S3 couldn't process 
@@ -194,5 +206,46 @@ public class AwsDashboardController {
        return null;
    }
    
+   
+//   --------------------------
+   
+  
+	
+	@RequestMapping("/upfile")
+	public String getSignatureV4(Model model) throws Exception {
+		//String secretAccessKey = "h0wv3xJB65ZvPYTdpu/9Qvs+SeDz166qI9o7Stqm"; 
+		//HashMap<String, String> hashMap = awsS3Component.getSignature();
+		
+		//System.out.println(hashMap.toString());
+		
+		model.addAttribute("regionName",awsS3Component.getRegionName());
+		model.addAttribute("accessKeyID",awsS3Component.getAccessKeyID());
+		model.addAttribute("secretAccessKey",awsS3Component.getSecretAccessKey());
+		model.addAttribute("serviceName", awsS3Component.getServiceName());
+		model.addAttribute("bucketName",awsS3Component.getBucketName());
+		model.addAttribute("signature",awsS3Component.getSignature());
+		model.addAttribute("zmzDate", awsS3Component.getZmzDate());
+		model.addAttribute("dateStamp", awsS3Component.getDateStamp());
+		model.addAttribute("policy", awsS3Component.getStringToSign());
+		
+		return "uploads3";	
+		
+	}
+	
+//	@RequestMapping("/upfile")
+//	public String sign4(Model model) throws InvalidKeyException, NoSuchAlgorithmException, IllegalStateException, UnsupportedEncodingException {
+//		String key = "h0wv3xJB65ZvPYTdpu/9Qvs+SeDz166qI9o7Stqm"; 
+//		String dateStamp= new SimpleDateFormat("yyy-mm-dd hh:mm:ss").toString(); 
+//		String regionName = "ap-southeast-2"; 
+//		String serviceName ="s3";
+//		String stringToSign = "eyAiZXhwaXJhdGlvbiI6ICIyMDE1LTEyLTMwVDEyOjAwOjAwLjAwMFoiLA0KICAiY29uZGl0aW9ucyI6IFsNCiAgICB7ImJ1Y2tldCI6ICJzaWd2NGV4YW1wbGVidWNrZXQifSwNCiAgICBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAidXNlci91c2VyMS8iXSwNCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LA0KICAgIHsic3VjY2Vzc19hY3Rpb25fcmVkaXJlY3QiOiAiaHR0cDovL3NpZ3Y0ZXhhbXBsZWJ1Y2tldC5zMy5hbWF6b25hd3MuY29tL3N1Y2Nlc3NmdWxfdXBsb2FkLmh0bWwifSwNCiAgICBbInN0YXJ0cy13aXRoIiwgIiRDb250ZW50LVR5cGUiLCAiaW1hZ2UvIl0sDQogICAgeyJ4LWFtei1tZXRhLXV1aWQiOiAiMTQzNjUxMjM2NTEyNzQifSwNCiAgICB7IngtYW16LXNlcnZlci1zaWRlLWVuY3J5cHRpb24iOiAiQUVTMjU2In0sDQogICAgWyJzdGFydHMtd2l0aCIsICIkeC1hbXotbWV0YS10YWciLCAiIl0sDQoNCiAgICB7IngtYW16LWNyZWRlbnRpYWwiOiAiQUtJQUlPU0ZPRE5ON0VYQU1QTEUvMjAxNTEyMjkvdXMtZWFzdC0xL3MzL2F3czRfcmVxdWVzdCJ9LA0KICAgIHsieC1hbXotYWxnb3JpdGhtIjogIkFXUzQtSE1BQy1TSEEyNTYifSwNCiAgICB7IngtYW16LWRhdGUiOiAiMjAxNTEyMjlUMDAwMDAwWiIgfQ0KICBdDQp9";
+//
+//		String signature = getSignatureKey(key, dateStamp, regionName, serviceName, stringToSign);
+//			model.addAttribute("signature",signature);	
+//			model.addAttribute("dateStamp", dateStamp);
+//				System.out.println("x0000000000000--------"+ signature);
+//		 return "uploads3";	
+//	}
+//   
 
 }

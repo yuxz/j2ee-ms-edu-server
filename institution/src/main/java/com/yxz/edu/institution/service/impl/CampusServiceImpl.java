@@ -1,10 +1,9 @@
 package com.yxz.edu.institution.service.impl;
 
-import org.springframework.beans.BeanUtils;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -13,7 +12,6 @@ import com.yxz.base.common.utils.Query;
 import com.yxz.edu.institution.dao.CampusDao;
 import com.yxz.edu.institution.entity.CampusEntity;
 import com.yxz.edu.institution.service.CampusService;
-import com.yxz.edu.institution.vo.CampusListVo;
 
 
 @Service("campusService")

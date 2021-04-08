@@ -2,6 +2,8 @@ server:
   port: 30001
   
 spring:
+  application:
+    name: base-third-party
   cloud:
     nacos:
       server-addr: 127.0.0.1:8848   
@@ -23,4 +25,5 @@ cloud:
       access-key: AKIATWY3C25KAEY2D432
       secret-key: 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
     s3: 
+      service-name: s3
       bucket-name: yxz-edu

@@ -100,4 +100,9 @@ public class ClassListVo {
 	 * classroomName
 	 */
 	private String classroomName;
+	
+	/**
+	 * 
+	 */
+	private Integer totalCount;
 }

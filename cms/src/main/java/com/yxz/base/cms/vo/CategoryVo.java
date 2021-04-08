@@ -33,13 +33,17 @@ public class CategoryVo {
 	 */
 	private Long parentId;
 	/**
+	 * 分类代码
+	 */
+	private String code;
+	/**
 	 * 分类名称
 	 */
 	private String name;
 	/**
 	 * 层级
 	 */
-	private Integer catLevel;
+	private Integer level;
 	/**
 	 * 排序
 	 */
@@ -47,7 +51,7 @@ public class CategoryVo {
 	/**
 	 * 内容数量
 	 */
-	private Integer goodsCount;
+	private Integer totalCount;
 	/**
 	 * 图标地址
 	 */

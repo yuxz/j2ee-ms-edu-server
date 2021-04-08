@@ -5,30 +5,37 @@ MySQL - 5.7.20-log
 */
 /*!40101 SET NAMES utf8 */;
 
-create table `ems_category` (
-	`id` bigint (20),
-	`institution_id` bigint (20),
-	`name` varchar (150),
-	`parent_cid` bigint (20),
-	`cat_level` int (11),
-	`sort` int (11),
-	`goods_count` int (11),
-	`icon` char (765),
-	`logic_deleted` tinyint (4),
-	`create_time` datetime ,
-	`update_time` datetime ,
-	`user_id` bigint (20)
-); 
-insert into `ems_category` (`id`, `institution_id`, `name`, `parent_cid`, `cat_level`, `sort`, `goods_count`, `icon`, `logic_deleted`, `create_time`, `update_time`, `user_id`) values('1',NULL,'私校奖学金计划','0','1','1','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
-insert into `ems_category` (`id`, `institution_id`, `name`, `parent_cid`, `cat_level`, `sort`, `goods_count`, `icon`, `logic_deleted`, `create_time`, `update_time`, `user_id`) values('2',NULL,'VCE备考冲刺','0','1','2','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
-insert into `ems_category` (`id`, `institution_id`, `name`, `parent_cid`, `cat_level`, `sort`, `goods_count`, `icon`, `logic_deleted`, `create_time`, `update_time`, `user_id`) values('3',NULL,'单科基础强化','0','1','3','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
-insert into `ems_category` (`id`, `institution_id`, `name`, `parent_cid`, `cat_level`, `sort`, `goods_count`, `icon`, `logic_deleted`, `create_time`, `update_time`, `user_id`) values('4',NULL,'学术英文培优','0','1','4','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
-insert into `ems_category` (`id`, `institution_id`, `name`, `parent_cid`, `cat_level`, `sort`, `goods_count`, `icon`, `logic_deleted`, `create_time`, `update_time`, `user_id`) values('5',NULL,'aeas私校入学考试','0','1','5','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
-insert into `ems_category` (`id`, `institution_id`, `name`, `parent_cid`, `cat_level`, `sort`, `goods_count`, `icon`, `logic_deleted`, `create_time`, `update_time`, `user_id`) values('6',NULL,'一年级','3','2','1','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
-insert into `ems_category` (`id`, `institution_id`, `name`, `parent_cid`, `cat_level`, `sort`, `goods_count`, `icon`, `logic_deleted`, `create_time`, `update_time`, `user_id`) values('7',NULL,'二年级','3','2','2','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
-insert into `ems_category` (`id`, `institution_id`, `name`, `parent_cid`, `cat_level`, `sort`, `goods_count`, `icon`, `logic_deleted`, `create_time`, `update_time`, `user_id`) values('8',NULL,'三年级','3','2','3','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
-insert into `ems_category` (`id`, `institution_id`, `name`, `parent_cid`, `cat_level`, `sort`, `goods_count`, `icon`, `logic_deleted`, `create_time`, `update_time`, `user_id`) values('9',NULL,'四年级','3','2','4','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
-insert into `ems_category` (`id`, `institution_id`, `name`, `parent_cid`, `cat_level`, `sort`, `goods_count`, `icon`, `logic_deleted`, `create_time`, `update_time`, `user_id`) values('10',NULL,'四年级','1','2','1','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
-insert into `ems_category` (`id`, `institution_id`, `name`, `parent_cid`, `cat_level`, `sort`, `goods_count`, `icon`, `logic_deleted`, `create_time`, `update_time`, `user_id`) values('11',NULL,'五年级','1','2','2',NULL,NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
-insert into `ems_category` (`id`, `institution_id`, `name`, `parent_cid`, `cat_level`, `sort`, `goods_count`, `icon`, `logic_deleted`, `create_time`, `update_time`, `user_id`) values('12',NULL,'六年级','1','2','3',NULL,NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
-insert into `ems_category` (`id`, `institution_id`, `name`, `parent_cid`, `cat_level`, `sort`, `goods_count`, `icon`, `logic_deleted`, `create_time`, `update_time`, `user_id`) values('13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('1',NULL,'私校奖学金计划','0','1','0','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('2',NULL,'VCE备考冲刺','0','1','1','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('3',NULL,'单科基础强化','0','1','4','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('4',NULL,'学术英文培优','0','1','3','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('5',NULL,'aeas私校入学考试','0','1','2','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('7',NULL,'Year 1','3','2','2','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('8',NULL,'Year 2','3','2','3','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('9',NULL,'Year 3','3','2','4','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('10',NULL,'Year 1','1','2','0','0',NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('11',NULL,'Year 2','1','2','1',NULL,NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('12',NULL,'Year 3','1','2','2',NULL,NULL,'0','2021-03-08 10:46:54','2021-03-08 10:46:54',NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('16',NULL,'Writing','5','2','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('17',NULL,'Abstract Reasoning','10','3','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('18',NULL,'Mathematics','10','3','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('19',NULL,'English','10','3','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('20',NULL,'Year 4','1','2','3',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('21',NULL,'Year 5','1','2','4',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('22',NULL,'Year 6','1','2','5',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('23',NULL,'Writing','2','2','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('24',NULL,'English','2','2','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('25',NULL,'Mathematics','2','2','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('26',NULL,'Physics','2','2','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('27',NULL,'Chemistry','2','2','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('28',NULL,'Literature','2','2','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('29',NULL,'English','5','2','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('30',NULL,'Mathematics','5','2','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('31',NULL,'Writing','10','3','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('32',NULL,'Politics','2','2','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('33',NULL,'History','2','2','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('34',NULL,'','1','2','0',NULL,'','1',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('35',NULL,'Arts','2','2','0',NULL,'','0',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('36',NULL,'99','2','2','0',NULL,'','1',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('37',NULL,'11','1','2','0',NULL,'','1',NULL,NULL,NULL);
+insert into `ems_category` (`id`, `institution_id`, `name`, `parent_id`, `level`, `sort`, `total_count`, `icon`, `logic_deleted`, `created`, `updated`, `user_id`) values('38',NULL,'','2','2','0',NULL,'','1',NULL,NULL,NULL);

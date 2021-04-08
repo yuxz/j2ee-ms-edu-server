@@ -222,7 +222,7 @@ export default {
   components: { CategoryTree, AddOrUpdate, Detail },
   data() {
     return {
-	categoryId: 0,	
+	  categoryId: 0,	
       dataForm: {
         key: "",
       },

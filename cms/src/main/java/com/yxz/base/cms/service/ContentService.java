@@ -1,10 +1,11 @@
 package com.yxz.base.cms.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.yxz.base.common.utils.PageUtils;
-import com.yxz.base.cms.entity.ContentEntity;
-
+import java.util.List;
 import java.util.Map;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.yxz.base.cms.entity.ContentEntity;
+import com.yxz.base.common.utils.PageUtils;
 
 /**
  * 文章
@@ -16,5 +17,10 @@ import java.util.Map;
 public interface ContentService extends IService<ContentEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+	PageUtils queryPage(Map<String, Object> params, Long categoryId);
+	
+	List<ContentEntity> totalCount();
+	
 }
 

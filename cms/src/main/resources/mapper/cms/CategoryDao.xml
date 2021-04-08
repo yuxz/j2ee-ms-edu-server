@@ -8,10 +8,11 @@
         <result property="id" column="id"/>
         <result property="institutionId" column="institution_id"/>
         <result property="parentId" column="parent_id"/>
+        <result property="code" column="code"/>
         <result property="name" column="name"/>
-        <result property="catLevel" column="cat_level"/>
+        <result property="level" column="level"/>
         <result property="sort" column="sort"/>
-        <result property="goodsCount" column="goods_count"/>
+        <result property="totalCount" column="total_count"/>
         <result property="icon" column="icon"/>
         <result property="logicDeleted" column="logic_deleted"/>
         <result property="created" column="created"/>

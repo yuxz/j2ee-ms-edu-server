@@ -11,7 +11,7 @@
       @keyup.enter.native="dataFormSubmit()"
       label-width="140px"
     >
-      <el-form-item label="题库1" prop="categoryId">
+      <el-form-item label="题库" prop="categoryId">
         <el-cascader
           v-model="categoryFullPath"
           :options="categories"

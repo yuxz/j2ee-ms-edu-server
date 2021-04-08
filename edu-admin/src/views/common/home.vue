@@ -1,6 +1,6 @@
 <template>
   <div class="mod-home">
-    
+    <img src="~@/assets/img/home.jpg">
   </div>
 </template>
 

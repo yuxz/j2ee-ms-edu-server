@@ -1,0 +1,265 @@
+<template>
+  <el-row :gutter="20">
+    <el-col :span="4">
+      <cms-category-tree @category-tree-click="categoryTreeClick"></cms-category-tree>
+    </el-col>
+
+    <el-col :span="20">
+  <div class="mod-config">
+    <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()">
+      <el-form-item>
+        <el-input v-model="dataForm.key" placeholder="参数名" clearable></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button @click="getDataList()" icon="el-icon-search" circle></el-button>
+        <!-- <el-button v-if="isAuth('cms:content:save')" type="primary" @click="addOrUpdateHandle()" icon="el-icon-plus" circle></el-button> -->
+        <el-button v-if="isAuth('cms:content:delete')" type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0" icon="el-icon-delete" circle></el-button>
+		<el-dropdown   @command="handleCommand">
+  <el-button type="primary" icon="el-icon-plus" round>
+    New...
+  </el-button>
+  <el-dropdown-menu slot="dropdown" >
+    <el-dropdown-item command="a" icon="el-icon-document"> Start a new doc</el-dropdown-item>
+    <el-dropdown-item command="b" icon="el-icon-upload2"> Upload files</el-dropdown-item>
+    <el-dropdown-item command="c" icon="el-icon-mobile"> Dropbox</el-dropdown-item>
+    <el-dropdown-item command="d" icon="el-icon-goods"> OneDirve</el-dropdown-item>
+  </el-dropdown-menu>
+</el-dropdown>
+	  </el-form-item>
+    </el-form>
+    <el-table
+      :data="dataList"
+      border
+      v-loading="dataListLoading"
+      @selection-change="selectionChangeHandle"
+      style="width: 100%;">
+      <el-table-column
+        type="selection"
+        header-align="center"
+        align="center"
+        width="50">
+      </el-table-column>    
+            
+      <el-table-column
+        prop="title"
+        header-align="center"
+        align="center"
+        label="Title"
+		width="400">
+      </el-table-column>
+       <el-table-column
+        prop="ispublished"
+        header-align="center"
+        align="center"
+        label="isPublished"
+		width="100">
+		<template slot-scope="scope">
+          <el-switch
+            v-model="scope.row.ispublished"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            :active-value="1"
+            :inactive-value="0"
+            @change="changeIsPublished(scope.row)"
+          >
+          </el-switch>
+        </template>
+      </el-table-column>
+    <el-table-column
+        prop="published"
+        header-align="center"
+        align="center"
+        label="Pulished Date"
+		width="220">
+      </el-table-column>   
+      <el-table-column
+        prop="userId"
+        header-align="center"
+        align="center"
+        label="Publisher">
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        header-align="center"
+        align="center"
+        width="150"
+        label="">
+        <template slot-scope="scope">
+          <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)" icon="el-icon-edit" circle></el-button>
+          <el-button type="text" size="small" @click="deleteHandle(scope.row.id)" icon="el-icon-delete" circle></el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <el-pagination
+      @size-change="sizeChangeHandle"
+      @current-change="currentChangeHandle"
+      :current-page="pageIndex"
+      :page-sizes="[10, 20, 50, 100]"
+      :page-size="pageSize"
+      :total="totalPage"
+      layout="total, sizes, prev, pager, next, jumper">
+    </el-pagination>
+    <!-- 弹窗, 新增 / 修改 -->
+    <add-or-update v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="getDataList"></add-or-update>
+  </div>
+  </el-col>
+  </el-row>
+</template>
+
+<script>
+  import CmsCategoryTree from "../common/cms-category-tree";
+  import AddOrUpdate from './content-add-or-update'
+  export default {
+    data () {
+      return {
+		categoryId: 0,
+        dataForm: {
+          key: ''
+        },
+        dataList: [],
+        pageIndex: 1,
+        pageSize: 10,
+        totalPage: 0,
+        dataListLoading: false,
+        dataListSelections: [],
+        addOrUpdateVisible: false
+      }
+    },
+    components: {
+      AddOrUpdate,CmsCategoryTree
+    },
+    activated () {
+      this.getDataList()
+    },
+    methods: {
+		// 点击树
+	categoryTreeClick(data, node, component){
+		  this.categoryId = data.id;
+		  this.getDataList();
+	  },
+	handleCommand(command) {
+       
+		switch(command)
+		{
+			case "a":
+				this.$message('click on item a');
+				this.addOrUpdateHandle();
+				break;
+			case "b":
+				this.$message('click on item b');
+				break;
+			case "c":
+				this.$message('click on item c');
+				break;
+			case "d":
+				this.$message('click on item d');
+				break;	
+			case "e":
+				this.$message('click on item e');
+				break;		
+		}		
+      },
+	  //是否激活账号
+    changeIsPublished(data) {
+	  let { id, ispublished } = data;
+      this.$http({
+        url: this.$http.adornUrl("/cms/content/update"),
+        method: "post",
+        data: this.$http.adornData({ id, ispublished }, false),
+      }).then(({ data }) => {
+        this.$message({
+          type: "success",
+          message: "更新成功",
+        });
+		this.getDataList();
+      });	
+	},
+      // 获取数据列表
+      getDataList () {
+        this.dataListLoading = true
+        this.$http({
+          url: this.$http.adornUrl(`/cms/content/list/${this.categoryId}`),
+          method: 'get',
+          params: this.$http.adornParams({
+            'page': this.pageIndex,
+            'limit': this.pageSize,
+            'key': this.dataForm.key
+          })
+        }).then(({data}) => {
+          if (data && data.code === 0) {
+            this.dataList = data.page.list
+            this.totalPage = data.page.totalCount
+          } else {
+            this.dataList = []
+            this.totalPage = 0
+          }
+          this.dataListLoading = false
+        })
+      },
+      // 每页数
+      sizeChangeHandle (val) {
+        this.pageSize = val
+        this.pageIndex = 1
+        this.getDataList()
+      },
+      // 当前页
+      currentChangeHandle (val) {
+        this.pageIndex = val
+        this.getDataList()
+      },
+      // 多选
+      selectionChangeHandle (val) {
+        this.dataListSelections = val
+      },
+      // 新增 / 修改
+      addOrUpdateHandle (id) {
+        this.addOrUpdateVisible = true
+        this.$nextTick(() => {
+          this.$refs.addOrUpdate.init(id)
+        })
+      },
+      // 删除
+      deleteHandle (id) {
+        var ids = id ? [id] : this.dataListSelections.map(item => {
+          return item.id
+        })
+        this.$confirm(`确定对[id=${ids.join(',')}]进行[${id ? '删除' : '批量删除'}]操作?`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$http({
+            url: this.$http.adornUrl('/cms/content/delete'),
+            method: 'post',
+            data: this.$http.adornData(ids, false)
+          }).then(({data}) => {
+            if (data && data.code === 0) {
+              this.$message({
+                message: '操作成功',
+                type: 'success',
+                duration: 1500,
+                onClose: () => {
+                  this.getDataList()
+                }
+              })
+            } else {
+              this.$message.error(data.msg)
+            }
+          })
+        })
+      }
+    }
+  }
+</script>
+<style>
+  .el-dropdown {
+    vertical-align: top;
+  }
+  .el-dropdown + .el-dropdown {
+    margin-left: 15px;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+	/* width: 800px; */
+  }
+</style>

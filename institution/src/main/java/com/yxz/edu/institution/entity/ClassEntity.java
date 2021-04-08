@@ -1,5 +1,6 @@
 package com.yxz.edu.institution.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -78,5 +79,17 @@ public class ClassEntity implements Serializable {
 	 * 创建人
 	 */
 	private Long userId;
+	
+	/**
+	 * 
+	 */
+	@TableField(exist = false)
+	private Integer totalCount;
+	
+	/**
+	 * 
+	 */
+	@TableField(exist = false)
+	private String startYear;
 
 }

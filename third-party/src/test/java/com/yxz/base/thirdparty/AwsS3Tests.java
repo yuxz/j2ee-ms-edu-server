@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -78,14 +81,14 @@ public class AwsS3Tests {
 		return computeHmacSHA256(key.getBytes(), data);
 	}
 
-	public String getSignatureV4(String accessSecretKey, String date, String region, String regionService,
+	public String getSignatureV4(String accessSecretKey, String expiration, String region, String regionService,
 			String signing, String stringToSign)
 			throws InvalidKeyException, NoSuchAlgorithmException, IllegalStateException, UnsupportedEncodingException {
 
-		byte[] dateKey = computeHmacSHA256(accessSecretKey, date);
-		logger.debug("dateKey: {}", Hex.encodeToString(dateKey));
+		byte[] expirationKey = computeHmacSHA256(accessSecretKey, expiration);
+		logger.debug("expirationKey: {}", Hex.encodeToString(expirationKey));
 
-		byte[] dateRegionKey = computeHmacSHA256(dateKey, region);
+		byte[] dateRegionKey = computeHmacSHA256(expirationKey, region);
 		logger.debug("dateRegionKey: {}", Hex.encodeToString(dateRegionKey));
 
 		byte[] dateRegionServiceKey = computeHmacSHA256(dateRegionKey, regionService);
@@ -102,16 +105,60 @@ public class AwsS3Tests {
 
 	@Test
 	public void sign4() throws InvalidKeyException, NoSuchAlgorithmException, IllegalStateException, UnsupportedEncodingException {
-		String accessSecretKey = "AWS4" + "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY";
-		String date = "20130806";
-		String region = "us-east-1";
+		String accessSecretKey = "AWS4" + "h0wv3xJB65ZvPYTdpu/9Qvs+SeDz166qI9o7Stqm";
+		String expiration = "20210331";
+		String region = "ap-southeast-2";
 		String regionService = "s3";
 		String signing = "aws4_request";
-		String stringToSign = "eyAiZXhwaXJhdGlvbiI6ICIyMDEzLTA4LTA3VDEyOjAwOjAwLjAwMFoiLA0KICAiY29uZGl0aW9ucyI6IFsNCiAgICB7ImJ1Y2tldCI6ICJleGFtcGxlYnVja2V0In0sDQogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgInVzZXIvdXNlcjEvIl0sDQogICAgeyJhY2wiOiAicHVibGljLXJlYWQifSwNCiAgICB7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjogImh0dHA6Ly9leGFtcGxlYnVja2V0LnMzLmFtYXpvbmF3cy5jb20vc3VjY2Vzc2Z1bF91cGxvYWQuaHRtbCJ9LA0KICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICJpbWFnZS8iXSwNCiAgICB7IngtYW16LW1ldGEtdXVpZCI6ICIxNDM2NTEyMzY1MTI3NCJ9LA0KICAgIFsic3RhcnRzLXdpdGgiLCAiJHgtYW16LW1ldGEtdGFnIiwgIiJdLA0KDQogICAgeyJ4LWFtei1jcmVkZW50aWFsIjogIkFLSUFJT1NGT0ROTjdFWEFNUExFLzIwMTMwODA2L3VzLWVhc3QtMS9zMy9hd3M0X3JlcXVlc3QifSwNCiAgICB7IngtYW16LWFsZ29yaXRobSI6ICJBV1M0LUhNQUMtU0hBMjU2In0sDQogICAgeyJ4LWFtei1kYXRlIjogIjIwMTMwODA2VDAwMDAwMFoiIH0NCiAgXQ0KfQ==";
+		String stringToSign = "eyAiZXhwaXJhdGlvbiI6ICIyMDE1LTEyLTMwVDEyOjAwOjAwLjAwMFoiLA0KICAiY29uZGl0aW9ucyI6IFsNCiAgICB7ImJ1Y2tldCI6ICJzaWd2NGV4YW1wbGVidWNrZXQifSwNCiAgICBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAidXNlci91c2VyMS8iXSwNCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LA0KICAgIHsic3VjY2Vzc19hY3Rpb25fcmVkaXJlY3QiOiAiaHR0cDovL3NpZ3Y0ZXhhbXBsZWJ1Y2tldC5zMy5hbWF6b25hd3MuY29tL3N1Y2Nlc3NmdWxfdXBsb2FkLmh0bWwifSwNCiAgICBbInN0YXJ0cy13aXRoIiwgIiRDb250ZW50LVR5cGUiLCAiaW1hZ2UvIl0sDQogICAgeyJ4LWFtei1tZXRhLXV1aWQiOiAiMTQzNjUxMjM2NTEyNzQifSwNCiAgICB7IngtYW16LXNlcnZlci1zaWRlLWVuY3J5cHRpb24iOiAiQUVTMjU2In0sDQogICAgWyJzdGFydHMtd2l0aCIsICIkeC1hbXotbWV0YS10YWciLCAiIl0sDQoNCiAgICB7IngtYW16LWNyZWRlbnRpYWwiOiAiQUtJQUlPU0ZPRE5ON0VYQU1QTEUvMjAxNTEyMjkvdXMtZWFzdC0xL3MzL2F3czRfcmVxdWVzdCJ9LA0KICAgIHsieC1hbXotYWxnb3JpdGhtIjogIkFXUzQtSE1BQy1TSEEyNTYifSwNCiAgICB7IngtYW16LWRhdGUiOiAiMjAxNTEyMjlUMDAwMDAwWiIgfQ0KICBdDQp9";
 
 //		logger.info("signature: {}",
+		String policy =getSignatureV4(accessSecretKey, expiration, region, regionService, signing, stringToSign);
 				
-				System.out.println("x0000000000000--------"+ getSignatureV4(accessSecretKey, date, region, regionService, signing, stringToSign));
+				System.out.println("x0000000000000--------"+ policy);
 	}
+	
+	
+//	--https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-post-example.html
+//	--https://docs.aws.amazon.com/general/latest/gr/signature-v4-examples.html
+	
+	private byte[] HmacSHA256(String data, byte[] key) throws Exception {
+	    String algorithm="HmacSHA256";
+	    Mac mac = Mac.getInstance(algorithm);
+	    mac.init(new SecretKeySpec(key, algorithm));
+	    return mac.doFinal(data.getBytes("UTF-8"));
+	}
+
+	public String getSignatureKey(String key, String dateStamp, String regionName, String serviceName,String stringToSign) throws Exception {
+	    byte[] kSecret = ("AWS4" + key).getBytes("UTF-8");
+	    byte[] kDate = HmacSHA256(dateStamp, kSecret);
+	    byte[] kRegion = HmacSHA256(regionName, kDate);
+	    byte[] kService = HmacSHA256(serviceName, kRegion);
+	    byte[] kSigning = HmacSHA256("aws4_request", kService);
+	    byte[] signature = HmacSHA256(stringToSign,kSigning);
+	    return Hex.encodeToString(signature);
+	}
+	
+	public void getSignature() throws Exception {
+		String key = "h0wv3xJB65ZvPYTdpu/9Qvs+SeDz166qI9o7Stqm"; 
+		String dateStamp= Long.toString(System.currentTimeMillis()); 
+		String regionName = "ap-southeast-2"; 
+		String serviceName ="s3";
+		String stringToSign = "eyAiZXhwaXJhdGlvbiI6ICIyMDE1LTEyLTMwVDEyOjAwOjAwLjAwMFoiLA0KICAiY29uZGl0aW9ucyI6IFsNCiAgICB7ImJ1Y2tldCI6ICJzaWd2NGV4YW1wbGVidWNrZXQifSwNCiAgICBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAidXNlci91c2VyMS8iXSwNCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LA0KICAgIHsic3VjY2Vzc19hY3Rpb25fcmVkaXJlY3QiOiAiaHR0cDovL3NpZ3Y0ZXhhbXBsZWJ1Y2tldC5zMy5hbWF6b25hd3MuY29tL3N1Y2Nlc3NmdWxfdXBsb2FkLmh0bWwifSwNCiAgICBbInN0YXJ0cy13aXRoIiwgIiRDb250ZW50LVR5cGUiLCAiaW1hZ2UvIl0sDQogICAgeyJ4LWFtei1tZXRhLXV1aWQiOiAiMTQzNjUxMjM2NTEyNzQifSwNCiAgICB7IngtYW16LXNlcnZlci1zaWRlLWVuY3J5cHRpb24iOiAiQUVTMjU2In0sDQogICAgWyJzdGFydHMtd2l0aCIsICIkeC1hbXotbWV0YS10YWciLCAiIl0sDQoNCiAgICB7IngtYW16LWNyZWRlbnRpYWwiOiAiQUtJQUlPU0ZPRE5ON0VYQU1QTEUvMjAxNTEyMjkvdXMtZWFzdC0xL3MzL2F3czRfcmVxdWVzdCJ9LA0KICAgIHsieC1hbXotYWxnb3JpdGhtIjogIkFXUzQtSE1BQy1TSEEyNTYifSwNCiAgICB7IngtYW16LWRhdGUiOiAiMjAxNTEyMjlUMDAwMDAwWiIgfQ0KICBdDQp9";
+
+		String signature = getSignatureKey(key, dateStamp, regionName, serviceName, stringToSign);
+		
+	}
+	
+	@Test
+	public String getChinaTime() {
+		TimeZone timeZone = TimeZone.getTimeZone("GMT+8:00");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		simpleDateFormat.setTimeZone(timeZone);
+		System.out.println("////////////////////////////" +simpleDateFormat.format(new Date()));
+		return simpleDateFormat.format(new Date());
+	}
+	
+	
 
 }

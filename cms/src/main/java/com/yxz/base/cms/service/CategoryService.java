@@ -1,10 +1,12 @@
 package com.yxz.base.cms.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.yxz.base.common.utils.PageUtils;
-import com.yxz.base.cms.entity.CategoryEntity;
-
+import java.util.List;
 import java.util.Map;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.yxz.base.cms.entity.CategoryEntity;
+import com.yxz.base.cms.vo.CategoryChildrenVo;
+import com.yxz.base.common.utils.PageUtils;
 
 /**
  * 内容分类
@@ -15,6 +17,15 @@ import java.util.Map;
  */
 public interface CategoryService extends IService<CategoryEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
+	 PageUtils queryPage(Map<String, Object> params);
+
+		List<CategoryChildrenVo> listByTree();
+
+		void removeMenuByIds(List<Long> asList);
+
+		Long[] getFullPath(Long catagoryId);
+		
+		
+	
 }
 

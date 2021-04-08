@@ -1,14 +1,21 @@
 <template>
-  <div>
+ 
     <el-form
       :label-position="labelPosition"
       :model="dataForm"
       :rules="dataRule"
       ref="dataForm"
-      @keyup.enter.native="dataFormSubmit()"
-      label-width="80px"
+      label-width="120px"
     >
-      <el-form-item label="What's the title for this?">
+	<el-form-item label="Channel" prop="categoryId">
+        <el-cascader
+          v-model="categoryFullPath"
+          :options="categories"
+          :props="props"
+          size="medium"
+        ></el-cascader>
+      </el-form-item>
+      <el-form-item label="What's the title for this?" prop="title">
         <el-input
           v-model="dataForm.title"
           placeholder="Type the title of this..."
@@ -22,7 +29,7 @@
       </el-form-item>
       <el-form-item label="Paste the Google Drive link here">
         <el-input
-          v-model="dataForm.title"
+          v-model="dataForm.url"
           placeholder="eg. htttp://docs.google.com/..."
         ></el-input>
       </el-form-item>
@@ -43,10 +50,11 @@
         ></el-input>
       </el-form-item>
 
-      <el-form-item>        
-        <el-radio-group >
-          <el-radio :label="3">When I post this, don’t notify anyone.</el-radio><br>
-          <el-radio :label="6"> Let me choose who to notify…</el-radio>
+      <el-form-item>
+        <el-radio-group>
+          <el-radio :label="1">When I post this, don’t notify anyone.</el-radio
+          ><br />
+          <el-radio :label="2"> Let me choose who to notify…</el-radio>
         </el-radio-group>
       </el-form-item>
 
@@ -58,9 +66,9 @@
           >Save as a draft</el-button
         >
       </el-form-item>
-    </el-form>
-  </div>
+    </el-form> 
 </template>
+
 <script>
 import $ from "jquery";
 var url = "";
@@ -75,9 +83,10 @@ function sendFile(file) {
     processData: false,
     type: "POST",
     success: function (data) {
-    //   alert("insert image: " + data);
-	//   let url=data;
-	  let url= "https://th.bing.com/th/id/R77987b680372887acc65ed8d58a9ba75?rik=Hx0zx3IHGhniLw&riu=http%3a%2f%2ftupian.sioe.cn%2fb%2fbing-home-image%2fpic%2f20140818.jpg&ehk=801LJ3t%2fhFQaU5x3M4NDlRwNeau%2budLrH0LW3ni0ahU%3d&risl=&pid=ImgRaw";
+      //   alert("insert image: " + data);
+      //   let url=data;
+      let url =
+        "https://th.bing.com/th/id/R77987b680372887acc65ed8d58a9ba75?rik=Hx0zx3IHGhniLw&riu=http%3a%2f%2ftupian.sioe.cn%2fb%2fbing-home-image%2fpic%2f20140818.jpg&ehk=801LJ3t%2fhFQaU5x3M4NDlRwNeau%2budLrH0LW3ni0ahU%3d&risl=&pid=ImgRaw";
       $("#summernote").summernote("insertImage", url, "filename");
     },
     error: function (jqXHR, textStatus, errorThrown) {
@@ -87,22 +96,33 @@ function sendFile(file) {
 }
 
 function deleteFile(src) {
-	console.log("delete-----------");
-    $.ajax({
-        data: {src : src},
-        type: "POST",
-        url: "dropzone/delete_file", // replace with your url
-        cache: false,
-        success: function(resp) {
-            console.log(resp);
-        }
-    });
+  console.log("delete-----------");
+  $.ajax({
+    data: { src: src },
+    type: "POST",
+    url: "dropzone/delete_file", // replace with your url
+    cache: false,
+    success: function (resp) {
+      console.log(resp);
+    },
+  });
 }
 
 export default {
   data() {
     return {
+      //category-start
+      categories: [],
+      props: {
+        value: "id",
+        label: "name",
+        children: "children",
+      },
+      categoryFullPath: [],
+      //category-end
+
       labelPosition: "top",
+      visible: false,
       dataForm: {
         id: 0,
         catagoryId: "",
@@ -112,8 +132,6 @@ export default {
         titleDesc: "",
         url: "",
         content: "",
-        ispublished: 0,
-		published: "",
         logicDeleted: "",
         created: "",
         updated: "",
@@ -135,13 +153,38 @@ export default {
         ],
         url: [{ required: true, message: "url不能为空", trigger: "blur" }],
         content: [{ required: true, message: "内容不能为空", trigger: "blur" }],
+        logicDeleted: [
+          {
+            required: true,
+            message: "是否被删除[0-已删，1未删]不能为空",
+            trigger: "blur",
+          },
+        ],
+        created: [
+          { required: true, message: "创建时间不能为空", trigger: "blur" },
+        ],
+        updated: [
+          { required: true, message: "更改时间不能为空", trigger: "blur" },
+        ],
+        userId: [
+          { required: true, message: "创建人不能为空", trigger: "blur" },
+        ],
       },
     };
   },
   methods: {
+    getCategories() {
+      this.$http({
+        url: this.$http.adornUrl("/cms/category/list/tree"),
+        method: "get",
+      }).then(({ data }) => {
+        console.log("成功获取分类级联数据...", data.data);
+        this.categories = data.data;
+      });
+    },
     init(id) {
       this.dataForm.id = id || 0;
-      //   this.visible = true;
+      this.visible = true;
       this.$nextTick(() => {
         this.$refs["dataForm"].resetFields();
         if (this.dataForm.id) {
@@ -158,23 +201,20 @@ export default {
               this.dataForm.titleDesc = data.content.titleDesc;
               this.dataForm.url = data.content.url;
               this.dataForm.content = data.content.content;
-			   this.dataForm.ispublished = data.content.ispublished;
-              this.dataForm.published = data.content.published;
               this.dataForm.logicDeleted = data.content.logicDeleted;
               this.dataForm.created = data.content.created;
               this.dataForm.updated = data.content.updated;
               this.dataForm.userId = data.content.userId;
+              this.categoryFullPath = data.paper.categoryFullPath;
             }
           });
         }
       });
     },
     // 表单提交
-    dataFormSubmit(isPublished) {
-      //	console.log(isPublished);
-      // this.dataForm.published = isPublished;
-      //   this.dataForm.content = $("#summernote").summernote("code");
+    dataFormSubmit() {
       this.$refs["dataForm"].validate((valid) => {
+        this.dataForm.content = $("#summernote").summernote("code");
         if (valid) {
           this.$http({
             url: this.$http.adornUrl(
@@ -183,6 +223,9 @@ export default {
             method: "post",
             data: this.$http.adornData({
               id: this.dataForm.id || undefined,
+			  categoryId: this.categoryFullPath[
+                this.categoryFullPath.length - 1
+              ],
               catagoryId: this.dataForm.catagoryId,
               contentTypeId: this.dataForm.contentTypeId,
               title: this.dataForm.title,
@@ -190,7 +233,10 @@ export default {
               titleDesc: this.dataForm.titleDesc,
               url: this.dataForm.url,
               content: this.dataForm.content,
-              published: isPublished,
+              logicDeleted: this.dataForm.logicDeleted,
+              created: this.dataForm.created,
+              updated: this.dataForm.updated,
+              userId: this.dataForm.userId,
             }),
           }).then(({ data }) => {
             if (data && data.code === 0) {
@@ -211,15 +257,13 @@ export default {
       });
     },
   },
-
-  //
-
   created() {
     url = this.$http.adornUrl("/cms/uploadfile/newfile");
+    this.getCategories();
   },
   mounted() {
     $("#summernote").summernote({
-      lang: "zh-CN",
+      lang: "en-US",//"zh-CN",
       placeholder: "Type you document here... // Add any notes here...",
       tabsize: 2,
       height: 300, // set editor height
@@ -239,15 +283,12 @@ export default {
         onImageUpload: function (files) {
           sendFile(files[0]);
         },
-		onMediaDelete : function(target) {
-                // alert(target[0].src) 
-                deleteFile(target[0].src);
-        }
-		
+        onMediaDelete: function (target) {
+          // alert(target[0].src)
+          deleteFile(target[0].src);
+        },
       },
     });
   },
 };
 </script>
-<style scoped>
-</style>

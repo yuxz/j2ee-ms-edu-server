@@ -13,6 +13,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2021-03-08 11:08:07
  */
 @Mapper
-public interface PaperDao extends BaseMapper<PaperEntity> {
+public interface PaperDao extends BaseMapper<PaperEntity> {	
+
 	
 }
