@@ -36,9 +36,17 @@ public class ClassEntity implements Serializable {
 	 */
 	private Long campusId;
 	/**
+	 * schedule id
+	 */
+	private Long campusScheduleId;
+	/**
 	 * 班级类型id
 	 */
 	private Long classTypeId;
+	/**
+	 * 年级id
+	 */
+	private Long classLevelId;
 	/**
 	 * 教室id
 	 */
@@ -47,6 +55,10 @@ public class ClassEntity implements Serializable {
 	 * 班级名称
 	 */
 	private String name;
+	/**
+	 * 班级最多人數
+	 */
+	private Integer maximum;
 	/**
 	 * 开班时间
 	 */
@@ -70,11 +82,11 @@ public class ClassEntity implements Serializable {
 	/**
 	 * 创建时间
 	 */
-	private Date createTime;
+	private Date created;
 	/**
 	 * 更改时间
 	 */
-	private Date updateTime;
+	private Date updated;
 	/**
 	 * 创建人
 	 */

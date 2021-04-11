@@ -122,7 +122,7 @@
     </el-form-item> 
 	-->
 	 <el-form-item> 
-	<el-button @click="visible = false">Cancle</el-button>
+	<!-- <el-button @click="visible = false">Cancle</el-button> -->
       <el-button type="primary" @click="dataFormSubmit()">Confirm</el-button>
 	  </el-form-item> 
     </el-form>

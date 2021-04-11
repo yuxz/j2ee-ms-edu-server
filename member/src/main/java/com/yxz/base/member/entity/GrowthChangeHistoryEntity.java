@@ -31,7 +31,7 @@ public class GrowthChangeHistoryEntity implements Serializable {
 	/**
 	 * create_time
 	 */
-	private Date createTime;
+	private Date created;
 	/**
 	 * 改变的值（正负计数）
 	 */

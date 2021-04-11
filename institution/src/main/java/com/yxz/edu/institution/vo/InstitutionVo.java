@@ -87,7 +87,7 @@ public class InstitutionVo {
 	/**
 	 * 创建时间
 	 */
-	private Date createTime;
+	private Date created;
 
 	/**
 	 * 创建人

@@ -1,42 +1,16 @@
-drop table if exists ems_institution;
-drop table if exists ems_campus;
-
+drop table if exists mms_member
+drop table if exists mms_growth_change_history
+drop table if exists mms_integration_change_history
+drop table if exists mms_member_collect_spu
+drop table if exists mms_member_collect_subject
+drop table if exists mms_member_level
+drop table if exists mms_member_login_log
+drop table if exists mms_member_receive_address
+drop table if exists mms_member_statistics_info
 /*==============================================================*/
-/* Table: ums_growth_change_history                             */
+/* Table: mms_member                                            */
 /*==============================================================*/
-create table ums_growth_change_history
-(
-   id                   bigint not null auto_increment comment 'id',
-   member_id            bigint comment 'member_id',
-   create_time          datetime comment 'create_time',
-   change_count         int comment '改变的值（正负计数）',
-   note                 varchar(0) comment '备注',
-   source_type          tinyint comment '积分来源[0-购物，1-管理员修改]',
-   primary key (id)
-);
-
-alter table ums_growth_change_history comment '成长值变化历史记录';
-
-/*==============================================================*/
-/* Table: ums_integration_change_history                        */
-/*==============================================================*/
-create table ums_integration_change_history
-(
-   id                   bigint not null auto_increment comment 'id',
-   member_id            bigint comment 'member_id',
-   create_time          datetime comment 'create_time',
-   change_count         int comment '变化的值',
-   note                 varchar(255) comment '备注',
-   source_tyoe          tinyint comment '来源[0->购物；1->管理员修改;2->活动]',
-   primary key (id)
-);
-
-alter table ums_integration_change_history comment '积分变化历史记录';
-
-/*==============================================================*/
-/* Table: ums_member                                            */
-/*==============================================================*/
-create table ums_member
+create table mms_member
 (
    id                   bigint not null auto_increment comment 'id',
    level_id             bigint comment '会员等级id',
@@ -55,32 +29,65 @@ create table ums_member
    integration          int comment '积分',
    growth               int comment '成长值',
    status               tinyint comment '启用状态',
-   create_time          datetime comment '注册时间',
+   created              datetime comment '注册时间',
    primary key (id)
 );
 
-alter table ums_member comment '会员';
+alter table mms_member comment '会员';
 
 /*==============================================================*/
-/* Table: ums_member_collect_spu                                */
+/* Table: mms_growth_change_history                             */
 /*==============================================================*/
-create table ums_member_collect_spu
+create table mms_growth_change_history
+(
+   id                   bigint not null auto_increment comment 'id',
+   member_id            bigint comment 'member_id',
+   created          datetime comment 'created',
+   change_count         int comment '改变的值（正负计数）',
+   note                 varchar(0) comment '备注',
+   source_type          tinyint comment '积分来源[0-购物，1-管理员修改]',
+   primary key (id)
+);
+
+alter table mms_growth_change_history comment '成长值变化历史记录';
+
+/*==============================================================*/
+/* Table: mms_integration_change_history                        */
+/*==============================================================*/
+create table mms_integration_change_history
+(
+   id                   bigint not null auto_increment comment 'id',
+   member_id            bigint comment 'member_id',
+   created          datetime comment 'created',
+   change_count         int comment '变化的值',
+   note                 varchar(255) comment '备注',
+   source_tyoe          tinyint comment '来源[0->购物；1->管理员修改;2->活动]',
+   primary key (id)
+);
+
+alter table mms_integration_change_history comment '积分变化历史记录';
+
+
+/*==============================================================*/
+/* Table: mms_member_collect_spu                                */
+/*==============================================================*/
+create table mms_member_collect_spu
 (
    id                   bigint not null comment 'id',
    member_id            bigint comment '会员id',
    spu_id               bigint comment 'spu_id',
    spu_name             varchar(500) comment 'spu_name',
    spu_img              varchar(500) comment 'spu_img',
-   create_time          datetime comment 'create_time',
+   created          datetime comment 'created',
    primary key (id)
 );
 
-alter table ums_member_collect_spu comment '会员收藏的商品';
+alter table mms_member_collect_spu comment '会员收藏的商品';
 
 /*==============================================================*/
-/* Table: ums_member_collect_subject                            */
+/* Table: mms_member_collect_subject                            */
 /*==============================================================*/
-create table ums_member_collect_subject
+create table mms_member_collect_subject
 (
    id                   bigint not null auto_increment comment 'id',
    subject_id           bigint comment 'subject_id',
@@ -90,12 +97,12 @@ create table ums_member_collect_subject
    primary key (id)
 );
 
-alter table ums_member_collect_subject comment '会员收藏的专题活动';
+alter table mms_member_collect_subject comment '会员收藏的专题活动';
 
 /*==============================================================*/
-/* Table: ums_member_level                                      */
+/* Table: mms_member_level                                      */
 /*==============================================================*/
-create table ums_member_level
+create table mms_member_level
 (
    id                   bigint not null auto_increment comment 'id',
    name                 varchar(100) comment '等级名称',
@@ -110,28 +117,28 @@ create table ums_member_level
    primary key (id)
 );
 
-alter table ums_member_level comment '会员等级';
+alter table mms_member_level comment '会员等级';
 
 /*==============================================================*/
-/* Table: ums_member_login_log                                  */
+/* Table: mms_member_login_log                                  */
 /*==============================================================*/
-create table ums_member_login_log
+create table mms_member_login_log
 (
    id                   bigint not null auto_increment comment 'id',
    member_id            bigint comment 'member_id',
-   create_time          datetime comment '创建时间',
+   created          datetime comment '创建时间',
    ip                   varchar(64) comment 'ip',
    city                 varchar(64) comment 'city',
    login_type           tinyint(1) comment '登录类型[1-web，2-app]',
    primary key (id)
 );
 
-alter table ums_member_login_log comment '会员登录记录';
+alter table mms_member_login_log comment '会员登录记录';
 
 /*==============================================================*/
-/* Table: ums_member_receive_address                            */
+/* Table: mms_member_receive_address                            */
 /*==============================================================*/
-create table ums_member_receive_address
+create table mms_member_receive_address
 (
    id                   bigint not null auto_increment comment 'id',
    member_id            bigint comment 'member_id',
@@ -147,12 +154,12 @@ create table ums_member_receive_address
    primary key (id)
 );
 
-alter table ums_member_receive_address comment '会员收货地址';
+alter table mms_member_receive_address comment '会员收货地址';
 
 /*==============================================================*/
-/* Table: ums_member_statistics_info                            */
+/* Table: mms_member_statistics_info                            */
 /*==============================================================*/
-create table ums_member_statistics_info
+create table mms_member_statistics_info
 (
    id                   bigint not null auto_increment comment 'id',
    member_id            bigint comment '会员id',
@@ -172,4 +179,4 @@ create table ums_member_statistics_info
    primary key (id)
 );
 
-alter table ums_member_statistics_info comment '会员统计信息';
+alter table mms_member_statistics_info comment '会员统计信息';

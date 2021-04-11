@@ -29,8 +29,8 @@ create table ims_institution
    token 				varchar(255) comment 'token',
    is_actived           tinyint      comment '是否激活',
    logic_deleted        tinyint comment '是否被删除[0-已删，1未删]',
-   create_time          datetime comment '创建时间',
-   update_time          datetime comment '更改时间',
+   created          datetime comment '创建时间',
+   updated          datetime comment '更改时间',
    user_id              bigint comment '创建人',
    primary key (id)
 );
@@ -50,12 +50,11 @@ create table ims_campus
    mobile               varchar(20) comment '手机号码',
    email                varchar(64) comment '邮箱',
    url                  varchar(64) comment '网站',   
-   note                 varchar(255) comment '备注',  
-   
+   note                 varchar(255) comment '备注',     
     
    logic_deleted        tinyint comment '是否被删除[0-已删，1未删]',
-   create_time          datetime comment '创建时间',
-   update_time          datetime comment '更改时间',
+   created          datetime comment '创建时间',
+   updated          datetime comment '更改时间',
    user_id              bigint comment '创建人',
    primary key (id)
 );
@@ -73,7 +72,8 @@ create table ims_campus_training_schedule
    name                 varchar(100) comment 'week',  
    started			    varchar(20) comment 'Start time',  
    ended                 varchar(20) comment 'End  time',  
-   note                 varchar(255) comment '备注',     
+   note                 varchar(255) comment '备注', 
+   
    logic_deleted        tinyint comment '是否被删除[0-已删，1未删]',
    created              datetime comment '创建时间',
    updated              datetime comment '更改时间',
@@ -91,17 +91,20 @@ create table ims_class
    id                   bigint not null auto_increment comment 'id',
    institution_id       bigint comment '教育机构id',
    campus_id			bigint comment '校区id',
+   campus_schedule_id   bigint comment 'campus_schedule_id',  
    class_type_id		bigint comment '班级类型id',
+   class_level_id		bigint comment '年级id',
    classroom_id  	    bigint comment '教室id', 
    name                 varchar(64) comment '班级名称', 
+   maximum             int(11)  comment '最大人数 为自动分班提供依据', 
    start_time          datetime comment '开班时间',   
    end_time          datetime comment '结班时间', 
    is_finished tinyint comment '是否结业',
    note                 varchar(255) comment '备注',     
     
    logic_deleted        tinyint comment '是否被删除[0-已删，1未删]',
-   create_time          datetime comment '创建时间',
-   update_time          datetime comment '更改时间',
+   created          datetime comment '创建时间',
+   updated          datetime comment '更改时间',
    user_id              bigint comment '创建人',
    primary key (id)
 );
@@ -122,8 +125,8 @@ create table ims_classroom
    note                 varchar(255) comment '备注',     
     
    logic_deleted        tinyint comment '是否被删除[0-已删，1未删]',
-   create_time          datetime comment '创建时间',
-   update_time          datetime comment '更改时间',
+   created          datetime comment '创建时间',
+   updated          datetime comment '更改时间',
    user_id              bigint comment '创建人',
    primary key (id)
 );
@@ -142,10 +145,29 @@ create table ims_class_type
    note                 varchar(255) comment '备注',     
     
    logic_deleted        tinyint comment '是否被删除[0-已删，1未删]',
-   create_time          datetime comment '创建时间',
-   update_time          datetime comment '更改时间',
+   created          datetime comment '创建时间',
+   updated          datetime comment '更改时间',
    user_id              bigint comment '创建人',
    primary key (id)
 );
 
 alter table ims_class_type comment '班级/课程类型';
+
+/*==============================================================*/
+/* Table: ims_class_level                                             */
+/*==============================================================*/
+create table ims_class_level
+(
+   id                   bigint not null auto_increment comment 'id',
+   institution_id       bigint comment '教育机构id',  
+   name                 varchar(64) comment '名称',   
+   note                 varchar(255) comment '备注',     
+    
+   logic_deleted        tinyint comment '是否被删除[0-已删，1未删]',
+   created          datetime comment '创建时间',
+   updated          datetime comment '更改时间',
+   user_id              bigint comment '创建人',
+   primary key (id)
+);
+
+alter table ims_class_level comment '年级';

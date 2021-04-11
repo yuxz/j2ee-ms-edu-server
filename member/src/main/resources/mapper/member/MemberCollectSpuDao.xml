@@ -10,7 +10,7 @@
         <result property="spuId" column="spu_id"/>
         <result property="spuName" column="spu_name"/>
         <result property="spuImg" column="spu_img"/>
-        <result property="createTime" column="create_time"/>
+        <result property="created" column="created"/>
     </resultMap>
 
 

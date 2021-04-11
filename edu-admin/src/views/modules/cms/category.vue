@@ -39,7 +39,7 @@
       :allow-drop="allowDrop"
       @node-drop="handleDrop"
       ref="menuTree"
-	  highlight-current="true"
+	  highlight-current
     >
       <span class="custom-tree-node" slot-scope="{ node, data }">
         <span>{{ node.label }}</span>
@@ -208,7 +208,7 @@ export default {
       });
     },
     handleDrop(draggingNode, dropNode, dropType, ev) {
-      console.log("handleDrop: ", draggingNode, dropNode, dropType);
+    //   console.log("handleDrop: ", draggingNode, dropNode, dropType);
       //1、当前节点最新的父节点id
       let pCid = 0;
       let siblings = null;
@@ -245,7 +245,7 @@ export default {
       }
 
       //3、当前拖拽节点的最新层级
-      console.log("updateNodes", this.updateNodes);
+    //   console.log("updateNodes", this.updateNodes);
     },
     updateChildNodeLevel(node) {
       if (node.childNodes.length > 0) {
@@ -263,7 +263,7 @@ export default {
       //1、被拖动的当前节点以及所在的父节点总层数不能大于3
 
       //1）、被拖动的当前节点总层数
-      console.log("allowDrop:", draggingNode, dropNode, type);
+    //   console.log("allowDrop:", draggingNode, dropNode, type);
       //
       this.countNodeLevel(draggingNode);
       //当前正在拖动的节点+父节点所在的深度不大于3即可

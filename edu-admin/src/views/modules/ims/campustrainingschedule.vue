@@ -41,7 +41,7 @@
         label="Campus">
       </el-table-column> -->
 	  <el-table-column
-        prop=""
+        prop="campusName"
         header-align="center"
         align="center"
         label="Campus">

@@ -18,8 +18,8 @@
         <result property="token" column="token"/>
         <result property="isActived" column="is_actived"/>
         <result property="logicDeleted" column="logic_deleted"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+        <result property="created" column="created"/>
+        <result property="updated" column="updated"/>
         <result property="userId" column="user_id"/>
     </resultMap>
 

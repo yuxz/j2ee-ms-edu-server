@@ -108,23 +108,27 @@ public class TeacherClassServiceImpl extends ServiceImpl<TeacherClassDao, Teache
 
 	
 	@Override
-	public List<TeacherClassListVo> queryIncludingByClass(Long classId) {
+	public List<TeacherEntity> queryIncludingByClass(Long classId) {
 		//1. 找出本班已有教师
 		List<TeacherClassEntity> list = this.list(new QueryWrapper<TeacherClassEntity>().eq("class_id", classId));
-
-		List<TeacherClassListVo> collect = list.stream().map((teacherClass) -> {
-			TeacherClassListVo teacherClassListVo = new TeacherClassListVo();
-			BeanUtils.copyProperties(teacherClass, teacherClassListVo);
-			TeacherEntity teacher = teacherDao.selectById(teacherClass.getTeacherId());			
-			teacherClassListVo.setTeacherName(teacher.getName());			
-			return teacherClassListVo;
+		
+		List<Long> teacherIds = list.stream().map((teacherClass) -> {			
+			return teacherClass.getTeacherId();
 		}).collect(Collectors.toList());
+		List<TeacherEntity> teacherEntityList = teacherDao.selectBatchIds(teacherIds);
+//		List<TeacherClassListVo> collect = list.stream().map((teacherClass) -> {
+//			TeacherClassListVo teacherClassListVo = new TeacherClassListVo();
+//			BeanUtils.copyProperties(teacherClass, teacherClassListVo);
+//			TeacherEntity teacher = teacherDao.selectById(teacherClass.getTeacherId());			
+//			teacherClassListVo.setTeacherName(teacher.getName());			
+//			return teacherClassListVo;
+//		}).collect(Collectors.toList());
 
-		if (collect == null || collect.size() == 0) {
+		if (teacherEntityList == null || teacherEntityList.size() == 0) {
 			return null;
 		}
 		
-		return collect;
+		return teacherEntityList;
 	}
 
 	@Override

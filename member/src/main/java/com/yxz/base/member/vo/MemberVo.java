@@ -91,6 +91,6 @@ public class MemberVo {
 	/**
 	 * 注册时间
 	 */
-	private Date createTime;
+	private Date created;
 
 }

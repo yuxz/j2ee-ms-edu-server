@@ -15,7 +15,7 @@
       <el-form-item>
         <el-button @click="getDataList()" icon="el-icon-search"
       circle></el-button>
-        <el-button
+        <!-- <el-button
           v-if="isAuth('ims:class:save')"
           type="primary"
           @click="addOrUpdateHandle()"
@@ -29,7 +29,7 @@
           :disabled="dataListSelections.length <= 0"
           icon="el-icon-delete"
       circle></el-button
-        >
+        > -->
       </el-form-item>
     </el-form>
     <el-table
@@ -105,7 +105,13 @@
         label="操作"
       >
         <template slot-scope="scope">
-          <el-button
+			<el-button
+            type="text"
+            size="small"
+            @click="detailHandle(scope.row.id)"
+            >Detail</el-button
+          >
+          <!-- <el-button
             type="text"
             size="small"
             @click="teacherClassHandle(scope.row.id)"
@@ -122,13 +128,14 @@
             size="small"
             @click="addOrUpdateHandle(scope.row.id)"
             >修改</el-button
-          >
+          > 
           <el-button
             type="text"
             size="small"
             @click="deleteHandle(scope.row.id)"
             >删除</el-button
           >
+		  -->
         </template>
       </el-table-column>
     </el-table>
@@ -143,25 +150,32 @@
     >
     </el-pagination>
     <!-- 弹窗, 新增 / 修改 -->
-    <add-or-update
+	<class-detail
+      v-if="detailVisible"
+      ref="detail"
+    ></class-detail>
+    <!-- <add-or-update
       v-if="addOrUpdateVisible"
       ref="addOrUpdate"
       @refreshDataList="getDataList"
     ></add-or-update>
     <teacher-class v-if="teacherClassVisible" ref="teacherClassUpdate" @refreshData="getDataList"></teacher-class>
     <student-class v-if="studentClassVisible" ref="studetnClassUpdate" @refreshData="getDataList"></student-class>
-  </div>
+   -->
+   </div>
 </template>
 
 <script>
-import AddOrUpdate from "./class-add-or-update";
-import TeacherClass from "../tms/teacherclass";
-import StudentClass from "../sms/studentclass";
+// import AddOrUpdate from "./class-add-or-update";
+import ClassDetail from "./class-detail";
+// import TeacherClass from "../tms/teacherclass";
+// import StudentClass from "../sms/studentclass";
 export default {
   components: {
-    AddOrUpdate,
-    TeacherClass,
-    StudentClass,
+	ClassDetail,
+    // AddOrUpdate,
+    // TeacherClass,
+    // StudentClass,
   },
   data() {
     return {
@@ -179,6 +193,7 @@ export default {
       dataListLoading: false,
       dataListSelections: [],
       addOrUpdateVisible: false,
+	  detailVisible: false,
     };
   },
 
@@ -240,6 +255,14 @@ export default {
     // 多选
     selectionChangeHandle(val) {
       this.dataListSelections = val;
+    },
+
+	//detail
+	detailHandle(id) {
+      this.detailVisible = true;
+      this.$nextTick(() => {
+        this.$refs.detail.init(id);
+      });
     },
     // 新增 / 修改
     addOrUpdateHandle(id) {

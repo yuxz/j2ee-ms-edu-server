@@ -6,7 +6,7 @@ import java.util.Map;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yxz.base.common.utils.PageUtils;
 import com.yxz.edu.teacher.entity.TeacherClassEntity;
-import com.yxz.edu.teacher.vo.TeacherClassListVo;
+import com.yxz.edu.teacher.entity.TeacherEntity;
 import com.yxz.edu.teacher.vo.TeacherClassVo;
 
 /**
@@ -27,8 +27,9 @@ public interface TeacherClassService extends IService<TeacherClassEntity> {
 	PageUtils queryPageNotIncludingByClass(Map<String, Object> params, Long classId);
 
 
-	List<TeacherClassListVo> queryIncludingByClass(Long classId);
-
+//	List<TeacherClassListVo> queryIncludingByClass(Long classId);
+	
+	List<TeacherEntity> queryIncludingByClass(Long classId);
 
 	void saveBatch(List<TeacherClassVo> teacherClassVos);
 	

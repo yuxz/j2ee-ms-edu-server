@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.yxz.base.common.vo.echarts.EchartsStatisticsVo;
 import com.yxz.edu.institution.entity.ClassEntity;
 
-public interface InstitutionStatisticsService extends IService<ClassEntity> {
+public interface StatisticsService extends IService<ClassEntity> {
 
 	EchartsStatisticsVo statisticsLine(Map<String, Object> params);
 	

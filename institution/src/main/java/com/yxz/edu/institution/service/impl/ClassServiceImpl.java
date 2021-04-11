@@ -12,6 +12,7 @@ import org.springframework.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yxz.base.common.to.ClassTo;
 import com.yxz.base.common.utils.PageUtils;
 import com.yxz.base.common.utils.Query;
 import com.yxz.edu.institution.dao.ClassDao;
@@ -23,16 +24,20 @@ import com.yxz.edu.institution.service.CampusService;
 import com.yxz.edu.institution.service.ClassService;
 import com.yxz.edu.institution.service.ClassTypeService;
 import com.yxz.edu.institution.service.ClassroomService;
+import com.yxz.edu.institution.vo.ClassAssignVo;
+import com.yxz.edu.institution.vo.ClassDetailVo;
 import com.yxz.edu.institution.vo.ClassListVo;
 
 @Service("classService")
 public class ClassServiceImpl extends ServiceImpl<ClassDao, ClassEntity> implements ClassService {
 	@Autowired
-	CampusService campusService;
+	private CampusService campusService;
 	@Autowired
-	ClassroomService classroomService;
+	private ClassService classService;
 	@Autowired
-	ClassTypeService classTypeService;
+	private ClassroomService classroomService;
+	@Autowired
+	private ClassTypeService classTypeService;
 
 	@Override
 	public PageUtils queryPage(Map<String, Object> params, Long isFinished) {
@@ -81,4 +86,34 @@ public class ClassServiceImpl extends ServiceImpl<ClassDao, ClassEntity> impleme
 		return pageUtils;
 	}
 
+	@Override
+	public ClassDetailVo getDetailById(Long id) {
+		ClassEntity classEntity = this.getById(id);
+		ClassDetailVo classDetailVo = new ClassDetailVo();
+		BeanUtils.copyProperties(classEntity, classDetailVo);
+		CampusEntity campusEntity = campusService.getById(classDetailVo.getCampusId());
+		ClassroomEntity classroomEntity = classroomService.getById(classDetailVo.getClassroomId());
+		ClassTypeEntity classTypeEntity = classTypeService.getById(classDetailVo.getClassTypeId());
+		classDetailVo.setCampusName(campusEntity.getName());
+		classDetailVo.setClassroomName(classroomEntity.getName());
+		classDetailVo.setClassTypeName(classTypeEntity.getName());	
+		
+		return classDetailVo;
+	}
+
+	@Override
+	public List<ClassTo> queryAllClasses() {
+		//
+		List<ClassEntity> classList = this.list(new QueryWrapper<ClassEntity>().eq("is_finished", 0));
+		List<ClassTo> classTos = classList.stream().map(classEntity->{
+			ClassTo classTo = new ClassTo();
+			classTo.setId(classEntity.getId());
+			classTo.setMaxinum(classEntity.getMaximum());
+			return classTo;
+		}).collect(Collectors.toList());
+		
+		return classTos;
+	}
+
+	
 }

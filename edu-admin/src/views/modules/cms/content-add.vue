@@ -1,72 +1,71 @@
 <template>
- 
-    <el-form
-      :label-position="labelPosition"
-      :model="dataForm"
-      :rules="dataRule"
-      ref="dataForm"
-      label-width="120px"
-    >
-	<el-form-item label="Channel" prop="categoryId">
-        <el-cascader
-          v-model="categoryFullPath"
-          :options="categories"
-          :props="props"
-          size="medium"
-        ></el-cascader>
-      </el-form-item>
-      <el-form-item label="What's the title for this?" prop="title">
-        <el-input
-          v-model="dataForm.title"
-          placeholder="Type the title of this..."
-        ></el-input>
-      </el-form-item>
-      <el-form-item label="What's the subtitle for this?">
-        <el-input
-          v-model="dataForm.subtitle"
-          placeholder="Type the subtitle of this..."
-        ></el-input>
-      </el-form-item>
-      <el-form-item label="Paste the Google Drive link here">
-        <el-input
-          v-model="dataForm.url"
-          placeholder="eg. htttp://docs.google.com/..."
-        ></el-input>
-      </el-form-item>
-      <el-form-item label="What kind of document is this?">
-        <el-radio-group v-model="dataForm.contentTypeId" size="small">
-          <el-radio label="1">Doc</el-radio>
-          <el-radio label="2">Sheet</el-radio>
-          <el-radio label="3">Slide</el-radio>
-          <el-radio label="4">Other</el-radio>
-        </el-radio-group>
-      </el-form-item>
+  <el-form
+    :label-position="labelPosition"
+    :model="dataForm"
+    :rules="dataRule"
+    ref="dataForm"
+    label-width="120px"
+  >
+    <el-form-item label="Channel" prop="categoryId">
+      <el-cascader
+        v-model="categoryFullPath"
+        :options="categories"
+        :props="props"
+        size="medium"
+      ></el-cascader>
+    </el-form-item>
+    <el-form-item label="What's the title for this?" prop="title">
+      <el-input
+        v-model="dataForm.title"
+        placeholder="Type the title of this..."
+      ></el-input>
+    </el-form-item>
+    <el-form-item label="What's the subtitle for this?">
+      <el-input
+        v-model="dataForm.subtitle"
+        placeholder="Type the subtitle of this..."
+      ></el-input>
+    </el-form-item>
+    <el-form-item label="Paste the Google Drive link here">
+      <el-input
+        v-model="dataForm.url"
+        placeholder="eg. htttp://docs.google.com/..."
+      ></el-input>
+    </el-form-item>
+    <el-form-item label="What kind of document is this?">
+      <el-radio-group v-model="dataForm.contentTypeId" size="small">
+        <el-radio label="1">Doc</el-radio>
+        <el-radio label="2">Sheet</el-radio>
+        <el-radio label="3">Slide</el-radio>
+        <el-radio label="4">Other</el-radio>
+      </el-radio-group>
+    </el-form-item>
 
-      <el-form-item label="Notes">
-        <el-input
-          type="textarea"
-          id="summernote"
-          v-model="dataForm.content"
-        ></el-input>
-      </el-form-item>
+    <el-form-item label="Notes">
+      <el-input
+        type="textarea"
+        id="summernote"
+        v-model="dataForm.content"
+      ></el-input>
+    </el-form-item>
 
-      <el-form-item>
-        <el-radio-group>
-          <el-radio :label="1">When I post this, don’t notify anyone.</el-radio
-          ><br />
-          <el-radio :label="2"> Let me choose who to notify…</el-radio>
-        </el-radio-group>
-      </el-form-item>
+    <el-form-item>
+      <el-radio-group>
+        <el-radio :label="1">When I post this, don’t notify anyone.</el-radio
+        ><br />
+        <el-radio :label="2"> Let me choose who to notify…</el-radio>
+      </el-radio-group>
+    </el-form-item>
 
-      <el-form-item>
-        <el-button type="primary" @click="dataFormSubmit(1)" round
-          >Post this doc</el-button
-        >
-        <el-button type="primary" @click="dataFormSubmit(0)" round
-          >Save as a draft</el-button
-        >
-      </el-form-item>
-    </el-form> 
+    <el-form-item>
+      <el-button type="primary" @click="dataFormSubmit(1)" round
+        >Post this doc</el-button
+      >
+      <el-button type="primary" @click="dataFormSubmit(0)" round
+        >Save as a draft</el-button
+      >
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>
@@ -96,7 +95,7 @@ function sendFile(file) {
 }
 
 function deleteFile(src) {
-  console.log("delete-----------");
+//   console.log("delete-----------");
   $.ajax({
     data: { src: src },
     type: "POST",
@@ -106,6 +105,35 @@ function deleteFile(src) {
       console.log(resp);
     },
   });
+}
+function initSummernote(){
+	$("#summernote").summernote({
+      lang: "en-US", //"zh-CN",
+      placeholder: "Type you document here... // Add any notes here...",
+      tabsize: 2,
+      height: 300, // set editor height
+      minHeight: null, // set minimum height of editor
+      maxHeight: null, // set maximum height of editor
+      focus: true, // set focus to editable area after initializing summernote
+      toolbar: [
+        ["style", ["style"]],
+        ["font", ["bold", "underline", "clear"]],
+        ["color", ["color"]],
+        ["para", ["ul", "ol", "paragraph"]],
+        ["table", ["table"]],
+        ["insert", ["link", "picture", "video"]],
+        ["view", ["fullscreen", "codeview", "help"]],
+      ],
+      callbacks: {
+        onImageUpload: function (files) {
+          sendFile(files[0]);
+        },
+        onMediaDelete: function (target) {
+          // alert(target[0].src)
+          deleteFile(target[0].src);
+        },
+      },
+    });
 }
 
 export default {
@@ -223,7 +251,7 @@ export default {
             method: "post",
             data: this.$http.adornData({
               id: this.dataForm.id || undefined,
-			  categoryId: this.categoryFullPath[
+              categoryId: this.categoryFullPath[
                 this.categoryFullPath.length - 1
               ],
               catagoryId: this.dataForm.catagoryId,
@@ -261,34 +289,11 @@ export default {
     url = this.$http.adornUrl("/cms/uploadfile/newfile");
     this.getCategories();
   },
+  activated() {
+	initSummernote();
+  },
   mounted() {
-    $("#summernote").summernote({
-      lang: "en-US",//"zh-CN",
-      placeholder: "Type you document here... // Add any notes here...",
-      tabsize: 2,
-      height: 300, // set editor height
-      minHeight: null, // set minimum height of editor
-      maxHeight: null, // set maximum height of editor
-      focus: true, // set focus to editable area after initializing summernote
-      toolbar: [
-        ["style", ["style"]],
-        ["font", ["bold", "underline", "clear"]],
-        ["color", ["color"]],
-        ["para", ["ul", "ol", "paragraph"]],
-        ["table", ["table"]],
-        ["insert", ["link", "picture", "video"]],
-        ["view", ["fullscreen", "codeview", "help"]],
-      ],
-      callbacks: {
-        onImageUpload: function (files) {
-          sendFile(files[0]);
-        },
-        onMediaDelete: function (target) {
-          // alert(target[0].src)
-          deleteFile(target[0].src);
-        },
-      },
-    });
+    
   },
 };
 </script>

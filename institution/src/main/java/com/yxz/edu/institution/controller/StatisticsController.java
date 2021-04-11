@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yxz.base.common.utils.R;
 import com.yxz.base.common.vo.echarts.EchartsStatisticsVo;
-import com.yxz.edu.institution.service.InstitutionStatisticsService;
+import com.yxz.edu.institution.service.StatisticsService;
 
 @RestController
 @RequestMapping("ims/statistics")
 public class StatisticsController {
 	
 	@Autowired
-	private InstitutionStatisticsService institutionStatisticsService;
+	private StatisticsService statisticsService;
 	
 	
 	
@@ -25,7 +25,7 @@ public class StatisticsController {
     //@RequiresPermissions("ims:campus:list")
     public R line(@RequestParam Map<String, Object> params){
 		
-        EchartsStatisticsVo vo = institutionStatisticsService.statisticsLine(params);
+        EchartsStatisticsVo vo = statisticsService.statisticsLine(params);
 
         return R.ok().put("data", vo);
     }
@@ -34,7 +34,7 @@ public class StatisticsController {
     //@RequiresPermissions("ims:campus:list")
     public R barline(@RequestParam Map<String, Object> params){
 		
-        EchartsStatisticsVo vo = institutionStatisticsService.statisticsBar(params);
+        EchartsStatisticsVo vo = statisticsService.statisticsBar(params);
 
         return R.ok().put("data", vo);
     }
@@ -43,9 +43,17 @@ public class StatisticsController {
     //@RequiresPermissions("ims:campus:list")
     public R pie(@RequestParam Map<String, Object> params){
 		
-        EchartsStatisticsVo vo = institutionStatisticsService.statisticsPie(params);
+        EchartsStatisticsVo vo = statisticsService.statisticsPie(params);
 
         return R.ok().put("data", vo);
     }
 	
+	@RequestMapping("/scatter")
+    //@RequiresPermissions("ims:campus:list")
+    public R scatter(@RequestParam Map<String, Object> params){
+		
+        EchartsStatisticsVo vo = statisticsService.statisticsScatter(params);
+
+        return R.ok().put("data", vo);
+    }
 }

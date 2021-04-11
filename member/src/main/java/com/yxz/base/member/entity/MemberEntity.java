@@ -91,6 +91,6 @@ public class MemberEntity implements Serializable {
 	/**
 	 * 注册时间
 	 */
-	private Date createTime;
+	private Date created;
 
 }

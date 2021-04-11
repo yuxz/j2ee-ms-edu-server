@@ -22,16 +22,20 @@
           ref="campus" @campus-select-change="campusSelectChange"
         ></campus-select>
       </el-form-item>
+	  <el-form-item label="Schedule" prop="campusScheduleId">
+        <schedule-select
+          ref="schedule"
+          @schedule-select-change="scheduleSelectChange"
+        ></schedule-select>
+      </el-form-item>
       <el-form-item label="班级类型" prop="classTypeId">
         <class-type-select
           ref="classtype" @class-type-select-change="classTypeSelectChange"
-        ></class-type-select>
-        <!-- <el-input
-          v-model="dataForm.classTypeId"
-          placeholder="班级类型"
-        ></el-input> -->
+        ></class-type-select>      
       </el-form-item>
-
+	   <el-form-item label="年级类型" prop="classLevelId">
+		  <class-level-select @class-level-select-change="classLevelSelectChange"></class-level-select>
+      </el-form-item>
       <el-form-item label="班级名称" prop="name">
         <el-input v-model="dataForm.name" placeholder="班级名称"></el-input>
       </el-form-item>
@@ -75,13 +79,17 @@
 
 <script>
 import CampusSelect from "../common/campus-select";
-import ClassTypeSelect from "../common/classtype-select";
-import ClassroomSelect from "../common/classroom-select";
+	import ScheduleSelect from "../common/schedule-select";
+	import ClassTypeSelect from "../common/classtype-select";
+	import ClassLevelSelect from "../common/classlevel-select";
+	import ClassroomSelect from "../common/classroom-select";
 export default {
   components: {
     CampusSelect,
-    ClassTypeSelect,
-    ClassroomSelect,
+		ScheduleSelect,
+		ClassTypeSelect,
+		ClassLevelSelect,
+		ClassroomSelect,		
   },
   data() {
     return {
@@ -90,8 +98,10 @@ export default {
         id: 0,
         institutionId: "",
         campusId: "",
+		campusScheduleId: "",
 		campusName:"",
         classTypeId: "",
+		classLevelId:"",
 		classTypeName:"",
         classroomId: "",
 		classroomName:"",
@@ -108,10 +118,16 @@ export default {
         campusId: [
           { required: true, message: "校区不能为空", trigger: "blur" },
         ],
+		campusScheduleId: [
+          { required: true, message: "时段不能为空", trigger: "blur" },
+        ],
         classTypeId: [
           { required: true, message: "班级类型id不能为空", trigger: "blur" },
         ],
-        classroomId: [
+        classLevelId: [
+          { required: true, message: "年级类型不能为空", trigger: "blur" },
+        ],
+		classroomId: [
           { required: true, message: "教室不能为空", trigger: "blur" },
         ],
         name: [
@@ -163,22 +179,30 @@ export default {
         }
       });
     },
-		campusSelectChange(data){
+	campusSelectChange(data){
 		this.dataForm.campusId = data;
 		// update classroom data
 		
+		//更新schedule数据
+        this.$refs.schedule.getSchedule(data);
 		//更新classroom数据
 		this.$refs.classroom.getClassroom(data);
 		
+	},	
+	scheduleSelectChange(data) {
+      console.log("scheduleId" + data);
+      this.dataForm.campusScheduleId = data;
+    },
+	classTypeSelectChange(data){
+		this.dataForm.classTypeId = data;
+	},
+	classLevelSelectChange(data){
+		this.dataForm.classLevelId = data;
 	},
 	classroomSelectChange(data){
 		this.dataForm.classroomId = data;
 	},
-
-
-	classTypeSelectChange(data){
-		this.dataForm.classTypeId = data;
-	},
+	
     // 表单提交
     dataFormSubmit() {
       this.$refs["dataForm"].validate((valid) => {
@@ -193,6 +217,7 @@ export default {
               institutionId: this.dataForm.institutionId,
               campusId: this.dataForm.campusId,
               classTypeId: this.dataForm.classTypeId,
+			  classLevelId: this.dataForm.classLevelId,
               classroomId: this.dataForm.classroomId,
               name: this.dataForm.name,
               startTime: this.dataForm.startTime,

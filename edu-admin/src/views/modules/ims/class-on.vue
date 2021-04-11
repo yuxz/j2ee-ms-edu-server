@@ -134,6 +134,12 @@
             @click="studentClassHandle(scope.row.id)"
             >分配学生</el-button
           >
+		  <el-button
+            type="text"
+            size="small"
+            @click="detailHandle(scope.row.id)"
+            >Detail</el-button
+          >
           <el-button
             type="text"
             size="small"
@@ -165,17 +171,23 @@
       ref="addOrUpdate"
       @refreshDataList="getDataList"
     ></add-or-update>
+	<class-detail
+      v-if="detailVisible"
+      ref="detail"
+    ></class-detail>
     <teacher-class v-if="teacherClassVisible" ref="teacherClassUpdate" @refreshData="getDataList"></teacher-class>
     <student-class v-if="studentClassVisible" ref="studetnClassUpdate" @refreshData="getDataList"></student-class>
   </div>
 </template>
 
 <script>
+import ClassDetail from "./class-detail";
 import AddOrUpdate from "./class-add-or-update";
 import TeacherClass from "../tms/teacherclass";
 import StudentClass from "../sms/studentclass";
 export default {
   components: {
+	ClassDetail,
     AddOrUpdate,
     TeacherClass,
     StudentClass,
@@ -195,6 +207,7 @@ export default {
       totalPage: 0,
       dataListLoading: false,
       dataListSelections: [],
+	  detailVisible: false,
       addOrUpdateVisible: false,
     };
   },
@@ -271,6 +284,14 @@ export default {
     // 多选
     selectionChangeHandle(val) {
       this.dataListSelections = val;
+    },
+
+	//detail
+	detailHandle(id) {
+      this.detailVisible = true;
+      this.$nextTick(() => {
+        this.$refs.detail.init(id);
+      });
     },
     // 新增 / 修改
     addOrUpdateHandle(id) {

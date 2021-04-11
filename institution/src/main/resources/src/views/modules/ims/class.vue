@@ -71,13 +71,13 @@
         label="是否被删除[0-已删，1未删]">
       </el-table-column>
       <el-table-column
-        prop="createTime"
+        prop="created"
         header-align="center"
         align="center"
         label="创建时间">
       </el-table-column>
       <el-table-column
-        prop="updateTime"
+        prop="updated"
         header-align="center"
         align="center"
         label="更改时间">

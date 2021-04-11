@@ -25,11 +25,11 @@
     <el-form-item label="是否被删除[0-已删，1未删]" prop="logicDeleted">
       <el-input v-model="dataForm.logicDeleted" placeholder="是否被删除[0-已删，1未删]"></el-input>
     </el-form-item>
-    <el-form-item label="创建时间" prop="createTime">
-      <el-input v-model="dataForm.createTime" placeholder="创建时间"></el-input>
+    <el-form-item label="创建时间" prop="created">
+      <el-input v-model="dataForm.created" placeholder="创建时间"></el-input>
     </el-form-item>
-    <el-form-item label="更改时间" prop="updateTime">
-      <el-input v-model="dataForm.updateTime" placeholder="更改时间"></el-input>
+    <el-form-item label="更改时间" prop="updated">
+      <el-input v-model="dataForm.updated" placeholder="更改时间"></el-input>
     </el-form-item>
     <el-form-item label="创建人" prop="userId">
       <el-input v-model="dataForm.userId" placeholder="创建人"></el-input>
@@ -56,8 +56,8 @@
           name: '',
           note: '',
           logicDeleted: '',
-          createTime: '',
-          updateTime: '',
+          created: '',
+          updated: '',
           userId: ''
         },
         dataRule: {
@@ -82,10 +82,10 @@
           logicDeleted: [
             { required: true, message: '是否被删除[0-已删，1未删]不能为空', trigger: 'blur' }
           ],
-          createTime: [
+          created: [
             { required: true, message: '创建时间不能为空', trigger: 'blur' }
           ],
-          updateTime: [
+          updated: [
             { required: true, message: '更改时间不能为空', trigger: 'blur' }
           ],
           userId: [
@@ -114,8 +114,8 @@
                 this.dataForm.name = data.class.name
                 this.dataForm.note = data.class.note
                 this.dataForm.logicDeleted = data.class.logicDeleted
-                this.dataForm.createTime = data.class.createTime
-                this.dataForm.updateTime = data.class.updateTime
+                this.dataForm.created = data.class.created
+                this.dataForm.updated = data.class.updated
                 this.dataForm.userId = data.class.userId
               }
             })
@@ -138,8 +138,8 @@
                 'name': this.dataForm.name,
                 'note': this.dataForm.note,
                 'logicDeleted': this.dataForm.logicDeleted,
-                'createTime': this.dataForm.createTime,
-                'updateTime': this.dataForm.updateTime,
+                'created': this.dataForm.created,
+                'updated': this.dataForm.updated,
                 'userId': this.dataForm.userId
               })
             }).then(({data}) => {

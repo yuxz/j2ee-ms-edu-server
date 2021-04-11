@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.Null;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -132,10 +134,10 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
 
 	private void getParentCategoryId(Long catagoryId, List<Long> fullPath) {
-		if (catagoryId!=0) {	
+		if (catagoryId != null && catagoryId != 0) {	
 			fullPath.add(catagoryId);
 			CategoryEntity selectById = this.getById(catagoryId);
-			if (selectById.getParentId() != 0 ) {
+			if (selectById != null && selectById.getParentId() != 0 ) {
 				getParentCategoryId(selectById.getParentId(),fullPath);
 			}			
 		}		

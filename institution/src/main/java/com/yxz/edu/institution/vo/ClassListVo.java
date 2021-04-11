@@ -44,6 +44,10 @@ public class ClassListVo {
 	 */
 	private Long classTypeId;
 	/**
+	 * 年级id
+	 */
+	private Long classLevelId;
+	/**
 	 * 教室id
 	 */
 	private Long classroomId;
@@ -52,6 +56,10 @@ public class ClassListVo {
 	 */
 	@NotBlank(message = "班級名称必须提交", groups = { AddGroup.class, UpdateGroup.class })
 	private String name;
+	/**
+	 * 班级最多人數
+	 */
+	private Integer maximum;
 	/**
 	 * 开班时间
 	 */
@@ -75,11 +83,11 @@ public class ClassListVo {
 	/**
 	 * 创建时间
 	 */
-	private Date createTime;
+	private Date created;
 	/**
 	 * 更改时间
 	 */
-	private Date updateTime;
+	private Date updated;
 	/**
 	 * 创建人
 	 */

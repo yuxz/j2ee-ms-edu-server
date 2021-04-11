@@ -3,17 +3,18 @@
     :title="!dataForm.id ? '新增' : '修改'"
     :close-on-click-modal="false"
     :visible.sync="visible"
+    @opened="openDialog"
     width="85%"
   >
     <el-form
       :label-position="labelPosition"
       :model="dataForm"
       :rules="dataRule"
-	  @keyup.enter.native="dataFormSubmit()"
+      @keyup.enter.native="dataFormSubmit()"
       ref="dataForm"
       label-width="120px"
     >
-	<el-form-item label="Channel" prop="categoryId">
+      <el-form-item label="Channel" prop="categoryId">
         <el-cascader
           v-model="categoryFullPath"
           :options="categories"
@@ -49,10 +50,7 @@
       </el-form-item>
 
       <el-form-item label="Notes">
-        <textarea          
-          id="summernote"
-          v-model="dataForm.content"
-        ></textarea>
+        <textarea id="summernote" v-model="dataForm.content"></textarea>
       </el-form-item>
 
       <el-form-item>
@@ -102,7 +100,7 @@ function sendFile(file) {
 }
 
 function deleteFile(src) {
-  console.log("delete-----------");
+//   console.log("delete-----------");
   $.ajax({
     data: { src: src },
     type: "POST",
@@ -113,35 +111,35 @@ function deleteFile(src) {
     },
   });
 }
-function initSummernote(){
-	 console.log("hhh");
-	 $("#summernote").summernote({
-      lang: "zh-CN",
-      placeholder: "Type you document here... // Add any notes here...",
-      tabsize: 2,
-      height: 300, // set editor height
-      minHeight: null, // set minimum height of editor
-      maxHeight: null, // set maximum height of editor
-      focus: true, // set focus to editable area after initializing summernote
-      toolbar: [
-        ["style", ["style"]],
-        ["font", ["bold", "underline", "clear"]],
-        ["color", ["color"]],
-        ["para", ["ul", "ol", "paragraph"]],
-        ["table", ["table"]],
-        ["insert", ["link", "picture", "video"]],
-        ["view", ["fullscreen", "codeview", "help"]],
-      ],
-      callbacks: {
-        onImageUpload: function (files) {
-          sendFile(files[0]);
-        },
-        onMediaDelete: function (target) {
-          // alert(target[0].src)
-          deleteFile(target[0].src);
-        },
+function initSummernote() {
+//   console.log("initSummernote---");
+  $("#summernote").summernote({
+    lang: "zh-CN",
+    placeholder: "Type you document here... // Add any notes here...",
+    tabsize: 2,
+    height: 300, // set editor height
+    minHeight: null, // set minimum height of editor
+    maxHeight: null, // set maximum height of editor
+    focus: true, // set focus to editable area after initializing summernote
+    toolbar: [
+      ["style", ["style"]],
+      ["font", ["bold", "underline", "clear"]],
+      ["color", ["color"]],
+      ["para", ["ul", "ol", "paragraph"]],
+      ["table", ["table"]],
+      ["insert", ["link", "picture", "video"]],
+      ["view", ["fullscreen", "codeview", "help"]],
+    ],
+    callbacks: {
+      onImageUpload: function (files) {
+        sendFile(files[0]);
       },
-    });
+      onMediaDelete: function (target) {
+        // alert(target[0].src)
+        deleteFile(target[0].src);
+      },
+    },
+  });
 }
 export default {
   data() {
@@ -208,6 +206,9 @@ export default {
     };
   },
   methods: {
+    openDialog() {
+	  initSummernote();
+    },
     getCategories() {
       this.$http({
         url: this.$http.adornUrl("/cms/category/list/tree"),
@@ -218,7 +219,6 @@ export default {
       });
     },
     init(id) {
-	  console.log("init--")	
       this.dataForm.id = id || 0;
       this.visible = true;
       this.$nextTick(() => {
@@ -229,6 +229,7 @@ export default {
             method: "get",
             params: this.$http.adornParams(),
           }).then(({ data }) => {
+            console.log("content:" + data);
             if (data && data.code === 0) {
               this.dataForm.catagoryId = data.content.catagoryId;
               this.dataForm.contentTypeId = data.content.contentTypeId;
@@ -241,7 +242,7 @@ export default {
               this.dataForm.created = data.content.created;
               this.dataForm.updated = data.content.updated;
               this.dataForm.userId = data.content.userId;
-              this.categoryFullPath = data.paper.categoryFullPath;
+              this.categoryFullPath = data.content.categoryFullPath;
             }
           });
         }
@@ -259,7 +260,7 @@ export default {
             method: "post",
             data: this.$http.adornData({
               id: this.dataForm.id || undefined,
-			  categoryId: this.categoryFullPath[
+              categoryId: this.categoryFullPath[
                 this.categoryFullPath.length - 1
               ],
               catagoryId: this.dataForm.catagoryId,
@@ -294,14 +295,13 @@ export default {
     },
   },
   created() {
-	console.log("created--")	
+    // console.log("created--")
     url = this.$http.adornUrl("/cms/uploadfile/newfile");
     this.getCategories();
-
   },
   mounted() {
-     console.log("mounted--");
-	 initSummernote();
+    //  console.log("mounted--");
+    //initSummernote();
   },
 };
 </script>

@@ -19,6 +19,7 @@ import com.yxz.base.common.utils.R;
 import com.yxz.base.common.valid.AddGroup;
 import com.yxz.base.common.valid.UpdateGroup;
 import com.yxz.edu.teacher.entity.TeacherClassEntity;
+import com.yxz.edu.teacher.entity.TeacherEntity;
 import com.yxz.edu.teacher.service.TeacherClassService;
 import com.yxz.edu.teacher.vo.TeacherClassListVo;
 import com.yxz.edu.teacher.vo.TeacherClassVo;
@@ -43,7 +44,7 @@ public class TeacherClassController {
     //@RequiresPermissions("tms:teacherclass:list")
     public R list( @PathVariable("classId") Long classId){
 //        PageUtils page = teacherClassService.queryPage(params);
-        List<TeacherClassListVo> list = teacherClassService.queryIncludingByClass(classId);
+        List<TeacherEntity> list = teacherClassService.queryIncludingByClass(classId);
         
         return R.ok().put("data", list);
     }

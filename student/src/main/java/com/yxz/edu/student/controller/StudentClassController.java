@@ -41,15 +41,15 @@ public class StudentClassController {
      */
     @RequestMapping("/list/{classId}")
     //@RequiresPermissions("sms:studentclass:list")
-    public R list(@RequestParam Map<String, Object> params,@PathVariable("classId") Long classId){
+    public R listIncludingByClass(@RequestParam Map<String, Object> params,@PathVariable("classId") Long classId){
 //        PageUtils page = studentClassService.queryPage(params);
         List<StudentClassListVo> list = studentClassService.queryIncludingByClass(classId);
         return R.ok().put("data", list);
     }
     ///tms/studentclass/list/" + this.classId + "/includingOfClass
     @RequestMapping("/list/{classId}/includingByClass")
-    //@RequiresPermissions("tms:teacherclass:list")
-    public R listIncludingByClass(@RequestParam Map<String, Object> params, @PathVariable("classId") Long classId){
+    //@RequiresPermissions("sms:studentclass:list")
+    public R listNotIncludingByClass(@RequestParam Map<String, Object> params, @PathVariable("classId") Long classId){
     	
         PageUtils page = studentClassService.queryPageNotIncludingByClass(params,classId);
         
@@ -86,14 +86,26 @@ public class StudentClassController {
      * 批量保存
      */
     @RequestMapping("/saveBatch")
-    //@RequiresPermissions("tms:teacherclass:save")
-    public R saveBatch(@Validated({AddGroup.class}) @RequestBody List<StudentClassVo> teacherClassVos){
-//    	TeacherClassEntity  teacherClassEntity = new  TeacherClassEntity();
-//    	BeanUtils.copyProperties( teacherClassVo,  teacherClassEntity);
-		studentClassService.saveBatch(teacherClassVos);
+    //@RequiresPermissions("sms:studentclass:save")
+    public R saveBatch(@Validated({AddGroup.class}) @RequestBody List<StudentClassVo> studentClassVos){
+		studentClassService.saveBatch(studentClassVos);
 
         return R.ok();
     }
+    
+    /**
+     * 一鍵分配，將所有未分班學生，按照所報校區、時段、班級類型、年級和班級最大學生數，自動分配
+     */
+    @RequestMapping("/autoAssign")
+    //@RequiresPermissions("sms:studentclass:save")
+    public R autoAssign(){
+//    	TeacherClassEntity  teacherClassEntity = new  TeacherClassEntity();
+//    	BeanUtils.copyProperties( teacherClassVo,  teacherClassEntity);
+		studentClassService.autoAssign();
+
+        return R.ok();
+    }
+
 
     /**
      * 修改

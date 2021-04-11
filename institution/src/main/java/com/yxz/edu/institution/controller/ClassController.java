@@ -1,6 +1,7 @@
 package com.yxz.edu.institution.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
@@ -13,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yxz.base.common.to.ClassTo;
 import com.yxz.base.common.utils.PageUtils;
 import com.yxz.base.common.utils.R;
 import com.yxz.base.common.valid.AddGroup;
 import com.yxz.base.common.valid.UpdateGroup;
 import com.yxz.edu.institution.entity.ClassEntity;
 import com.yxz.edu.institution.service.ClassService;
+import com.yxz.edu.institution.vo.ClassDetailVo;
 import com.yxz.edu.institution.vo.ClassVo;
 
 
@@ -47,6 +50,13 @@ public class ClassController {
         return R.ok().put("page", page);
     }
 
+    @RequestMapping("/listAll")
+    //@RequiresPermissions("ims:class:list")
+    public R listAllClass(){
+        List<ClassTo> classTos = classService.queryAllClasses();
+
+        return R.ok().put("classTos", classTos);
+    }
 
     /**
      * 信息
@@ -54,9 +64,9 @@ public class ClassController {
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("ims:class:info")
     public R info(@PathVariable("id") Long id){
-		ClassEntity classEntity = classService.getById(id);
+		ClassDetailVo classDetailVo = classService.getDetailById(id);
 
-        return R.ok().put("class", classEntity);
+        return R.ok().put("class", classDetailVo);
     }
 
     /**
@@ -94,5 +104,8 @@ public class ClassController {
 
         return R.ok();
     }
+    
+    
+    
 
 }

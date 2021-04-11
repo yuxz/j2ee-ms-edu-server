@@ -70,12 +70,13 @@ public class ContentController {
     public R info(@PathVariable("id") Long id){
 		ContentEntity content = contentService.getById(id);
 		ContentVo contentVo = new ContentVo();
-		BeanUtils.copyProperties(content, contentVo);
-		// get the  whole path of category
-		Long[] fullPath = categoryService.getFullPath(id);		
-		contentVo.setCategoryFullPath(fullPath);
-		
-        return R.ok().put("content", content);
+		if(content != null) {
+			BeanUtils.copyProperties(content, contentVo);
+			// get the  whole path of category
+			Long[] fullPath = categoryService.getFullPath(content.getCategoryId());		
+			contentVo.setCategoryFullPath(fullPath);
+		}
+        return R.ok().put("content", contentVo);
     }
 
     /**

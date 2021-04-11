@@ -43,6 +43,6 @@ public class MemberCollectSpuEntity implements Serializable {
 	/**
 	 * create_time
 	 */
-	private Date createTime;
+	private Date created;
 
 }

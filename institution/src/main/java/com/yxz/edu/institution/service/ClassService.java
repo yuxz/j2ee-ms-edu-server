@@ -1,10 +1,13 @@
 package com.yxz.edu.institution.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yxz.base.common.to.ClassTo;
 import com.yxz.base.common.utils.PageUtils;
 import com.yxz.edu.institution.entity.ClassEntity;
-
-import java.util.Map;
+import com.yxz.edu.institution.vo.ClassDetailVo;
 
 /**
  * 
@@ -16,5 +19,11 @@ import java.util.Map;
 public interface ClassService extends IService<ClassEntity> {
 
     PageUtils queryPage(Map<String, Object> params, Long isFinished);
+
+	ClassDetailVo getDetailById(Long id);
+
+	List<ClassTo> queryAllClasses();
+
+	
 }
 

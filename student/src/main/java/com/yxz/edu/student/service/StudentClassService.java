@@ -6,6 +6,7 @@ import java.util.Map;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yxz.base.common.utils.PageUtils;
 import com.yxz.edu.student.entity.StudentClassEntity;
+import com.yxz.edu.student.entity.StudentEntity;
 import com.yxz.edu.student.vo.StudentClassListVo;
 import com.yxz.edu.student.vo.StudentClassVo;
 
@@ -25,5 +26,8 @@ public interface StudentClassService extends IService<StudentClassEntity> {
 	PageUtils queryPageNotIncludingByClass(Map<String, Object> params, Long classId);
 
 	void saveBatch(List<StudentClassVo> teacherClassVos);
+	
+	List<StudentEntity>  queryUnassignedStudentsByClass();
+	void autoAssign();
 }
 

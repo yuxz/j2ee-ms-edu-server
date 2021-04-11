@@ -31,7 +31,7 @@ public class IntegrationChangeHistoryEntity implements Serializable {
 	/**
 	 * create_time
 	 */
-	private Date createTime;
+	private Date created;
 	/**
 	 * 变化的值
 	 */

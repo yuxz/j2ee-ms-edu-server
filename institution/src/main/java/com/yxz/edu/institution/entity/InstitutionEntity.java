@@ -77,11 +77,11 @@ public class InstitutionEntity implements Serializable {
 	/**
 	 * 创建时间
 	 */
-	private Date createTime;
+	private Date created;
 	/**
 	 * 更改时间
 	 */
-	private Date updateTime;
+	private Date updated;
 	/**
 	 * 创建人
 	 */

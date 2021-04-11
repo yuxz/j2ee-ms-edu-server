@@ -8,7 +8,7 @@
       <el-form-item>
         <el-input
           v-model="dataForm.key"
-          placeholder="请输入查询关键字"
+          placeholder="Please input kew word"
           clearable
         ></el-input>
       </el-form-item>
@@ -18,13 +18,13 @@
           icon="el-icon-search"
           circle
         ></el-button>
-        <el-button
+        <!-- <el-button
           v-if="isAuth('sms:student:save')"
           type="primary"
           @click="addOrUpdateHandle()"
           icon="el-icon-plus"
           circle
-        ></el-button>
+        ></el-button> -->
         <el-button
           v-if="isAuth('sms:student:delete')"
           type="danger"
@@ -54,49 +54,49 @@
         prop="campusName"
         header-align="center"
         align="center"
-        label="校区"
+        label="Campus"
       >
       </el-table-column>
       <el-table-column
-        prop="name"
+        prop="firstName"
         header-align="center"
         align="center"
-        label="学生姓名"
+        label="First Name"
       >
       </el-table-column>
       <el-table-column
         prop="gender"
         header-align="center"
         align="center"
-        label="性别"
+        label="Gender"
       >
       </el-table-column>
       <el-table-column
         prop="birth"
         header-align="center"
         align="center"
-        label="生日"
+        label="Birth"
       >
       </el-table-column>
       <el-table-column
         prop="mobile"
         header-align="center"
         align="center"
-        label="手机号码"
+        label="Mobile"
       >
       </el-table-column>
       <el-table-column
         prop="email"
         header-align="center"
         align="center"
-        label="邮箱"
+        label="Email"
       >
       </el-table-column>
       <el-table-column
         prop="isActived"
         header-align="center"
         align="center"
-        label="账户"
+        label="Account"
       >
         <template slot-scope="scope">
           <el-switch
@@ -114,14 +114,14 @@
         prop="createTime"
         header-align="center"
         align="center"
-        label="报名时间"
+        label="Register Time"
       >
       </el-table-column>
       <el-table-column
         prop="userId"
         header-align="center"
         align="center"
-        label="录入人"
+        label="User"
       >
       </el-table-column>
       <el-table-column
@@ -129,7 +129,7 @@
         header-align="center"
         align="center"
         width="150"
-        label="操作"
+        label=""
       >
         <template slot-scope="scope">
           <el-button

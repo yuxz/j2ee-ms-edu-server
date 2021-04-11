@@ -108,17 +108,17 @@
           </el-table-column>
 
           <el-table-column
-            prop="teacherName"
+            prop="name"
             header-align="center"
             align="center"
             label="老师"
           >
           </el-table-column>
 		  <el-table-column
-              prop="teacherName"
+              prop="postId"
               header-align="center"
               align="center"
-              label="職業"
+              label="Post"
             ></el-table-column>  
           <el-table-column
             fixed="right"

@@ -1,6 +1,7 @@
 package com.yxz.base.cms.vo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.yxz.base.common.valid.AddGroup;
 import com.yxz.base.common.valid.ListValue;
 import com.yxz.base.common.valid.UpdateGroup;
@@ -81,7 +82,7 @@ public class ContentVo {
 	/**
 	 * category完整路径 [2, 32, 191]
 	 */
-
+    @JsonProperty("categoryFullPath")
 	private Long[] categoryFullPath;
 
 }

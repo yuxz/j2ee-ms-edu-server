@@ -21,11 +21,11 @@ import com.yxz.edu.institution.dao.ClassDao;
 import com.yxz.edu.institution.entity.ClassEntity;
 import com.yxz.edu.institution.entity.ClassTypeEntity;
 import com.yxz.edu.institution.service.ClassTypeService;
-import com.yxz.edu.institution.service.InstitutionStatisticsService;
+import com.yxz.edu.institution.service.StatisticsService;
 import com.yxz.edu.institution.vo.ClassStatisticsVo;
 
 @Service("InstitutionStatisticsService")
-public class InstitutionStatisticsServiceImpl  extends ServiceImpl<ClassDao, ClassEntity> implements InstitutionStatisticsService{
+public class StatisticsServiceImpl  extends ServiceImpl<ClassDao, ClassEntity> implements StatisticsService{
 
 	@Autowired
 	private ClassTypeService classTypeService;

@@ -63,24 +63,10 @@
 		  minlength="500"
         ></el-autocomplete>
       </el-form-item>
-      <el-form-item
-        label="Current year level in day school"
-        prop="currentLevel"
-      >
-        <el-radio-group v-model="dataForm.currentLevel">
-          <el-radio :label="1">Year 1</el-radio>
-          <el-radio :label="2">Year 2</el-radio>
-          <el-radio :label="3">Year 3</el-radio>
-          <el-radio :label="4">Year 4</el-radio>
-          <el-radio :label="5">Year 5</el-radio>
-          <el-radio :label="6">Year 6</el-radio>
-          <el-radio :label="7">Year 7</el-radio>
-          <el-radio :label="8">Year 8</el-radio>
-          <el-radio :label="9">Year 9</el-radio>
-          <!-- <el-radio :label="10">Year 10</el-radio>
-			<el-radio :label="11">Year 11</el-radio>
-			<el-radio :label="12">Year 12</el-radio> -->
-        </el-radio-group>
+	   <el-form-item  
+	   label="Current year level in day school"
+        prop="currentLevel">
+		  <class-level-select @class-level-select-change="classLevelSelectToCurrentLevelChange"></class-level-select>
       </el-form-item>
       <el-form-item label="Email Address" prop="email">
         <el-input
@@ -133,21 +119,11 @@
           @schedule-select-change="scheduleSelectChange"
         ></schedule-select>
       </el-form-item>
-      <el-form-item label="Year Level" prop="yearLevel">
-        <el-radio-group v-model="dataForm.yearLevel">
-          <el-radio :label="1">Year 1</el-radio>
-          <el-radio :label="2">Year 2</el-radio>
-          <el-radio :label="3">Year 3</el-radio>
-          <el-radio :label="4">Year 4</el-radio>
-          <el-radio :label="5">Year 5</el-radio>
-          <el-radio :label="6">Year 6</el-radio>
-          <el-radio :label="7">Year 7</el-radio>
-          <el-radio :label="8">Year 8</el-radio>
-          <el-radio :label="9">Year 9</el-radio>
-          <!-- <el-radio :label="10">Year 10</el-radio>
-			<el-radio :label="11">Year 11</el-radio>
-			<el-radio :label="12">Year 12</el-radio> -->
-        </el-radio-group>
+	   <el-form-item label="班级类型" prop="classTypeId">
+		  <class-type-select @class-type-select-change="classTypeSelectChange"></class-type-select>
+      </el-form-item>
+      <el-form-item label="年级类型" prop="classLevelId">
+		  <class-level-select @class-level-select-change="classLevelSelectChange"></class-level-select>
       </el-form-item>
       <el-form-item label="Regiter Date">
         <el-date-picker
@@ -186,10 +162,14 @@
 <script>
 import CampusSelect from "../common/campus-select";
 import ScheduleSelect from "../common/schedule-select";
+import ClassTypeSelect from "../common/classtype-select";
+	import ClassLevelSelect from "../common/classlevel-select";
 export default {
   components: {
     CampusSelect,
     ScheduleSelect,
+	ClassTypeSelect,
+		ClassLevelSelect,
   },
   data() {
     return {
@@ -202,6 +182,7 @@ export default {
         campusId: "",
         campusScheduleId: "",
         classTypeId: "",
+		classLevelId:"",
         name: "",
         firstName: "",
         lastName: "",
@@ -300,8 +281,11 @@ export default {
         campusScheduleId: [
           { required: true, message: "时段不能为空", trigger: "blur" },
         ],
-        yearLevel: [
-          { required: true, message: "年级不能为空", trigger: "blur" },
+         classTypeId: [
+          { required: true, message: "班级类型不能为空", trigger: "blur" },
+        ],
+		classLevelId: [
+          { required: true, message: "年级类型不能为空", trigger: "blur" },
         ],
         name: [
           { required: true, message: "学生姓名不能为空", trigger: "blur" },
@@ -314,7 +298,7 @@ export default {
       },
     };
   },
-  methods: {
+  methods: {	
     campusSelectChange(data) {
       this.dataForm.campusId = data;
       //更新classroom数据
@@ -324,6 +308,15 @@ export default {
       console.log("scheduleId" + data);
       this.dataForm.campusScheduleId = data;
     },
+	classTypeSelectChange(data){
+		this.dataForm.classTypeId = data;
+	},
+	classLevelSelectChange(data){
+		this.dataForm.classLevelId = data;
+	},
+	classLevelSelectToCurrentLevelChange(data){
+		this.dataForm.currentLevel = data;
+	},
     // 查询学校--start
     getSchools() {
       this.$http({
@@ -366,6 +359,7 @@ export default {
               campusId: this.dataForm.campusId,
               campusScheduleId: this.dataForm.campusScheduleId,
               classTypeId: this.dataForm.classTypeId,
+			  classLevelId:this.dataForm.classLevelId,
               name: this.dataForm.name,
               firstName: this.dataForm.firstName,
               lastName: this.dataForm.lastName,
@@ -427,6 +421,8 @@ export default {
               this.dataForm.parent = "";
               this.dataForm.campusId = "";
               this.dataForm.campusScheduleId = "";
+			  this.dataForm.classTypeId = "";
+			  this.dataForm.classLevelId = "";
               this.dataForm.yearLevel = "";
             } else {
               this.$message.error(data.msg);

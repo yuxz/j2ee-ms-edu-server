@@ -20,49 +20,62 @@
         header-align="center"
         align="center"
         width="50">
+      </el-table-column>  
+      <el-table-column
+        type="selection"
+        header-align="center"
+        align="center"
+        width="50"
+      >
       </el-table-column>
-     
+
       <el-table-column
         prop="campusName"
         header-align="center"
         align="center"
-        label="校区">
+        label="Campus"
+      >
       </el-table-column>
       <el-table-column
-        prop="name"
+        prop="firstName"
         header-align="center"
         align="center"
-        label="学生姓名">
-      </el-table-column>     
+        label="First Name"
+      >
+      </el-table-column>
       <el-table-column
         prop="gender"
         header-align="center"
         align="center"
-        label="性别">
+        label="Gender"
+      >
       </el-table-column>
       <el-table-column
         prop="birth"
         header-align="center"
         align="center"
-        label="生日">
+        label="Birth"
+      >
       </el-table-column>
       <el-table-column
         prop="mobile"
         header-align="center"
         align="center"
-        label="手机号码">
+        label="Mobile"
+      >
       </el-table-column>
       <el-table-column
         prop="email"
         header-align="center"
         align="center"
-        label="邮箱">
-      </el-table-column>      
+        label="Email"
+      >
+      </el-table-column>
       <el-table-column
         prop="isActived"
         header-align="center"
         align="center"
-        label="账户"
+        label="Account"
       >
         <template slot-scope="scope">
           <el-switch
@@ -75,18 +88,20 @@
           >
           </el-switch>
         </template>
-      </el-table-column>  
-      <el-table-column
+      </el-table-column>
+      <!-- <el-table-column
         prop="createTime"
         header-align="center"
         align="center"
-        label="报名时间">
-      </el-table-column>      
+        label="Register Time"
+      >
+      </el-table-column> -->
       <!-- <el-table-column
         prop="userId"
         header-align="center"
         align="center"
-        label="录入人">
+        label="User"
+      >
       </el-table-column> -->
       <el-table-column
         fixed="right"

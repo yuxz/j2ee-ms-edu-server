@@ -1,6 +1,7 @@
 package com.yxz.edu.institution.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -18,6 +19,7 @@ import com.yxz.base.common.valid.AddGroup;
 import com.yxz.base.common.valid.UpdateGroup;
 import com.yxz.edu.institution.entity.CampusEntity;
 import com.yxz.edu.institution.service.CampusService;
+import com.yxz.edu.institution.vo.CampusAssignVo;
 
 
 
@@ -96,6 +98,17 @@ public class CampusController {
 		campusService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
+    }
+    
+    /**
+     * assign teachers and students to one class
+     */
+    @RequestMapping("/assign")
+    //@RequiresPermissions("ims:class:delete")
+    public R assign(){
+    	List<CampusAssignVo> campusAssignVos = campusService.campusAssign();
+
+        return R.ok().put("data", campusAssignVos);
     }
 
 }
