@@ -57,7 +57,7 @@ public class InstitutionController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("ims:institution:info")
-    public R info(@PathVariable("id") Long id){
+    public R institutionInfo(@PathVariable("id") Long id){
 		InstitutionEntity institution = institutionService.getById(id);
 
         return R.ok().put("institution", institution);

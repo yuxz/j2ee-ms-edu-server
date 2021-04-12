@@ -18,7 +18,7 @@ import com.yxz.edu.institution.vo.ClassDetailVo;
  */
 public interface ClassService extends IService<ClassEntity> {
 
-    PageUtils queryPage(Map<String, Object> params, Long isFinished);
+    PageUtils queryPage(Map<String, Object> params, Integer status);
 
 	ClassDetailVo getDetailById(Long id);
 

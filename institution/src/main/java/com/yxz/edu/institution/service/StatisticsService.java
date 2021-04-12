@@ -5,6 +5,7 @@ import java.util.Map;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yxz.base.common.vo.echarts.EchartsStatisticsVo;
 import com.yxz.edu.institution.entity.ClassEntity;
+import com.yxz.edu.institution.vo.StatisticsTableVo;
 
 public interface StatisticsService extends IService<ClassEntity> {
 
@@ -15,5 +16,7 @@ public interface StatisticsService extends IService<ClassEntity> {
 	EchartsStatisticsVo statisticsPie(Map<String, Object> params);
 	
 	EchartsStatisticsVo statisticsScatter(Map<String, Object> params);
+
+	StatisticsTableVo statisticsTable(Map<String, Object> params);
 
 }

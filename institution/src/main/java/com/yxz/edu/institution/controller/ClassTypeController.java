@@ -51,7 +51,7 @@ public class ClassTypeController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("ims:classtype:info")
-    public R info(@PathVariable("id") Long id){
+    public R classtypeInfo(@PathVariable("id") Long id){
 		ClassTypeEntity classType = classTypeService.getById(id);
 
         return R.ok().put("classType", classType);

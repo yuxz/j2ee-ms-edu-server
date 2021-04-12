@@ -283,12 +283,14 @@ export default {
   data() {
     return {
       visible: false,
+	//   steps -start
+	  active: 0,
       baseVisible: true,
       backgroundVisible: false,
       experienceVisible: false,
       previousVisible: false,
-      nextVisible: true,
-      active: 0,
+      nextVisible: true,    
+	  //   steps -end 
       backgroundForm: {
         domains: [
           {

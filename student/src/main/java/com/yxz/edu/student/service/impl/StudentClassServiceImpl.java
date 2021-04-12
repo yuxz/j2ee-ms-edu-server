@@ -1,9 +1,7 @@
 package com.yxz.edu.student.service.impl;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Stack;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
@@ -14,7 +12,6 @@ import org.springframework.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yxz.base.common.to.ClassTo;
 import com.yxz.base.common.utils.PageUtils;
 import com.yxz.base.common.utils.Query;
 import com.yxz.edu.student.dao.StudentClassDao;
@@ -153,33 +150,38 @@ public class StudentClassServiceImpl extends ServiceImpl<StudentClassDao, Studen
 //		classes= (List<ClassTo>)institutionFeignService.listAllClass().get("classTos");//institutionFeignService.list();
 //		String json = restTemplate.getForObject("http://SPRINGCLOUD-EMPLOYEE-PROVIDER/emp/list",
 //                String.class);
-		List<ClassTo> classes = (List<ClassTo>)institutionFeignService.listAllClass().get("classTos");
+		List<Map> classes = (List<Map>)institutionFeignService.listAllClass().get("classTos");
 //		List<ClassTo> classes =JSON.parseArray((String)institutionFeignService.listAllClass().get("classTos"),ClassTo.class);
 		System.out.println(classes);
 		//2. get all unassigned students
 		List<StudentEntity> unassignedStudents = this.queryUnassignedStudentsByClass();
+		
 		List<Long> studentIds = unassignedStudents.stream().map(student->
 			student.getId()).collect(Collectors.toList());
-		//計數器
-//		int stuIndex = 0;
-//		int maxIndex  = studentIds.size();
-		Stack<Long> sta = new Stack<>();
-		sta.addAll(studentIds);
-		System.out.println(sta.toString());
+
+//		Stack<Long> sta = new Stack<>();
+//		sta.addAll(studentIds);
+//		System.out.println(sta.toString());
 		//3. 按照班級最大人數，自動插入數據
-		for (LinkedHashMap classTo : classes) {
-			//1.獲取班級最大人數
-//			Integer maxnum = classTo.getMaxinum();
-//			//2.獲取班級已有人數
-//			int hadCount = this.count(new QueryWrapper<StudentClassEntity>().eq("class_id", classTo.getId()));
-//			
-//			//3.循環插入學生，直到滿足最大人數限制
-//			for (int i = 0; i < (maxnum-hadCount); i++) {				
-//				StudentClassEntity studentClassEntity = new StudentClassEntity();
-//				studentClassEntity.setClassId(classTo.getId());
-//				studentClassEntity.setStudentId(sta.pop());				
-//				this.save(studentClassEntity);
-//			}
+		for (Map classTo : classes) {
+			//学生全部被分配，终止循环
+//			if(sta.size()==0) break;
+			//1.獲取班級信息
+			Long id = new Long((int)classTo.get("id"));
+			int maxinum  = (int)classTo.get("maxinum");
+			
+//			Integer maxinum = classTo.getMaxinum();
+			System.out.println(id +"、" + maxinum);
+			//2.獲取班級已有人數
+			int hadCount = this.count(new QueryWrapper<StudentClassEntity>().eq("class_id", id));
+			System.out.println(id +"、" + hadCount);
+			//3.循環插入學生，直到滿足最大人數限制
+			for (int i = 0; i < (maxinum-hadCount); i++) {				
+				StudentClassEntity studentClassEntity = new StudentClassEntity();
+				studentClassEntity.setClassId(id);
+				//studentClassEntity.setStudentId(sta.pop());				
+				this.save(studentClassEntity);
+			}
 		}
 //		List<ClassTo> collect = classes.stream().map(classTo->{
 //			//1.獲取班級最大人數

@@ -16,6 +16,4 @@ public interface MemberFeignService {
     @PostMapping("/mms/member/signup")
     R signup(@RequestBody UserSignUpVo registerVo);
 
-
-
 }

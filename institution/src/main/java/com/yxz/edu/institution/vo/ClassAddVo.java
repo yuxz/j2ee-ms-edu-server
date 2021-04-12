@@ -22,8 +22,7 @@ import lombok.Data;
  */
  //TODO 添加后端校验代码
 @Data
-public class ClassAddVo {
-	
+public class ClassAddVo {	
 
 	/**
 	 * id

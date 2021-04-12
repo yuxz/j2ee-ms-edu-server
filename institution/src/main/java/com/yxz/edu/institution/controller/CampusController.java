@@ -53,15 +53,13 @@ public class CampusController {
 //
 //        return R.ok().put("page", page);
 //    }
-
-
-
+    
     /**
      * 信息
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("ims:campus:info")
-    public R info(@PathVariable("id") Long id){
+    public R campusInfo(@PathVariable("id") Long id){
 		CampusEntity campus = campusService.getById(id);
 
         return R.ok().put("campus", campus);

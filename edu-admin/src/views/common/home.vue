@@ -1,11 +1,14 @@
 <template>
   <div class="mod-home">
-    <img src="~@/assets/img/home.jpg">
+    <!-- <img src="~@/assets/img/home.jpg"> -->
+	<dashboard></dashboard>
   </div>
 </template>
 
 <script>
+  import Dashboard from '@/views/modules/dashboard'
   export default {
+	   components: { Dashboard },
   }
 </script>
 

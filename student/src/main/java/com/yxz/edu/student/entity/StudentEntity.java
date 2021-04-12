@@ -1,5 +1,6 @@
 package com.yxz.edu.student.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -42,6 +43,10 @@ public class StudentEntity implements Serializable {
 	 * 班级/课程类型id
 	 */
 	private Long classTypeId;
+	/**
+	 * 班级级别id
+	 */
+	private Long classLevelId;
 	/**
 	 * 学生姓名
 	 */
@@ -162,5 +167,8 @@ public class StudentEntity implements Serializable {
 	 * 创建人
 	 */
 	private Long userId;
+	
+	@TableField(exist = false)
+	private Integer totalCount;
 
 }

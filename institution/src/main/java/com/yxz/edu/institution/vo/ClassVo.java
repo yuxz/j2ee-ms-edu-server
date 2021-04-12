@@ -67,15 +67,15 @@ public class ClassVo {
 	/**
 	 * 开班时间
 	 */
-	private Date startTime;
+	private Date started;
 	/**
 	 * 结班时间
 	 */
-	private Date endTime;
+	private Date ended;
 	/**
 	 * 是否结业
 	 */
-	private Integer isFinished;
+	private Integer status;
 	/**
 	 * 备注
 	 */

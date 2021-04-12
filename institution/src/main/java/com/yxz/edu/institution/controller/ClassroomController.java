@@ -65,7 +65,7 @@ public class ClassroomController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("ims:classroom:info")
-    public R info(@PathVariable("id") Long id){
+    public R classroomInfo(@PathVariable("id") Long id){
 		ClassroomEntity classroom = classroomService.getById(id);
 
         return R.ok().put("classroom", classroom);

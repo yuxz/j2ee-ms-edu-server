@@ -39,7 +39,11 @@ public class StudentVo {
 	/**
 	 * 班级/课程类型id
 	 */
-	private Long classTypeId;
+	private Long classTypeId;	
+	/**
+	 * 班级级别id
+	 */
+	private Long classLevelId;
 	/**
 	 * 学生姓名
 	 */

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yxz.base.common.utils.R;
 import com.yxz.base.common.vo.echarts.EchartsStatisticsVo;
 import com.yxz.edu.institution.service.StatisticsService;
+import com.yxz.edu.institution.vo.StatisticsTableVo;
 
 @RestController
 @RequestMapping("ims/statistics")
@@ -53,6 +54,16 @@ public class StatisticsController {
     public R scatter(@RequestParam Map<String, Object> params){
 		
         EchartsStatisticsVo vo = statisticsService.statisticsScatter(params);
+
+        return R.ok().put("data", vo);
+    }
+	
+	
+	@RequestMapping("/table")
+    //@RequiresPermissions("ims:campus:list")
+    public R table(@RequestParam Map<String, Object> params){
+		
+		StatisticsTableVo vo = statisticsService.statisticsTable(params);
 
         return R.ok().put("data", vo);
     }

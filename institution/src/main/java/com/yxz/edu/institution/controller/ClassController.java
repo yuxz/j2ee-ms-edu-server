@@ -42,10 +42,10 @@ public class ClassController {
     /**
      * 列表
      */
-    @RequestMapping("/list/{isFinished}")
+    @RequestMapping("/list/{status}")
     //@RequiresPermissions("ims:class:list")
-    public R list(@RequestParam Map<String, Object> params, @PathVariable("isFinished") Long isFinished){
-        PageUtils page = classService.queryPage(params,isFinished);
+    public R list(@RequestParam Map<String, Object> params, @PathVariable("status") Integer status){
+        PageUtils page = classService.queryPage(params,status);
 
         return R.ok().put("page", page);
     }
@@ -63,7 +63,7 @@ public class ClassController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("ims:class:info")
-    public R info(@PathVariable("id") Long id){
+    public R classInfo(@PathVariable("id") Long id){
 		ClassDetailVo classDetailVo = classService.getDetailById(id);
 
         return R.ok().put("class", classDetailVo);

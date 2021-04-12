@@ -224,8 +224,8 @@ export default {
               this.dataForm.classTypeId = data.class.classTypeId;
               this.dataForm.classroomId = data.class.classroomId;
               this.dataForm.name = data.class.name;
-              this.dataForm.startTime = data.class.startTime;
-              this.dataForm.endTime = data.class.endTime;
+              this.dataForm.started = data.class.started;
+              this.dataForm.ended = data.class.ended;
               this.dataForm.isFinished = data.class.isFinished;
               this.dataForm.note = data.class.note;
             }
@@ -264,8 +264,8 @@ export default {
               classTypeId: this.dataForm.classTypeId,
               classroomId: this.dataForm.classroomId,
               name: this.dataForm.name,
-              startTime: this.dataForm.startTime,
-              endTime: this.dataForm.endTime,
+              started: this.dataForm.started,
+              ended: this.dataForm.ended,
               isFinished: this.dataForm.isFinished,
               note: this.dataForm.note,
             }),

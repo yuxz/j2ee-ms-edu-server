@@ -60,7 +60,7 @@ public class CampusTrainingScheduleController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("institution:campustrainingschedule:info")
-    public R info(@PathVariable("id") Long id){
+    public R campusscheduleInfo(@PathVariable("id") Long id){
 		CampusTrainingScheduleEntity campusTrainingSchedule = campusTrainingScheduleService.getById(id);
 
         return R.ok().put("campusTrainingSchedule", campusTrainingSchedule);

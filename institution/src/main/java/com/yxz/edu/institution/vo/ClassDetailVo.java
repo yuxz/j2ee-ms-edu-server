@@ -32,6 +32,12 @@ public class ClassDetailVo extends ClassVo{
 	private String classTypeName;
 	
 	/**
+	 * Class Level Name
+	 */
+	@JsonProperty("classLevelName")
+	private String classLevelName;
+	
+	/**
 	 * Post Name
 	 */
 	@JsonProperty("postName")

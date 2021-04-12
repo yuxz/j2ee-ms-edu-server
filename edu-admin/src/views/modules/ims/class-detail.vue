@@ -45,13 +45,13 @@
     <el-row :gutter="20">
       <el-col :span="4"> Start Date </el-col>
       <el-col :span="20">
-        {{ dataForm.endTime }}
+        {{ dataForm.ended }}
       </el-col>
     </el-row>
     <el-row :gutter="20">
       <el-col :span="4"> End Date </el-col>
       <el-col :span="20">
-        {{ dataForm.startTime }}
+        {{ dataForm.started }}
       </el-col>
     </el-row>
     <el-row :gutter="20">
@@ -93,9 +93,9 @@ export default {
         classroomId: "",
         classroomName: "",
         name: "",
-        startTime: "",
-        endTime: "",
-        isFinished: 0,
+        started: "",
+        ended: "",
+        status: 0,
         note: "",
       },
     };
@@ -133,9 +133,9 @@ export default {
               this.dataForm.classroomId = data.class.classroomId;
               this.dataForm.classroomName = data.class.classroomName;
               this.dataForm.name = data.class.name;
-              this.dataForm.startTime = data.class.startTime;
-              this.dataForm.endTime = data.class.endTime;
-              this.dataForm.isFinished = data.class.isFinished;
+              this.dataForm.started = data.class.started;
+              this.dataForm.ended = data.class.ended;
+              this.dataForm.status = data.class.status;
               this.dataForm.note = data.class.note;
             }
           });

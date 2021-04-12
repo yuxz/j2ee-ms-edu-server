@@ -1,9 +1,11 @@
 package com.yxz.edu.institution.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.aspectj.weaver.NewConstructorTypeMunger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,11 +42,23 @@ public class ClassServiceImpl extends ServiceImpl<ClassDao, ClassEntity> impleme
 	private ClassTypeService classTypeService;
 
 	@Override
-	public PageUtils queryPage(Map<String, Object> params, Long isFinished) {
+	public PageUtils queryPage(Map<String, Object> params, Integer status) {
 		QueryWrapper<ClassEntity> queryWrapper = new QueryWrapper<ClassEntity>();
 
-		if (isFinished != null) {
-			queryWrapper.eq("is_finished", isFinished);
+		if (status != null) {
+			
+			switch (status) {
+			case 0: //new 
+				queryWrapper.gt("started", new Date());
+				break;
+
+			case 1: // on reading
+				queryWrapper.nested(i->i.lt("started", new Date()).gt("ended", new Date()));
+				break;
+			case 2: // finished 
+				queryWrapper.lt("ended", new Date());
+				break;			
+			}
 		}
 
 		String key = (String) params.get("key");
@@ -77,10 +91,6 @@ public class ClassServiceImpl extends ServiceImpl<ClassDao, ClassEntity> impleme
 			return classListVo;
 		}).collect(Collectors.toList());
 
-//        IPage<ClassEntity> page = this.page(
-//                new Query<ClassEntity>().getPage(params),
-//                new QueryWrapper<ClassEntity>()
-//        );
 		pageUtils.setList(collect);
 
 		return pageUtils;
@@ -96,8 +106,8 @@ public class ClassServiceImpl extends ServiceImpl<ClassDao, ClassEntity> impleme
 		ClassTypeEntity classTypeEntity = classTypeService.getById(classDetailVo.getClassTypeId());
 		classDetailVo.setCampusName(campusEntity.getName());
 		classDetailVo.setClassroomName(classroomEntity.getName());
-		classDetailVo.setClassTypeName(classTypeEntity.getName());	
-		
+		classDetailVo.setClassTypeName(classTypeEntity.getName());
+
 		return classDetailVo;
 	}
 
@@ -105,15 +115,18 @@ public class ClassServiceImpl extends ServiceImpl<ClassDao, ClassEntity> impleme
 	public List<ClassTo> queryAllClasses() {
 		//
 		List<ClassEntity> classList = this.list(new QueryWrapper<ClassEntity>().eq("is_finished", 0));
-		List<ClassTo> classTos = classList.stream().map(classEntity->{
+		List<ClassTo> classTos = classList.stream().map(classEntity -> {
 			ClassTo classTo = new ClassTo();
 			classTo.setId(classEntity.getId());
+			classTo.setCampusId(classEntity.getCampusId());
+			classTo.setCampusScheduleId(classEntity.getCampusScheduleId());
+			classTo.setClassTypeId(classEntity.getClassTypeId());
+			classTo.setClassLevelId(classEntity.getClassLevelId());
 			classTo.setMaxinum(classEntity.getMaximum());
 			return classTo;
 		}).collect(Collectors.toList());
-		
+
 		return classTos;
 	}
 
-	
 }

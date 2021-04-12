@@ -61,14 +61,14 @@
       >
       </el-table-column>
       <el-table-column
-        prop="startTime"
+        prop="started"
         header-align="center"
         align="center"
         label="开班时间"
       >
       </el-table-column>
       <el-table-column
-        prop="endTime"
+        prop="ended"
         header-align="center"
         align="center"
         label="结班时间"
@@ -88,7 +88,7 @@
         label="所在教室"
       >
       </el-table-column>
-      <el-table-column
+      <!-- <el-table-column
         prop="isFinished"
         header-align="center"
         align="center"
@@ -105,7 +105,7 @@
           >
           </el-switch>
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <!-- <el-table-column
         prop="createTime"
         header-align="center"
@@ -252,7 +252,7 @@ export default {
     getDataList() {
       this.dataListLoading = true;
       this.$http({
-        url: this.$http.adornUrl("/ims/class/list/0"),
+        url: this.$http.adornUrl("/ims/class/list/1"),
         method: "get",
         params: this.$http.adornParams({
           page: this.pageIndex,

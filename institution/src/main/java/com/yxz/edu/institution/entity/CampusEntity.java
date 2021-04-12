@@ -1,6 +1,7 @@
 package com.yxz.edu.institution.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
@@ -61,6 +62,7 @@ public class CampusEntity implements Serializable {
 	/**
 	 * 是否被删除[0-已删，1未删]
 	 */
+	@TableLogic(value = "0",delval = "1")
 	private Integer logicDeleted;
 	/**
 	 * 创建时间

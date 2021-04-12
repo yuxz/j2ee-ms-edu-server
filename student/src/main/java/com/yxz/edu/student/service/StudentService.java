@@ -20,5 +20,7 @@ public interface StudentService extends IService<StudentEntity> {
     PageUtils queryPage(Map<String, Object> params);
 
 	List<SchoolsVo> querySchools();
+
+	StudentEntity getByEmail(String email);
 }
 

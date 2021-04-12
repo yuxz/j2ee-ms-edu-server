@@ -52,7 +52,7 @@ public class ClassLevelController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("institution:classlevel:info")
-    public R info(@PathVariable("id") Long id){
+    public R classlevelInfo(@PathVariable("id") Long id){
 		ClassLevelEntity classLevel = classLevelService.getById(id);
 
         return R.ok().put("classLevel", classLevel);

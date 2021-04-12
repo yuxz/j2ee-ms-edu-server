@@ -74,6 +74,17 @@ public class StudentController {
 
         return R.ok().put("student", student);
     }
+    
+    /**
+     * get student info by email 
+     */
+    @RequestMapping("/enroll/{email}")
+    //@RequiresPermissions("sms:student:info")
+    public R infoByEmail(@PathVariable("email") String email){
+		StudentEntity student = studentService.getByEmail(email);
+
+        return R.ok().put("student", student);
+    }
 
     /**
      * 保存

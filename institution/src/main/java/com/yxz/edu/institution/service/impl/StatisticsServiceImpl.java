@@ -23,8 +23,9 @@ import com.yxz.edu.institution.entity.ClassTypeEntity;
 import com.yxz.edu.institution.service.ClassTypeService;
 import com.yxz.edu.institution.service.StatisticsService;
 import com.yxz.edu.institution.vo.ClassStatisticsVo;
+import com.yxz.edu.institution.vo.StatisticsTableVo;
 
-@Service("InstitutionStatisticsService")
+@Service("statisticsService")
 public class StatisticsServiceImpl  extends ServiceImpl<ClassDao, ClassEntity> implements StatisticsService{
 
 	@Autowired
@@ -72,7 +73,7 @@ public class StatisticsServiceImpl  extends ServiceImpl<ClassDao, ClassEntity> i
         
         //6. create EchartsStatisticsVo
         EchartsStatisticsVo echartsStatisticsVo = new EchartsStatisticsVo();
-        echartsStatisticsVo.setTitle("各培训类型统计图"); 
+        echartsStatisticsVo.setTitle("培训类型"); 
         echartsStatisticsVo.setLegend(null);
         echartsStatisticsVo.setXAxis(null);
         echartsStatisticsVo.setYAxis(null);
@@ -95,9 +96,9 @@ public class StatisticsServiceImpl  extends ServiceImpl<ClassDao, ClassEntity> i
 	public EchartsStatisticsVo statisticsLine(Map<String, Object> params) {
 		//1. get count per class Type
 				QueryWrapper<ClassEntity> wrapper = new QueryWrapper<>();
-		        wrapper.groupBy("class_type_id, YEAR(start_time)");
-		        wrapper.orderByAsc("class_type_id, YEAR(start_time) ");		        
-		        wrapper.select("class_type_id, YEAR(start_time) as start_year, count(*) as total_count");
+		        wrapper.groupBy("class_type_id, YEAR(started)");
+		        wrapper.orderByAsc("class_type_id, YEAR(started) ");		        
+		        wrapper.select("class_type_id, YEAR(started) as start_year, count(*) as total_count");
 		        List<ClassEntity> classList = baseMapper.selectList(wrapper);
 		        
 		        //2. get class type name
@@ -184,9 +185,9 @@ public class StatisticsServiceImpl  extends ServiceImpl<ClassDao, ClassEntity> i
 public EchartsStatisticsVo statisticsBar(Map<String, Object> params) {
 	//1. get count per class Type
 	QueryWrapper<ClassEntity> wrapper = new QueryWrapper<>();
-    wrapper.groupBy("class_type_id, YEAR(start_time)");
-    wrapper.orderByAsc("class_type_id, YEAR(start_time) ");		        
-    wrapper.select("class_type_id, YEAR(start_time) as start_year, count(*) as total_count");
+    wrapper.groupBy("class_type_id, YEAR(started)");
+    wrapper.orderByAsc("class_type_id, YEAR(started) ");		        
+    wrapper.select("class_type_id, YEAR(started) as start_year, count(*) as total_count");
     List<ClassEntity> classList = baseMapper.selectList(wrapper);
     
     //2. get class type name
@@ -247,11 +248,12 @@ public EchartsStatisticsVo statisticsBar(Map<String, Object> params) {
      		echartsSeriesVo.setType("bar");
      		
      		//TODO change stack of the echarts bar 
-     		if(classStatisticsVo.getClassTypeName().contains("AEAS")) {
-     			echartsSeriesVo.setStack("AEAS");
-     		}else {     			
-     			echartsSeriesVo.setStack("total"); 
-     		}
+//     		if(classStatisticsVo.getClassTypeName().contains("AEAS")) {
+//     			echartsSeriesVo.setStack("AEAS");
+//     		}else {     			
+//     			echartsSeriesVo.setStack("total"); 
+//     		}
+     		echartsSeriesVo.setStack("total"); 
 			echartsSeriesVo.setName(classStatisticsVo.getClassTypeName());
 			echartsSeriesList.add(echartsSeriesVo);
 			newSeries = false;
@@ -281,6 +283,11 @@ public EchartsStatisticsVo statisticsScatter(Map<String, Object> params) {
 
 
 	
+	return null;
+}
+@Override
+public StatisticsTableVo statisticsTable(Map<String, Object> params) {
+    
 	return null;
 }
 }

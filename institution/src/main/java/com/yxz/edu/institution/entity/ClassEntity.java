@@ -2,6 +2,7 @@ package com.yxz.edu.institution.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
@@ -62,15 +63,15 @@ public class ClassEntity implements Serializable {
 	/**
 	 * 开班时间
 	 */
-	private Date startTime;
+	private Date started;
 	/**
 	 * 结班时间
 	 */
-	private Date endTime;
+	private Date ended;
 	/**
 	 * 是否结业
 	 */
-	private Integer isFinished;
+	private Integer status;
 	/**
 	 * 备注
 	 */
@@ -78,6 +79,7 @@ public class ClassEntity implements Serializable {
 	/**
 	 * 是否被删除[0-已删，1未删]
 	 */
+	@TableLogic(value = "0",delval = "1")
 	private Integer logicDeleted;
 	/**
 	 * 创建时间

@@ -36,7 +36,7 @@
       <el-form-item label="开班时间">
         <div class="block">
           <el-date-picker
-            v-model="dataForm.startTime"
+            v-model="dataForm.started"
             type="date"
             placeholder="选择日期"
           >
@@ -46,7 +46,7 @@
       <el-form-item label="结班时间">
 		<div class="block">
           <el-date-picker
-            v-model="dataForm.endTime"
+            v-model="dataForm.ended"
             type="date"
             placeholder="选择日期"
           >
@@ -76,9 +76,9 @@ export default {
         classTypeId: "",
         classroomId: "",
         name: "",
-        startTime: "",
-        endTime: "",
-        isFinished: 0,
+        started: "",
+        ended: "",
+        status: 0,
         note: "",
       },
       dataRule: {
@@ -97,13 +97,13 @@ export default {
         name: [
           { required: true, message: "班级名称不能为空", trigger: "blur" },
         ],
-        startTime: [
+        started: [
           { required: true, message: "开班时间不能为空", trigger: "blur" },
         ],
-        endTime: [
+        ended: [
           { required: true, message: "结班时间不能为空", trigger: "blur" },
         ],
-        isFinished: [
+        status: [
           { required: true, message: "是否结业不能为空", trigger: "blur" },
         ],
         note: [{ required: true, message: "备注不能为空", trigger: "blur" }],
@@ -128,9 +128,9 @@ export default {
               this.dataForm.classTypeId = data.class.classTypeId;
               this.dataForm.classroomId = data.class.classroomId;
               this.dataForm.name = data.class.name;
-              this.dataForm.startTime = data.class.startTime;
-              this.dataForm.endTime = data.class.endTime;
-              this.dataForm.isFinished = data.class.isFinished;
+              this.dataForm.started = data.class.started;
+              this.dataForm.ended = data.class.ended;
+              this.dataForm.status = data.class.status;
               this.dataForm.note = data.class.note;
             }
           });
@@ -153,9 +153,9 @@ export default {
               classTypeId: this.dataForm.classTypeId,
               classroomId: this.dataForm.classroomId,
               name: this.dataForm.name,
-              startTime: this.dataForm.startTime,
-              endTime: this.dataForm.endTime,
-              isFinished: this.dataForm.isFinished,
+              started: this.dataForm.started,
+              ended: this.dataForm.ended,
+              status: this.dataForm.status,
               note: this.dataForm.note,
             }),
           }).then(({ data }) => {
