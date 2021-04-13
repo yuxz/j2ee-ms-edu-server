@@ -25,7 +25,7 @@ import com.yxz.edu.student.vo.StudentListVo;
 
 @Service("studentService")
 public class StudentServiceImpl extends ServiceImpl<StudentDao, StudentEntity> implements StudentService {
-	//TODO feign Campus
+	
 	@Autowired
 	InstitutionFeignService institutionFeignService;
 

@@ -26,12 +26,7 @@ public class StudentListVo extends StudentVo {
 	 * Campus
 	 */
 	@JsonProperty("campusscheduleName")
-	private String campusscheduleName;
-	/**
-	 * classroom 
-	 */
-	@JsonProperty("classroomName")
-    private String classroomName;
+	private String campusscheduleName;	
 	
 	/**
 	 * Class Type Name
@@ -44,4 +39,10 @@ public class StudentListVo extends StudentVo {
 	 */
 	@JsonProperty("classLevelName")
 	private String classLevelName;
+	
+	/**
+	 * classroom 
+	 */
+	@JsonProperty("classroomName")
+    private String classroomName;
 }

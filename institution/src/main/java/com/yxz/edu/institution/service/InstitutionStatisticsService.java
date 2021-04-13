@@ -7,7 +7,7 @@ import com.yxz.base.common.vo.echarts.EchartsStatisticsVo;
 import com.yxz.edu.institution.entity.ClassEntity;
 import com.yxz.edu.institution.vo.StatisticsTableVo;
 
-public interface StatisticsService extends IService<ClassEntity> {
+public interface InstitutionStatisticsService {
 
 	EchartsStatisticsVo statisticsLine(Map<String, Object> params);
 	
@@ -18,5 +18,11 @@ public interface StatisticsService extends IService<ClassEntity> {
 	EchartsStatisticsVo statisticsScatter(Map<String, Object> params);
 
 	StatisticsTableVo statisticsTable(Map<String, Object> params);
+
+	Integer statisticsCampus(Map<String, Object> params);
+
+	Integer statisticsClasses(Map<String, Object> params);
+
+	EchartsStatisticsVo statisticsLineClass(Map<String, Object> params);
 
 }

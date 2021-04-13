@@ -1,5 +1,6 @@
 package com.yxz.edu.teacher.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -134,5 +135,11 @@ public class TeacherEntity implements Serializable {
 	 * Creator
 	 */
 	private Long userId;
+	
+	/**
+	 * total count
+	 */
+	@TableField(exist = false)
+	private Integer totalCount;
 
 }

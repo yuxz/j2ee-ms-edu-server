@@ -30,7 +30,7 @@ import com.yxz.edu.teacher.vo.TeacherExperienceVo;
  * @date 2021-03-29 13:59:24
  */
 @RestController
-@RequestMapping("teacher/teacherexperience")
+@RequestMapping("tms/teacherexperience")
 public class TeacherExperienceController {
     @Autowired
     private TeacherExperienceService teacherExperienceService;

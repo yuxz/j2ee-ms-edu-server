@@ -1,7 +1,21 @@
 <template>
   <el-row :gutter="40" class="panel-group">
+	   <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('campuses')">
+        <div class="card-panel-icon-wrapper icon-shopping">
+          <!-- <svg-icon icon-class="shopping" class-name="card-panel-icon" /> -->
+		   <icon-svg name="campus" class="card-panel-icon"></icon-svg>
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            Campus
+          </div>
+          <count-to :start-val="0" :end-val="campus" :duration="3600" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('messages')">
+      <div class="card-panel" @click="handleSetLineChartData('teachers')">
         <div class="card-panel-icon-wrapper icon-message">
           <!-- <svg-icon icon-class="message" class-name="card-panel-icon" /> -->
 		  <icon-svg name="teacher" class="card-panel-icon"></icon-svg>
@@ -10,26 +24,26 @@
           <div class="card-panel-text">
             Teachers
           </div>
-          <count-to :start-val="0" :end-val="128" :duration="3000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="teacher" :duration="3000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
 	<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
+      <div class="card-panel" @click="handleSetLineChartData('students')">
         <div class="card-panel-icon-wrapper icon-people">
           <!-- <svg-icon icon-class="peoples" class-name="card-panel-icon" /> -->
-		   <icon-svg name="peoples" class="card-panel-icon"></icon-svg>
+		   <icon-svg name="student" class="card-panel-icon"></icon-svg>
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
             Students
           </div>
-          <count-to :start-val="0" :end-val="1620" :duration="2600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="student" :duration="2600" class="card-panel-num" />
         </div>
       </div>
     </el-col>    
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('purchases')">
+      <div class="card-panel" @click="handleSetLineChartData('classes')">
         <div class="card-panel-icon-wrapper icon-money">
           <!-- <svg-icon icon-class="money" class-name="card-panel-icon" /> -->
 		  <icon-svg name="class" class="card-panel-icon"></icon-svg>
@@ -38,24 +52,11 @@
           <div class="card-panel-text">
             Classes
           </div>
-          <count-to :start-val="0" :end-val="112" :duration="3200" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="classes" :duration="3200" class="card-panel-num" />
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('shoppings')">
-        <div class="card-panel-icon-wrapper icon-shopping">
-          <!-- <svg-icon icon-class="shopping" class-name="card-panel-icon" /> -->
-		   <icon-svg name="shopping" class="card-panel-icon"></icon-svg>
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">
-            Money
-          </div>
-          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
-        </div>
-      </div>
-    </el-col>
+   
   </el-row>
 </template>
 
@@ -66,10 +67,63 @@ export default {
   components: {
     CountTo
   },
+  data() {
+    return {
+      campus: 0,
+	  teacher: 0,
+	  classes: 0,
+	  student: 0,
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.fetchCampusData();
+	  this.fetchTeacherData();
+	  this.fetchClassData();
+	  this.fetchStudentData();
+    });
+  },
   methods: {
     handleSetLineChartData(type) {
       this.$emit('handleSetLineChartData', type)
-    }
+    },
+	//fetch campus
+	fetchCampusData() {
+      //get data from server
+      this.$http({
+        url: this.$http.adornUrl("/ims/statistics/campus"),
+        method: "get",
+      }).then(({ data }) => {
+        this.campus = data.data;       
+      });	  
+    },
+	fetchTeacherData() {
+      //get data from server
+      this.$http({
+        url: this.$http.adornUrl("/tms/statistics/teacher"),
+        method: "get",
+      }).then(({ data }) => {
+        this.teacher = data.data;       
+      });	  
+    },
+	fetchClassData() {
+      //get data from server
+      this.$http({
+        url: this.$http.adornUrl("/ims/statistics/class"),
+        method: "get",
+      }).then(({ data }) => {
+        this.classes = data.data;       
+      });	  
+    },
+	fetchStudentData() {
+      //get data from server
+      this.$http({
+        url: this.$http.adornUrl("/sms/statistics/student"),
+        method: "get",
+      }).then(({ data }) => {
+        this.student = data.data;       
+      });	  
+    },
   }
 }
 </script>

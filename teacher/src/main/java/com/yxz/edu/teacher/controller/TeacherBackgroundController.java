@@ -30,7 +30,7 @@ import com.yxz.edu.teacher.vo.TeacherBackgroundVo;
  * @date 2021-03-29 13:59:24
  */
 @RestController
-@RequestMapping("teacher/teacherbackground")
+@RequestMapping("tms/teacherbackground")
 public class TeacherBackgroundController {
     @Autowired
     private TeacherBackgroundService teacherBackgroundService;

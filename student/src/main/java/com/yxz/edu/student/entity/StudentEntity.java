@@ -168,6 +168,14 @@ public class StudentEntity implements Serializable {
 	 */
 	private Long userId;
 	
+	/**
+	 * quarter 
+	 */
+	@TableField(exist = false)
+	private String quarter;
+	/**
+	 * total count
+	 */
 	@TableField(exist = false)
 	private Integer totalCount;
 

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 @Data
-public class StatisticsTableVo {
+public class StudentStatisticsTableVo {
 
 	/**
 	 * 教育机构id
@@ -62,5 +62,13 @@ public class StatisticsTableVo {
 	@JsonProperty("classLevelName")
 	private String classLevelName;
 	
+	/**
+	 * quarter
+	 */
+	private String quarter;
+	
+	/**
+	 * total count
+	 */
 	private Integer totalCount;
 }

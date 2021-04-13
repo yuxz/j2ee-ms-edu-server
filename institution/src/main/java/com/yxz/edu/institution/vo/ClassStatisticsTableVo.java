@@ -1,9 +1,11 @@
 package com.yxz.edu.institution.vo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import lombok.Data;
 
 @Data
-public class ClassStatisticsVo {
+public class ClassStatisticsTableVo {
 	/*
 	 * classTypeName
 	 */
@@ -15,6 +17,9 @@ public class ClassStatisticsVo {
 	private String startYear;
 	
 	/**
+	 * 
+	 */
+	private String quarter;/**
 	 * 
 	 */
 	private Integer totalCount;

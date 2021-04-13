@@ -1,5 +1,6 @@
-package com.yxz.edu.institution.controller;
+package com.yxz.edu.student.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,16 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yxz.base.common.utils.R;
 import com.yxz.base.common.vo.echarts.EchartsStatisticsVo;
-import com.yxz.edu.institution.service.StatisticsService;
-import com.yxz.edu.institution.vo.StatisticsTableVo;
+import com.yxz.edu.student.service.StudentStatisticsService;
+import com.yxz.edu.student.vo.StudentStatisticsTableVo;
 
 @RestController
-@RequestMapping("ims/statistics")
-public class StatisticsController {
+@RequestMapping("sms/statistics")
+public class StudentStatisticsController {
 	
 	@Autowired
-	private StatisticsService statisticsService;
-	
+	private StudentStatisticsService statisticsService;	
 	
 	
 	
@@ -27,6 +27,14 @@ public class StatisticsController {
     public R line(@RequestParam Map<String, Object> params){
 		
         EchartsStatisticsVo vo = statisticsService.statisticsLine(params);
+
+        return R.ok().put("data", vo);
+    }
+	@RequestMapping("/line/student")
+    //@RequiresPermissions("ims:campus:list")
+    public R lineStudent(@RequestParam Map<String, Object> params){
+		
+		EchartsStatisticsVo vo = statisticsService.statisticsLineStudent(params);
 
         return R.ok().put("data", vo);
     }
@@ -58,13 +66,20 @@ public class StatisticsController {
         return R.ok().put("data", vo);
     }
 	
-	
 	@RequestMapping("/table")
     //@RequiresPermissions("ims:campus:list")
     public R table(@RequestParam Map<String, Object> params){
 		
-		StatisticsTableVo vo = statisticsService.statisticsTable(params);
+        List<StudentStatisticsTableVo> vo = statisticsService.statisticsTable(params);
 
         return R.ok().put("data", vo);
+    }
+	@RequestMapping("/student")
+    //@RequiresPermissions("ims:campus:list")
+    public R students(@RequestParam Map<String, Object> params){
+		
+        Integer studentCount = statisticsService.statisticsStudentCount(params);
+
+        return R.ok().put("data", studentCount);
     }
 }

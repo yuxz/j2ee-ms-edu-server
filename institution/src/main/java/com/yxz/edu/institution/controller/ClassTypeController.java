@@ -53,7 +53,7 @@ public class ClassTypeController {
     //@RequiresPermissions("ims:classtype:info")
     public R classtypeInfo(@PathVariable("id") Long id){
 		ClassTypeEntity classType = classTypeService.getById(id);
-
+		System.out.println("classType=>>>"+classType);
         return R.ok().put("classType", classType);
     }
 

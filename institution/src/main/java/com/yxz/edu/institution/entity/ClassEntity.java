@@ -104,6 +104,11 @@ public class ClassEntity implements Serializable {
 	 * 
 	 */
 	@TableField(exist = false)
+	private String quarter;
+	/**
+	 * 
+	 */
+	@TableField(exist = false)
 	private String startYear;
 
 }

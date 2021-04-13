@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yxz.base.common.utils.PageUtils;
+import com.yxz.edu.student.entity.StudentClassEntity;
 import com.yxz.edu.student.entity.StudentEntity;
 import com.yxz.edu.student.vo.SchoolsVo;
 
@@ -15,7 +16,7 @@ import com.yxz.edu.student.vo.SchoolsVo;
  * @email yxz20180810@gmail.com
  * @date 2021-03-15 19:17:49
  */
-public interface StudentService extends IService<StudentEntity> {
+public interface StudentService extends IService<StudentEntity>{
 
     PageUtils queryPage(Map<String, Object> params);
 

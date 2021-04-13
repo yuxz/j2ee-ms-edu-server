@@ -1,6 +1,5 @@
-package com.yxz.edu.student.controller;
+package com.yxz.edu.institution.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yxz.base.common.utils.R;
 import com.yxz.base.common.vo.echarts.EchartsStatisticsVo;
-import com.yxz.edu.student.service.StatisticsService;
-import com.yxz.edu.student.vo.StatisticsTableVo;
+import com.yxz.edu.institution.service.InstitutionStatisticsService;
+import com.yxz.edu.institution.vo.StatisticsTableVo;
 
 @RestController
-@RequestMapping("sms/statistics")
-public class StatisticsController {
+@RequestMapping("ims/statistics")
+public class InstitutionStatisticsController {
 	
 	@Autowired
-	private StatisticsService statisticsService;
+	private InstitutionStatisticsService statisticsService;
 	
 	
 	
@@ -59,12 +58,44 @@ public class StatisticsController {
         return R.ok().put("data", vo);
     }
 	
+	
 	@RequestMapping("/table")
     //@RequiresPermissions("ims:campus:list")
     public R table(@RequestParam Map<String, Object> params){
 		
-        List<StatisticsTableVo> vo = statisticsService.statisticsTable(params);
+		StatisticsTableVo vo = statisticsService.statisticsTable(params);
 
         return R.ok().put("data", vo);
     }
+	
+	@RequestMapping("/line/class")
+    //@RequiresPermissions("ims:campus:list")
+    public R lineClass(@RequestParam Map<String, Object> params){
+		
+        EchartsStatisticsVo vo = statisticsService.statisticsLineClass(params);
+
+        return R.ok().put("data", vo);
+    }
+	
+	
+	@RequestMapping("/campus")
+    //@RequiresPermissions("ims:campus:list")
+    public R campuses(@RequestParam Map<String, Object> params){
+		
+		Integer campuses = statisticsService.statisticsCampus(params);
+
+        return R.ok().put("data", campuses);
+    }
+	
+
+   
+	@RequestMapping("/class")
+    //@RequiresPermissions("ims:campus:list")
+    public R classes(@RequestParam Map<String, Object> params){
+		
+		Integer classes = statisticsService.statisticsClasses(params);
+
+        return R.ok().put("data", classes);
+    }	
+	
 }
