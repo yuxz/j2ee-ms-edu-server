@@ -61,10 +61,10 @@ export default {
       this.chart = echarts.init(this.$el, 'macarons')
       this.setOptions(this.chartData)
     },
-    setOptions({ expectedData, actualData,otherData } = {}) {
+    setOptions({ xAxisData, legendData, seriesData1, seriesData2, seriesData3 } = {}) {
       this.chart.setOption({
         xAxis: {
-          data: ["1","2","3","4"],
+          data: xAxisData,//["1","2","3","4"],
           boundaryGap: false,
           axisTick: {
             show: false
@@ -90,10 +90,11 @@ export default {
           }
         },
         legend: {
-          data: ['私校奖学金计划', 'VCE备考冲刺','AEAS私校入学考试']
+          data: legendData,//['私校奖学金计划', 'VCE备考冲刺','AEAS私校入学考试']
         },
         series: [{
-          name: '私校奖学金计划', itemStyle: {
+          name: legendData[0],//'私校奖学金计划', 
+		  itemStyle: {
             normal: {
               color: '#FF005A',
               lineStyle: {
@@ -104,12 +105,12 @@ export default {
           },
           smooth: true,
           type: 'line',
-          data: expectedData,
+          data: seriesData1,
           animationDuration: 2800,
           animationEasing: 'cubicInOut'
         },
         {
-          name: 'VCE备考冲刺',
+          name: legendData[1],//'VCE备考冲刺',
           smooth: true,
           type: 'line',
           itemStyle: {
@@ -124,12 +125,12 @@ export default {
               }
             }
           },
-          data: actualData,
+          data: seriesData2,
           animationDuration: 2800,
           animationEasing: 'quadraticOut'
         },
         {
-          name: 'AEAS私校入学考试',
+          name: legendData[2],//'AEAS私校入学考试',
           smooth: true,
           type: 'line',
           itemStyle: {
@@ -144,7 +145,7 @@ export default {
               }
             }
           },
-          data: otherData,
+          data: seriesData3,
           animationDuration: 2800,
           animationEasing: 'quadraticOut'
         }]

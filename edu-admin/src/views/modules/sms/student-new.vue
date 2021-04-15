@@ -246,6 +246,7 @@ export default {
           page: this.pageIndex,
           limit: this.pageSize,
           key: this.dataForm.key,
+		  status:'new',
         }),
       }).then(({ data }) => {
         if (data && data.code === 0) {

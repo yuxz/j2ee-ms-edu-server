@@ -1,28 +1,25 @@
 package com.yxz.edu.student.service.impl;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.yxz.base.common.vo.echarts.EchartsSeriesVo;
-import com.yxz.base.common.vo.echarts.EchartsStatisticsVo;
-
+import com.yxz.base.common.utils.echarts.EchartsOption;
+import com.yxz.base.common.utils.echarts.EchartsUtils;
 import com.yxz.edu.student.dao.StudentDao;
 import com.yxz.edu.student.entity.StudentEntity;
 import com.yxz.edu.student.feign.InstitutionFeignService;
 import com.yxz.edu.student.service.StudentStatisticsService;
-import com.yxz.edu.student.vo.StudentStatisticsTableVo;
+import com.yxz.edu.student.vo.StudentEchartsStatisticsVo;
 
 @Service("studentStatisticsService")
 public class StudentStatisticsServiceImpl implements StudentStatisticsService {
@@ -33,119 +30,73 @@ public class StudentStatisticsServiceImpl implements StudentStatisticsService {
 	@Autowired
 	private InstitutionFeignService institutionFeignService;
 
+	private String type = "quarter";
+	private int started = Calendar.getInstance().get(Calendar.YEAR);
+	private int ended = Calendar.getInstance().get(Calendar.YEAR);
+
 	@Override
-	public EchartsStatisticsVo statisticsLine(Map<String, Object> params) {
+	public EchartsOption statisticsLine(Map<String, Object> params) {
+		// 0. set params
+		setParams(params);
 
 		// 1. get count per class Type
 		QueryWrapper<StudentEntity> wrapper = new QueryWrapper<StudentEntity>();
+		wrapper.select("QUARTER(registered) AS registered ,class_type_id , COUNT(*) AS total_count ");
 		wrapper.groupBy("QUARTER(registered),class_type_id");
 		wrapper.orderByAsc("QUARTER(registered),class_type_id");
-		wrapper.select("QUARTER(registered) AS registered ,class_type_id , COUNT(*) AS total_count ");
-		wrapper.eq("YEAR(registered)", Calendar.getInstance().get(Calendar.YEAR));
+//		wrapper.eq("YEAR(registered)", Calendar.getInstance().get(Calendar.YEAR));
+		wrapper.between("YEAR(registered)", started, ended);
 		List<StudentEntity> list = dao.selectList(wrapper);
 
-		List<StudentStatisticsTableVo> statisticsVoList = list.stream().map(entity -> {
+		List<StudentEchartsStatisticsVo<Integer>> statisticsVoList = list.stream().map(entity -> {
 
-			StudentStatisticsTableVo statisticsVo = new StudentStatisticsTableVo();
+			StudentEchartsStatisticsVo<Integer> statisticsVo = new StudentEchartsStatisticsVo<>();
 			Map classType = (Map) institutionFeignService.classtypeInfo(entity.getClassTypeId()).get("classType");
 			if (classType != null)
-				statisticsVo.setClassTypeName((String) classType.get("name"));
-			statisticsVo.setQuarter(entity.getRegistered().toString());
-			statisticsVo.setTotalCount(entity.getTotalCount());//
+				statisticsVo.setLegend((String) classType.get("name"));
+			statisticsVo.setXAxis(entity.getRegistered().toString());
+			statisticsVo.setValue(entity.getTotalCount());//
 			return statisticsVo;
 		}).collect(Collectors.toList());
 
-		// 3. create EchartsStatisticsVo
-		EchartsStatisticsVo echartsStatisticsVo = new EchartsStatisticsVo();
+		EchartsUtils<StudentEchartsStatisticsVo<Integer>> echartsUtils = new EchartsUtils<StudentEchartsStatisticsVo<Integer>>();
 
-		// 3.1 set title
-		echartsStatisticsVo.setTitle("季度招生走勢");
-
-		// 3.2-1 set legend [ '私校奖学金计划', 'VCE备考冲刺', 'AEAS私校入学考试'],
-		Set<String> legendSet = new HashSet<>();
-
-		// 3.3-1 set xAxis [ '2018', '2019', '2020', '2021', '2022' ]
-		Set<String> xAxisSet = new HashSet<>();
-
-		// set legend and xAxis
-		for (StudentStatisticsTableVo entity : statisticsVoList) {
-			// 1. set legend data
-			legendSet.add(entity.getClassTypeName());
-			// 2. set aAxis data
-			xAxisSet.add(entity.getQuarter());
-		}
-		;
-
-		// 3.4 set series
-		String tempClassTypeName = null;
-		Boolean newSeries = true;
-
-		List<EchartsSeriesVo> echartsSeriesList = new ArrayList<>();
-		for (StudentStatisticsTableVo statisticsVo : statisticsVoList) {
-			// the same class type
-			if (tempClassTypeName == null || tempClassTypeName == statisticsVo.getClassTypeName()) {
-			}
-			// not same class type
-			else {
-				newSeries = true;
-			}
-
-			if (newSeries) {
-				EchartsSeriesVo echartsSeriesVo = new EchartsSeriesVo();
-				List<Integer> dataList = new ArrayList<>();
-				echartsSeriesVo.setData(dataList);
-				echartsSeriesVo.setType("line");
-				echartsSeriesVo.setStack("total");
-				echartsSeriesVo.setName(statisticsVo.getClassTypeName());
-				echartsSeriesList.add(echartsSeriesVo);
-				newSeries = false;
-			}
-			echartsSeriesList.get(echartsSeriesList.size() - 1).getData().add(statisticsVo.getTotalCount());
-			tempClassTypeName = statisticsVo.getClassTypeName();
-		}
-		;
-
-		// 3.2-2 set legend [ '私校奖学金计划', 'VCE备考冲刺', 'AEAS私校入学考试'],
-		echartsStatisticsVo.setLegend(new ArrayList<String>(legendSet));
-		// 3.3-2 set xAxis [ '2018', '2019', '2020', '2021', '2022' ]
-		List<String> xAxislist = new ArrayList<String>(xAxisSet);
-		Collections.sort(xAxislist);
-		echartsStatisticsVo.setXAxis(xAxislist);
-
-		echartsStatisticsVo.setSeries(echartsSeriesList);
-
-		return echartsStatisticsVo;
+		return echartsUtils.setEcharts("各校區招生趨勢", statisticsVoList);
 
 	}
 
 	@Override
-	public EchartsStatisticsVo statisticsBar(Map<String, Object> params) {
+	public EchartsOption statisticsBar(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public EchartsStatisticsVo statisticsPie(Map<String, Object> params) {
+	public EchartsOption statisticsPie(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public EchartsStatisticsVo statisticsScatter(Map<String, Object> params) {
+	public EchartsOption statisticsScatter(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<StudentStatisticsTableVo> statisticsTable(Map<String, Object> params) {
+	public List<StudentEchartsStatisticsVo<Integer>> statisticsTable(Map<String, Object> params) {
+		// 0. set params
+		setParams(params);
+
 		QueryWrapper<StudentEntity> wrapper = new QueryWrapper<>();
+		wrapper.select("campus_id, class_type_id,class_level_id, count(*) as total_count");
 		wrapper.groupBy("campus_id, class_type_id,class_level_id");
 		wrapper.orderByAsc("campus_id, class_type_id,class_level_id ");
-		wrapper.select("campus_id, class_type_id,class_level_id, count(*) as total_count");
+		wrapper.between("YEAR(registered)", started, ended);
 		List<StudentEntity> studentList = dao.selectList(wrapper);
 
-		List<StudentStatisticsTableVo> collect = studentList.stream().map(mapper -> {
-			StudentStatisticsTableVo statisticsTableVo = new StudentStatisticsTableVo();
+		List<StudentEchartsStatisticsVo<Integer>> collect = studentList.stream().map(mapper -> {
+			StudentEchartsStatisticsVo<Integer> statisticsTableVo = new StudentEchartsStatisticsVo<>();
 			BeanUtils.copyProperties(mapper, statisticsTableVo);
 
 			// query Campus
@@ -153,9 +104,14 @@ public class StudentStatisticsServiceImpl implements StudentStatisticsService {
 //			if (institution != null)
 //				statisticsTableVo.setInstitutionName((String)institution.get("name"));
 			// query Campus Schedule
-			Map campus = (Map) institutionFeignService.campusInfo(mapper.getCampusId()).get("campus");
-			if (campus != null)
+			HashMap<String, String> campus = (HashMap<String, String>) institutionFeignService
+					.campusInfo(mapper.getCampusId()).get("campus");
+			if (campus != null) {
+
 				statisticsTableVo.setCampusName((String) campus.get("name"));
+			} else {
+				statisticsTableVo.setCampusName("anonymity");
+			}
 			// query schedule
 //        	Map schedule = (Map)institutionFeignService.campusscheduleInfo(mapper.getCampusScheduleId()).get("campusTrainingSchedule");
 //        	if(schedule != null)
@@ -167,16 +123,20 @@ public class StudentStatisticsServiceImpl implements StudentStatisticsService {
 
 //        	//query class Type
 			Map classType = (Map) institutionFeignService.classtypeInfo(mapper.getClassTypeId()).get("classType");
-			System.out.println("classType---->>>" + classType);
-			if (classType != null)
+//			System.out.println("classType---->>>" + classType);
+			if (classType != null) {
 				statisticsTableVo.setClassTypeName((String) classType.get("name"));
-
+			} else {
+				statisticsTableVo.setClassTypeName("anonymity");
+			}
 //        	//query class Level
 			Map classLevel = (Map) institutionFeignService.classlevelInfo(mapper.getClassLevelId()).get("classLevel");
-			if (classLevel != null)
+			if (classLevel != null) {
 				statisticsTableVo.setClassLevelName((String) classLevel.get("name"));
-
-			statisticsTableVo.setTotalCount(mapper.getTotalCount());
+			} else {
+				statisticsTableVo.setClassLevelName("anonymity");
+			}
+			statisticsTableVo.setValue(mapper.getTotalCount());
 			return statisticsTableVo;
 		}).collect(Collectors.toList());
 		return collect;
@@ -191,107 +151,140 @@ public class StudentStatisticsServiceImpl implements StudentStatisticsService {
 	}
 
 	@Override
-	public EchartsStatisticsVo statisticsLineStudent(Map<String, Object> params) {
+	public EchartsOption statisticsLineByClasstype(Map<String, Object> params) {
 
-		// 1. get count per class Type
+		/// 0. set params
+		setParams(params);
+
+		// 1. get statistic data
+		// 1.1 get count per class Type
 		QueryWrapper<StudentEntity> wrapper = new QueryWrapper<StudentEntity>();
-		wrapper.groupBy("class_type_id,QUARTER(registered)");
-		wrapper.orderByAsc("class_type_id,QUARTER(registered)");
-		wrapper.select("class_type_id , QUARTER(registered) AS quarter ,COUNT(*) AS total_count ");
-		wrapper.eq("YEAR(registered)", Calendar.getInstance().get(Calendar.YEAR));
+
+		switch (type) {
+		case "year":
+			wrapper.select("class_type_id , YEAR(registered) AS year ,COUNT(*) AS total_count ");
+			wrapper.groupBy("class_type_id, YEAR(registered)");
+			wrapper.orderByAsc("class_type_id, YEAR(registered)");
+			wrapper.between("YEAR(registered)", started, ended);
+			break;
+		case "quarter":
+			wrapper.select("class_type_id , QUARTER(registered) AS quarter ,COUNT(*) AS total_count ");
+			wrapper.groupBy("class_type_id, QUARTER(registered)");
+			wrapper.orderByAsc("class_type_id, QUARTER(registered)");
+			wrapper.between("YEAR(registered)", started, ended);
+			break;
+		case "month":
+			wrapper.select("class_type_id , MONTH(registered) AS month ,COUNT(*) AS total_count ");
+			wrapper.groupBy("class_type_id, MONTH(registered)");
+			wrapper.orderByAsc("class_type_id, MONTH(registered)");
+			wrapper.between("YEAR(registered)", started, ended);
+			break;
+		case "week":
+			wrapper.select("class_type_id , WEEK(registered) AS week ,COUNT(*) AS total_count ");
+			wrapper.groupBy("class_type_id, WEEK(registered)");
+			wrapper.orderByAsc("class_type_id,WEEK(registered)");
+			wrapper.between("YEAR(registered)", started, ended);
+			break;
+		case "day":
+			wrapper.select("class_type_id , DAY(registered) AS day ,COUNT(*) AS total_count ");
+			wrapper.groupBy("class_type_id, DAY(registered)");
+			wrapper.orderByAsc("class_type_id, DAY(registered)");
+			wrapper.between("YEAR(registered)", started, ended);
+		}
+
 		List<StudentEntity> list = dao.selectList(wrapper);
-        
-		// class_type_id -> classTypeName
+
+		// 1.2 class_type_id -> classTypeName
 		Map<String, Object> tempVal = new HashMap<>();
 
-		List<StudentStatisticsTableVo> statisticsVoList = list.stream().map(entity -> {
+		List<StudentEchartsStatisticsVo<Integer>> statisticsVoList = list.stream().map(entity -> {
 
-			StudentStatisticsTableVo statisticsVo = new StudentStatisticsTableVo();
+			StudentEchartsStatisticsVo<Integer> statisticsVo = new StudentEchartsStatisticsVo<>();
 			if (entity.getClassTypeId() != tempVal.get("id")) {
 				Map classType = (Map) institutionFeignService.classtypeInfo(entity.getClassTypeId()).get("classType");
 				tempVal.put("id", entity.getClassTypeId());
 				if (classType != null) {
-					tempVal.put("name", (String) classType.get("name"));
+					tempVal.put("name", classType.get("name"));
 				} else {
 					tempVal.put("name", "anonymity");
 				}
 			}
 			;
-			statisticsVo.setClassTypeName((String) tempVal.get("name"));
-			statisticsVo.setQuarter(entity.getQuarter());
-			statisticsVo.setTotalCount(entity.getTotalCount());//
+			statisticsVo.setLegend((String) tempVal.get("name"));
+			statisticsVo.setXAxis(entity.getQuarter());
+			statisticsVo.setValue(entity.getTotalCount());//
 
 			return statisticsVo;
 		}).collect(Collectors.toList());
 
-		// 3. create EchartsStatisticsVo
-		EchartsStatisticsVo echartsStatisticsVo = new EchartsStatisticsVo();
+		// 2. change to Echarts Style Data
 
-		// 3.1 set title
-		echartsStatisticsVo.setTitle("季度招生走勢");
+		EchartsUtils<StudentEchartsStatisticsVo<Integer>> echartsUtils = new EchartsUtils<StudentEchartsStatisticsVo<Integer>>();
 
-		// 3.2-1 set legend [ '私校奖学金计划', 'VCE备考冲刺', 'AEAS私校入学考试'],
-		Set<String> legendSet = new HashSet<>();
+		return echartsUtils.setEcharts("各類別招生趨勢", statisticsVoList);
 
-		// 3.3-1 set xAxis [ '2018', '2019', '2020', '2021', '2022' ]
-		Set<String> xAxisSet = new HashSet<>();
+	}
 
-		// set legend and xAxis
-		for (StudentStatisticsTableVo entity : statisticsVoList) {
-			// 3.2-2. set legend data
-			legendSet.add(entity.getClassTypeName());
-			// 3.3-2. set aAxis data
-			xAxisSet.add(entity.getQuarter());
-		}
-		;
+	@Override
+	public EchartsOption statisticsLineByCampus(Map<String, Object> params) {
+		// 0. set params
+		setParams(params);
 
-		// sort [ '2019', '2018', '2021', '2020', '2022' ] => [ '2018', '2019', '2020',
-		// '2021', '2022' ]
-		List<String> xAxisList = new ArrayList<>(xAxisSet);
-		Collections.sort(xAxisList);
-		System.out.println(xAxisList);
+		// 1. get statistic data
+		// 1.1 get count per class Type
+		QueryWrapper<StudentEntity> wrapper = new QueryWrapper<StudentEntity>();
+		wrapper.select("campus_id, QUARTER(registered), COUNT(*) AS total_count ");
+		wrapper.groupBy("campus_id, QUARTER(registered)");
+		wrapper.orderByAsc("campus_id, QUARTER(registered)");
+		// wrapper.eq("YEAR(registered)", Calendar.getInstance().get(Calendar.YEAR));
+		wrapper.between("YEAR(registered)", started, ended);
+		List<StudentEntity> list = dao.selectList(wrapper);
 
-		// 3.2-3 set legend [ '私校奖学金计划', 'VCE备考冲刺', 'AEAS私校入学考试'],
-		echartsStatisticsVo.setLegend(new ArrayList<String>(legendSet));
-		// 3.3-3 set xAxis [ '2019', '2018', '2021', '2020', '2022' ] => [ '2018',
-		// '2019', '2020', '2021', '2022' ]
-		List<String> xAxislist = new ArrayList<String>(xAxisSet);
-		Collections.sort(xAxislist);
-		echartsStatisticsVo.setXAxis(xAxislist);
+		// 1.2 campus_id -> campusName
+		Map<String, Object> tempVal = new HashMap<>();
 
-		// 3.4 set series
-		String tempClassTypeName = null;
-		Boolean newSeries = true;
-		Integer xAxisIndex = 0;
-		List<EchartsSeriesVo> echartsSeriesList = new ArrayList<>();
-		for (StudentStatisticsTableVo statisticsVo : statisticsVoList) {
-			// the same class type
-			if (tempClassTypeName == null || tempClassTypeName == statisticsVo.getClassTypeName()) {
+		List<StudentEchartsStatisticsVo<Integer>> statisticsVoList = list.stream().map(entity -> {
+
+			StudentEchartsStatisticsVo<Integer> statisticsVo = new StudentEchartsStatisticsVo<>();
+			if (entity.getClassTypeId() != tempVal.get("id")) {
+				Map campus = (Map) institutionFeignService.campusInfo(entity.getCampusId()).get("campus");
+				tempVal.put("id", entity.getCampusId());
+				if (campus != null) {
+					tempVal.put("name", campus.get("name"));
+				} else {
+					tempVal.put("name", "anonymity");
+				}
 			}
-			// not same class type
-			else {
-				newSeries = true;
-				xAxisIndex = 0;
-			}
+			;
+			statisticsVo.setLegend((String) tempVal.get("name"));
+			statisticsVo.setXAxis(entity.getQuarter());
+			statisticsVo.setValue(entity.getTotalCount());//
 
-			if (newSeries) {
-				EchartsSeriesVo echartsSeriesVo = new EchartsSeriesVo();
-				List<Integer> dataList = new ArrayList<>();
-				echartsSeriesVo.setData(dataList);
-//						echartsSeriesVo.setType("line");
-//						echartsSeriesVo.setStack("total");
-				echartsSeriesVo.setName(statisticsVo.getClassTypeName());
-				echartsSeriesList.add(echartsSeriesVo);
-				newSeries = false;
-			}
-			int indexOf = xAxisList.indexOf(statisticsVo.getQuarter());
-			echartsSeriesList.get(echartsSeriesList.size() - 1).getData().add(indexOf, statisticsVo.getTotalCount());
-			tempClassTypeName = statisticsVo.getClassTypeName();
-		};
+			return statisticsVo;
+		}).collect(Collectors.toList());
+
+		// 2. change to Echarts Style Data
+
+		EchartsUtils<StudentEchartsStatisticsVo<Integer>> echartsUtils = new EchartsUtils<StudentEchartsStatisticsVo<Integer>>();
+
+		return echartsUtils.setEcharts("各校區招生趨勢", statisticsVoList);
+	}
+
+	private void setParams(Map<String, Object> params) {
+
+		String typeV = (String) params.get("type");
+		if (!StringUtils.isEmpty(typeV))
+			type = typeV;
+
+		String startedV = (String) params.get("started");
+		if (StringUtils.isNumeric(startedV))
+			started = Integer.valueOf((String) params.get("started")).intValue();
 		
-		echartsStatisticsVo.setSeries(echartsSeriesList);
 
-		return echartsStatisticsVo;
+		String endedV = (String) params.get("ended");
+		if (StringUtils.isNumeric(endedV))
+			ended = Integer.valueOf((String) params.get("started")).intValue();
+		
 
 	}
 

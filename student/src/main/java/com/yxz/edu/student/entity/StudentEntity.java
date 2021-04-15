@@ -167,12 +167,29 @@ public class StudentEntity implements Serializable {
 	 * 创建人
 	 */
 	private Long userId;
+	/**
+	 * year 
+	 */
+	@TableField(exist = false)
+	private String year;
 	
 	/**
 	 * quarter 
 	 */
 	@TableField(exist = false)
 	private String quarter;
+	/**
+	 * month 
+	 */
+	@TableField(exist = false)
+	private String month;
+	
+	/**
+	 * week 
+	 */
+	@TableField(exist = false)
+	private String week;
+	
 	/**
 	 * total count
 	 */

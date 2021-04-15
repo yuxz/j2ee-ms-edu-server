@@ -129,4 +129,30 @@ public class ClassServiceImpl extends ServiceImpl<ClassDao, ClassEntity> impleme
 		return classTos;
 	}
 
+	@Override
+	public String classListByStatus(String status) {
+		QueryWrapper<ClassEntity> queryWrapper = new QueryWrapper<ClassEntity>();
+
+		if (!StringUtils.isEmpty(status)) {
+			
+			switch (status) {
+			case "new": //new 
+				queryWrapper.gt("started", new Date());
+				break;
+
+			case "on": // on reading
+				queryWrapper.nested(i->i.lt("started", new Date()).gt("ended", new Date()));
+				break;
+			case "off": // finished 
+				queryWrapper.lt("ended", new Date());
+				break;			
+			}
+		}
+
+		List<ClassEntity> list = baseMapper.selectList(queryWrapper);
+		List<String> classIds = list.stream().map(mapper-> Long.toString(mapper.getId())).collect(Collectors.toList());
+
+		return String.join(",", classIds);
+	}
+
 }

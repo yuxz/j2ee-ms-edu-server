@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.yxz.base.common.vo.echarts.EchartsStatisticsVo;
+import com.yxz.base.common.utils.echarts.EchartsOption;
 import com.yxz.edu.teacher.dao.TeacherDao;
 import com.yxz.edu.teacher.entity.TeacherEntity;
 import com.yxz.edu.teacher.service.TeacherStatisticsService;
@@ -23,19 +23,19 @@ public class TeacherStatisticsServiceImpl implements TeacherStatisticsService {
 	private TeacherStatisticsService statisticsService;
 	
 	@Override
-	public EchartsStatisticsVo statisticsLine(Map<String, Object> params) {
+	public EchartsOption statisticsLine(Map<String, Object> params) {
+
+		return null;
+	}
+
+	@Override
+	public EchartsOption statisticsBar(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public EchartsStatisticsVo statisticsBar(Map<String, Object> params) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public EchartsStatisticsVo statisticsPie(Map<String, Object> params) {
+	public EchartsOption statisticsPie(Map<String, Object> params) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -43,7 +43,7 @@ public class TeacherStatisticsServiceImpl implements TeacherStatisticsService {
 	
 
 	@Override
-	public EchartsStatisticsVo statisticsScatter(Map<String, Object> params) {
+	public EchartsOption statisticsScatter(Map<String, Object> params) {
 		
 		return null;		
 	}

@@ -2,9 +2,9 @@
   <el-row :gutter="40" class="panel-group">
 	   <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('campuses')">
-        <div class="card-panel-icon-wrapper icon-shopping">
+        <div class="card-panel-icon-wrapper icon-campus">
           <!-- <svg-icon icon-class="shopping" class-name="card-panel-icon" /> -->
-		   <icon-svg name="campus" class="card-panel-icon"></icon-svg>
+		   <icon-svg icon-class="campus" name="campus" class-name="card-panel-icon"></icon-svg>
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
@@ -16,9 +16,9 @@
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('teachers')">
-        <div class="card-panel-icon-wrapper icon-message">
+        <div class="card-panel-icon-wrapper icon-teacher">
           <!-- <svg-icon icon-class="message" class-name="card-panel-icon" /> -->
-		  <icon-svg name="teacher" class="card-panel-icon"></icon-svg>
+		  <icon-svg icon-class="teacher" name="teacher" class-name="card-panel-icon"></icon-svg>
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
@@ -30,9 +30,9 @@
     </el-col>
 	<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('students')">
-        <div class="card-panel-icon-wrapper icon-people">
+        <div class="card-panel-icon-wrapper icon-student">
           <!-- <svg-icon icon-class="peoples" class-name="card-panel-icon" /> -->
-		   <icon-svg name="student" class="card-panel-icon"></icon-svg>
+		   <icon-svg icon-class="student" name="student"  class-name="card-panel-icon"></icon-svg>
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
@@ -44,9 +44,9 @@
     </el-col>    
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('classes')">
-        <div class="card-panel-icon-wrapper icon-money">
+        <div class="card-panel-icon-wrapper icon-classes">
           <!-- <svg-icon icon-class="money" class-name="card-panel-icon" /> -->
-		  <icon-svg name="class" class="card-panel-icon"></icon-svg>
+		  <icon-svg icon-class="classes" name="classes" class-name="card-panel-icon"></icon-svg>
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
@@ -91,7 +91,7 @@ export default {
 	fetchCampusData() {
       //get data from server
       this.$http({
-        url: this.$http.adornUrl("/ims/statistics/campus"),
+        url: this.$http.adornUrl("/ims/statistics/campus/count"),
         method: "get",
       }).then(({ data }) => {
         this.campus = data.data;       
@@ -100,7 +100,7 @@ export default {
 	fetchTeacherData() {
       //get data from server
       this.$http({
-        url: this.$http.adornUrl("/tms/statistics/teacher"),
+        url: this.$http.adornUrl("/tms/statistics/teacher/count"),
         method: "get",
       }).then(({ data }) => {
         this.teacher = data.data;       
@@ -109,7 +109,7 @@ export default {
 	fetchClassData() {
       //get data from server
       this.$http({
-        url: this.$http.adornUrl("/ims/statistics/class"),
+        url: this.$http.adornUrl("/ims/statistics/class/count"),
         method: "get",
       }).then(({ data }) => {
         this.classes = data.data;       
@@ -118,7 +118,7 @@ export default {
 	fetchStudentData() {
       //get data from server
       this.$http({
-        url: this.$http.adornUrl("/sms/statistics/student"),
+        url: this.$http.adornUrl("/sms/statistics/student/count"),
         method: "get",
       }).then(({ data }) => {
         this.student = data.data;       
@@ -152,36 +152,36 @@ export default {
         color: #fff;
       }
 
-      .icon-people {
+      .icon-student {
         background: #40c9c6;
       }
 
-      .icon-message {
+      .icon-teacher {
         background: #36a3f7;
       }
 
-      .icon-money {
+      .icon-classes {
         background: #f4516c;
       }
 
-      .icon-shopping {
+      .icon-campus {
         background: #34bfa3
       }
     }
 
-    .icon-people {
+    .icon-student {
       color: #40c9c6;
     }
 
-    .icon-message {
+    .icon-teacher {
       color: #36a3f7;
     }
 
-    .icon-money {
+    .icon-classes {
       color: #f4516c;
     }
 
-    .icon-shopping {
+    .icon-campus {
       color: #34bfa3
     }
 

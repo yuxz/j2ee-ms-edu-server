@@ -4,16 +4,16 @@
     :close-on-click-modal="false"
     :visible.sync="visible">
     <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="80px">
-    <el-form-item label="教育机构id" prop="institutionId">
+    <!-- <el-form-item label="教育机构id" prop="institutionId">
       <el-input v-model="dataForm.institutionId" placeholder="教育机构id"></el-input>
+    </el-form-item> -->
+    <el-form-item label="Name" prop="name">
+      <el-input v-model="dataForm.name" placeholder="Name"></el-input>
     </el-form-item>
-    <el-form-item label="名称" prop="name">
-      <el-input v-model="dataForm.name" placeholder="名称"></el-input>
+    <el-form-item label="Notes" prop="note">
+      <el-input type="textarea" :row="2" v-model="dataForm.note" placeholder="Notes"></el-input>
     </el-form-item>
-    <el-form-item label="备注" prop="note">
-      <el-input v-model="dataForm.note" placeholder="备注"></el-input>
-    </el-form-item>
-    <el-form-item label="是否被删除[0-已删，1未删]" prop="logicDeleted">
+    <!-- <el-form-item label="是否被删除[0-已删，1未删]" prop="logicDeleted">
       <el-input v-model="dataForm.logicDeleted" placeholder="是否被删除[0-已删，1未删]"></el-input>
     </el-form-item>
     <el-form-item label="创建时间" prop="created">
@@ -24,11 +24,11 @@
     </el-form-item>
     <el-form-item label="创建人" prop="userId">
       <el-input v-model="dataForm.userId" placeholder="创建人"></el-input>
-    </el-form-item>
+    </el-form-item> -->
     </el-form>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="visible = false">取消</el-button>
-      <el-button type="primary" @click="dataFormSubmit()">确定</el-button>
+      <el-button @click="visible = false">Cancel</el-button>
+      <el-button type="primary" @click="dataFormSubmit()">Confirm</el-button>
     </span>
   </el-dialog>
 </template>

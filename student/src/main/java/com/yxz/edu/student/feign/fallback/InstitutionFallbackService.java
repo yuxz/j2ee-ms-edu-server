@@ -35,5 +35,10 @@ public class InstitutionFallbackService implements InstitutionFeignService {
 		return R.error(BizCodeEnume.READ_TIME_OUT_EXCEPTION.getCode(), BizCodeEnume.READ_TIME_OUT_EXCEPTION.getMsg());
     }
 
+	@Override
+	public R classList(String status) {
+		return R.error(BizCodeEnume.READ_TIME_OUT_EXCEPTION.getCode(), BizCodeEnume.READ_TIME_OUT_EXCEPTION.getMsg());
+	}
+
 	
 }

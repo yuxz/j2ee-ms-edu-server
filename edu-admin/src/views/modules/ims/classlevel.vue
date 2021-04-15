@@ -22,7 +22,7 @@
         align="center"
         width="50">
       </el-table-column>
-      <el-table-column
+      <!-- <el-table-column
         prop="id"
         header-align="center"
         align="center"
@@ -33,26 +33,26 @@
         header-align="center"
         align="center"
         label="教育机构id">
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column
         prop="name"
         header-align="center"
         align="center"
-        label="名称">
+        label="Name">
       </el-table-column>
-      <el-table-column
+      <!-- <el-table-column
         prop="note"
         header-align="center"
         align="center"
         label="备注">
-      </el-table-column>
-      <el-table-column
+      </el-table-column> -->
+      <!-- <el-table-column
         prop="logicDeleted"
         header-align="center"
         align="center"
         label="是否被删除[0-已删，1未删]">
-      </el-table-column>
-      <el-table-column
+      </el-table-column> -->
+      <!-- <el-table-column
         prop="created"
         header-align="center"
         align="center"
@@ -63,19 +63,19 @@
         header-align="center"
         align="center"
         label="更改时间">
-      </el-table-column>
-      <el-table-column
+      </el-table-column> -->
+      <!-- <el-table-column
         prop="userId"
         header-align="center"
         align="center"
         label="创建人">
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column
         fixed="right"
         header-align="center"
         align="center"
         width="150"
-        label="操作">
+        label="">
         <template slot-scope="scope">
           <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)" icon="el-icon-edit" circle></el-button>
           <el-button type="text" size="small" @click="deleteHandle(scope.row.id)" icon="el-icon-delete" circle></el-button>

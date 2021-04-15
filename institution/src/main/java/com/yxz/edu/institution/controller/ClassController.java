@@ -49,7 +49,14 @@ public class ClassController {
 
         return R.ok().put("page", page);
     }
+    
+    @RequestMapping("/classids/{status}")
+    public R classList(@PathVariable("status") String status) {
+    	 String list = classService.classListByStatus(status);
 
+         return R.ok().put("list", list);
+    };
+    
     @RequestMapping("/listAll")
     //@RequiresPermissions("ims:class:list")
     public R listAllClass(){

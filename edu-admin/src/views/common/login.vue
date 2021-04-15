@@ -6,15 +6,16 @@
           <h3 class="login-title" >EDU</h3><br>
           <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" status-icon>
             <el-form-item prop="userName">
-              <el-input v-model="dataForm.userName" placeholder="帐号"></el-input>
+              <el-input v-model="dataForm.userName" placeholder="email"></el-input>
             </el-form-item>
             <el-form-item prop="password">
-              <el-input v-model="dataForm.password" type="password" placeholder="密码"></el-input>
-            </el-form-item>
+              <el-input v-model="dataForm.password" type="password" placeholder="password"></el-input>
+             <a>Forgot your password?</a>   
+			</el-form-item>
             <el-form-item prop="captcha">
               <el-row :gutter="20">
                 <el-col :span="14">
-                  <el-input v-model="dataForm.captcha" placeholder="验证码">
+                  <el-input v-model="dataForm.captcha" placeholder="Enter the characters displayed in the image right for verification.">
                   </el-input>
                 </el-col>
                 <el-col :span="10" class="login-captcha">
@@ -23,8 +24,11 @@
               </el-row>
             </el-form-item>
             <el-form-item>
-              <el-button class="login-btn-submit" type="primary" @click="dataFormSubmit()">登录</el-button>
+             <el-button class="login-btn-submit" type="primary" @click="dataFormSubmit()" size="45%">登录</el-button>
             </el-form-item>
+			<el-form-item>
+              New to EDU?   <icon-svg name="signup" class="card-panel-icon"></icon-svg><a>Sign up for free</a>
+			   </el-form-item>
           </el-form>
         </div>
       </div>

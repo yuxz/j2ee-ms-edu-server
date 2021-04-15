@@ -1,10 +1,11 @@
 package com.yxz.edu.student.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.yxz.base.common.utils.echarts.BaseEchartsStatisticsVo;
 
 import lombok.Data;
 @Data
-public class StudentStatisticsTableVo {
+public class StudentEchartsStatisticsVo<T> extends BaseEchartsStatisticsVo<T>{
 
 	/**
 	 * 教育机构id
@@ -62,13 +63,11 @@ public class StudentStatisticsTableVo {
 	@JsonProperty("classLevelName")
 	private String classLevelName;
 	
+	
 	/**
 	 * quarter
 	 */
 	private String quarter;
 	
-	/**
-	 * total count
-	 */
-	private Integer totalCount;
+
 }

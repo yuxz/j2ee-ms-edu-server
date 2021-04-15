@@ -67,25 +67,33 @@ import BoxCard from './components/BoxCard'
 let lineChartData = {
   
   campuses: {
-    expectedData: [130, 140, 150, 160],
-    actualData: [120, 82, 91, 130],
-	otherData: [100, 120, 161, 165]
+	xAxisData:["1","2","3","4"],
+	legendData: ['私校奖学金计划1', 'VCE备考冲刺','AEAS私校入学考试'],
+    seriesData1: [130, 140, 150, 160],
+    seriesData2: [120, 82, 91, 130],
+	seriesData3: [100, 120, 161, 165]
   },
   teachers: {
-    expectedData: [80, 100, 121, 100],
-    actualData: [120, 90, 100, 138],
-	otherData: [100, 120, 161, 1345]
+	xAxisData:["1","2","3","4"],
+	legendData: ['私校奖学金计划2', 'VCE备考冲刺','AEAS私校入学考试'],
+    seriesData1: [80, 100, 121, 100],
+    seriesData2: [120, 90, 100, 138],
+	seriesData3: [100, 120, 161, 1345]
   },
   students:
    {
-    expectedData: [100, 120, 161, 134],
-    actualData: [120, 82, 91, 145],
-	otherData: [80, 100, 121,  100]
+	xAxisData:["1","2","3","4"],
+	legendData: ['私校奖学金计划', 'VCE备考冲刺','AEAS私校入学考试'],
+    seriesData1: [100, 120, 161, 134],
+    seriesData2: [120, 82, 91, 145],
+	seriesData3: [80, 100, 121,  100]
   },
   classes: {
-    expectedData: [200, 192,  130, 140],
-    actualData: [180, 160, 150, 130],
-	otherData: [100, 120, 160, 165]
+	xAxisData:["1","2","3","8"],
+	legendData: ['私校奖学金计划', 'VCE备考冲刺','AEAS私校入学考试'],
+    seriesData1: [200, 192,  130, 140],
+    seriesData2: [180, 160, 150, 130],
+	seriesData3: [100, 120, 160, 165]
   }
 }
 
@@ -108,6 +116,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
+	  this.fetchCampusChartLineData();
       this.fetchStudentChartLineData();	  
 	  this.fetchClassChartLineData();
     });
@@ -117,30 +126,54 @@ export default {
       this.lineChartData = lineChartData[type]
     },
 
+	
 	//get data from server
-	fetchStudentChartLineData(){	
+	fetchCampusChartLineData(){	
 	this.$http({
-		url: this.$http.adornUrl("/sms/statistics/line/student"),
+		url: this.$http.adornUrl("/sms/statistics/student/line/campus"),
 		method: "get",
 		}).then(({ data }) => {
 			console.log("成功获取ChartlineStudent数据...", data.data.series[0].data);
 			// this.lineChartData = data.data;	
-			lineChartData.students.expectedData = data.data.series[0].data;	
-			lineChartData.students.actualData =data.data.series[1].data;	
-			lineChartData.students.otherData =data.data.series[2].data;		
+			lineChartData.campuses.xAxisData = data.data.xAxis;
+			lineChartData.campuses.legendData = data.data.legend;
+			lineChartData.campuses.seriesData1 = data.data.series[0].data;	
+			lineChartData.campuses.seriesData2 =data.data.series[1].data;	
+			lineChartData.campuses.seriesData3 =data.data.series[2].data;		
+	});
+	},
+	fetchStudentChartLineData(){	
+	this.$http({
+		url: this.$http.adornUrl("/sms/statistics/student/line/classtype"),
+		method: "get",
+		 params: this.$http.adornParams({
+            'type': 'quarter',
+            'started': 2021,
+            'ended': 2020
+          })
+		}).then(({ data }) => {
+			console.log("成功获取ChartlineStudent数据...", data.data.series[0].data);
+			// this.lineChartData = data.data;	
+			lineChartData.students.xAxisData = data.data.xAxis;
+			lineChartData.students.legendData = data.data.legend;
+			lineChartData.students.seriesData1 = data.data.series[0].data;	
+			lineChartData.students.seriesData2 =data.data.series[1].data;	
+			lineChartData.students.seriesData3 =data.data.series[2].data;		
 	});
 	},
 	//get data from server
 	fetchClassChartLineData(){	
 	this.$http({
-		url: this.$http.adornUrl("/ims/statistics/line/class"),
+		url: this.$http.adornUrl("/ims/statistics/class/line"),
 		method: "get",
 		}).then(({ data }) => {
 			console.log("成功获取ChartlineClasses数据...", data.data);
 			// this.lineChartData = data.data;	
-			lineChartData.classes.expectedData = data.data.series[0].data;	
-			lineChartData.classes.actualData =data.data.series[1].data;	
-			lineChartData.classes.otherData =data.data.series[2].data;			
+			lineChartData.classes.xAxisData = data.data.xAxis;
+			lineChartData.classes.legendData = data.data.legend;
+			lineChartData.classes.seriesData1 = data.data.series[0].data;	
+			lineChartData.classes.seriesData2 =data.data.series[1].data;	
+			lineChartData.classes.seriesData3 =data.data.series[2].data;			
 	});
 	},
   }

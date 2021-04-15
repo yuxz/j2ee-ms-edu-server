@@ -39,7 +39,7 @@
       >
       </el-table-column>
 	   <el-table-column
-        prop="totalCount"
+        prop="value"
         header-align="center"
         align="center"
         label="total"
@@ -77,10 +77,10 @@ export default {
 	fetchTableData(){
 		//get data from server
 		this.$http({
-			url: this.$http.adornUrl("/sms/statistics/table"),
+			url: this.$http.adornUrl("/sms/statistics/student/table"),
 			method: "get",
 			}).then(({ data }) => {
-				console.log("成功获取Bar数据...", data.data);
+				console.log("student/table...", data.data);
 				this.list = data.data;				
 		});
 	  },    

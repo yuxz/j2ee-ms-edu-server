@@ -24,6 +24,8 @@ public interface ClassService extends IService<ClassEntity> {
 
 	List<ClassTo> queryAllClasses();
 
+	String classListByStatus(String status);
+
 	
 }
 

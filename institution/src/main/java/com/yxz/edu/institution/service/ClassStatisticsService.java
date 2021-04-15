@@ -5,7 +5,7 @@ import java.util.Map;
 import com.yxz.base.common.utils.echarts.EchartsOption;
 import com.yxz.edu.institution.vo.StatisticsTableVo;
 
-public interface InstitutionStatisticsService {
+public interface ClassStatisticsService {
 
 	EchartsOption statisticsLine(Map<String, Object> params);
 	
@@ -15,8 +15,9 @@ public interface InstitutionStatisticsService {
 	
 	EchartsOption statisticsScatter(Map<String, Object> params);
 
-	StatisticsTableVo statisticsTable(Map<String, Object> params);
+	StatisticsTableVo statisticsTable(Map<String, Object> params);	
 
-	Integer statisticsCampus(Map<String, Object> params);	
+	Integer statisticsClassCount(Map<String, Object> params);
 
+	EchartsOption statisticsLineClassByClasstype(Map<String, Object> params);
 }

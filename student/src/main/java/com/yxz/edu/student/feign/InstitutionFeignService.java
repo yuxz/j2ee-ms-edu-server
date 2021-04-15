@@ -21,6 +21,8 @@ public interface InstitutionFeignService {
 	
 	@RequestMapping("/ims/class/info/{id}")
     R classInfo(@PathVariable("id") Long id);
+	@RequestMapping("/ims/class/classids/{status}")
+    R classList(@PathVariable("status") String status);
 	
 	@RequestMapping("/ims/classtype/info/{id}")
     R classtypeInfo(@PathVariable("id") Long id);

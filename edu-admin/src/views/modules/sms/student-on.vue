@@ -222,6 +222,7 @@ export default {
           page: this.pageIndex,
           limit: this.pageSize,
           key: this.dataForm.key,
+		  status:'on',
         }),
       }).then(({ data }) => {
         if (data && data.code === 0) {

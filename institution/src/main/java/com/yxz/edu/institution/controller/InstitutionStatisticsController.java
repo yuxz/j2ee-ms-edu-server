@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yxz.base.common.utils.R;
-import com.yxz.base.common.vo.echarts.EchartsStatisticsVo;
+import com.yxz.base.common.utils.echarts.EchartsOption;
 import com.yxz.edu.institution.service.InstitutionStatisticsService;
 import com.yxz.edu.institution.vo.StatisticsTableVo;
 
@@ -17,16 +17,14 @@ import com.yxz.edu.institution.vo.StatisticsTableVo;
 public class InstitutionStatisticsController {
 	
 	@Autowired
-	private InstitutionStatisticsService statisticsService;
-	
-	
+	private InstitutionStatisticsService statisticsService;	
 	
 	
 	@RequestMapping("/line")
     //@RequiresPermissions("ims:campus:list")
     public R line(@RequestParam Map<String, Object> params){
 		
-        EchartsStatisticsVo vo = statisticsService.statisticsLine(params);
+        EchartsOption vo = statisticsService.statisticsLine(params);
 
         return R.ok().put("data", vo);
     }
@@ -35,7 +33,7 @@ public class InstitutionStatisticsController {
     //@RequiresPermissions("ims:campus:list")
     public R barline(@RequestParam Map<String, Object> params){
 		
-        EchartsStatisticsVo vo = statisticsService.statisticsBar(params);
+        EchartsOption vo = statisticsService.statisticsBar(params);
 
         return R.ok().put("data", vo);
     }
@@ -44,7 +42,7 @@ public class InstitutionStatisticsController {
     //@RequiresPermissions("ims:campus:list")
     public R pie(@RequestParam Map<String, Object> params){
 		
-        EchartsStatisticsVo vo = statisticsService.statisticsPie(params);
+        EchartsOption vo = statisticsService.statisticsPie(params);
 
         return R.ok().put("data", vo);
     }
@@ -53,7 +51,7 @@ public class InstitutionStatisticsController {
     //@RequiresPermissions("ims:campus:list")
     public R scatter(@RequestParam Map<String, Object> params){
 		
-        EchartsStatisticsVo vo = statisticsService.statisticsScatter(params);
+        EchartsOption vo = statisticsService.statisticsScatter(params);
 
         return R.ok().put("data", vo);
     }
@@ -68,34 +66,18 @@ public class InstitutionStatisticsController {
         return R.ok().put("data", vo);
     }
 	
-	@RequestMapping("/line/class")
-    //@RequiresPermissions("ims:campus:list")
-    public R lineClass(@RequestParam Map<String, Object> params){
-		
-        EchartsStatisticsVo vo = statisticsService.statisticsLineClass(params);
-
-        return R.ok().put("data", vo);
-    }
 	
 	
-	@RequestMapping("/campus")
+	
+	@RequestMapping("/campus/count")
     //@RequiresPermissions("ims:campus:list")
     public R campuses(@RequestParam Map<String, Object> params){
 		
 		Integer campuses = statisticsService.statisticsCampus(params);
 
         return R.ok().put("data", campuses);
-    }
+    }   
 	
-
-   
-	@RequestMapping("/class")
-    //@RequiresPermissions("ims:campus:list")
-    public R classes(@RequestParam Map<String, Object> params){
-		
-		Integer classes = statisticsService.statisticsClasses(params);
-
-        return R.ok().put("data", classes);
-    }	
+	
 	
 }

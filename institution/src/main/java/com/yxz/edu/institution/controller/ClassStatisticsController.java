@@ -1,6 +1,5 @@
-package com.yxz.edu.student.controller;
+package com.yxz.edu.institution.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yxz.base.common.utils.R;
 import com.yxz.base.common.utils.echarts.EchartsOption;
-import com.yxz.edu.student.service.StudentStatisticsService;
-import com.yxz.edu.student.vo.StudentEchartsStatisticsVo;
+import com.yxz.edu.institution.service.ClassStatisticsService;
+import com.yxz.edu.institution.vo.StatisticsTableVo;
 
 @RestController
-@RequestMapping("sms/statistics/student")
-public class StudentStatisticsController {
+@RequestMapping("ims/statistics/class")
+public class ClassStatisticsController {
 	
 	@Autowired
-	private StudentStatisticsService statisticsService;	
+	private ClassStatisticsService statisticsService;
 	
 	
 	
@@ -27,23 +26,6 @@ public class StudentStatisticsController {
     public R line(@RequestParam Map<String, Object> params){
 		
         EchartsOption vo = statisticsService.statisticsLine(params);
-
-        return R.ok().put("data", vo);
-    }
-	
-	@RequestMapping("/line/campus")
-    //@RequiresPermissions("ims:campus:list")
-    public R lineByCampus(@RequestParam Map<String, Object> params){
-		
-		EchartsOption vo = statisticsService.statisticsLineByCampus(params);
-
-        return R.ok().put("data", vo);
-    }
-	@RequestMapping("/line/classtype")
-    //@RequiresPermissions("ims:campus:list")
-    public R lineByClasstype(@RequestParam Map<String, Object> params){
-		
-		EchartsOption vo = statisticsService.statisticsLineByClasstype(params);
 
         return R.ok().put("data", vo);
     }
@@ -75,20 +57,25 @@ public class StudentStatisticsController {
         return R.ok().put("data", vo);
     }
 	
+	
 	@RequestMapping("/table")
     //@RequiresPermissions("ims:campus:list")
     public R table(@RequestParam Map<String, Object> params){
 		
-        List<StudentEchartsStatisticsVo<Integer>> vo = statisticsService.statisticsTable(params);
+		StatisticsTableVo vo = statisticsService.statisticsTable(params);
 
         return R.ok().put("data", vo);
     }
+	
+	
+   
 	@RequestMapping("/count")
     //@RequiresPermissions("ims:campus:list")
-    public R students(@RequestParam Map<String, Object> params){
+    public R classes(@RequestParam Map<String, Object> params){
 		
-        Integer studentCount = statisticsService.statisticsStudentCount(params);
+		Integer classes = statisticsService.statisticsClassCount(params);
 
-        return R.ok().put("data", studentCount);
-    }
+        return R.ok().put("data", classes);
+    }		
+	
 }

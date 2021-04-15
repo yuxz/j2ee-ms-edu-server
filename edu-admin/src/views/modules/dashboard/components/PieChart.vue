@@ -51,7 +51,7 @@ export default {
     getChartPieData() {
       //get data from server
       this.$http({
-        url: this.$http.adornUrl("/ims/statistics/pie"),
+        url: this.$http.adornUrl("/ims/statistics/class/pie"),
         method: "get",
       }).then(({ data }) => {
         console.log("成功获取Pie数据...", data.data);

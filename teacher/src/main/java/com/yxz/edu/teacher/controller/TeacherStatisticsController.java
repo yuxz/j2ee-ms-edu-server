@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yxz.base.common.utils.R;
-import com.yxz.base.common.vo.echarts.EchartsStatisticsVo;
+import com.yxz.base.common.utils.echarts.EchartsOption;
 import com.yxz.edu.teacher.service.TeacherStatisticsService;
 import com.yxz.edu.teacher.vo.TeacherStatisticsTableVo;
 
@@ -27,43 +27,43 @@ public class TeacherStatisticsController {
 	private TeacherStatisticsService statisticsService;	
 	
 		
-	@RequestMapping("/line")
+	@RequestMapping("/teacher/line")
     //@RequiresPermissions("ims:campus:list")
     public R line(@RequestParam Map<String, Object> params){
 		
-        EchartsStatisticsVo vo = statisticsService.statisticsLine(params);
+        EchartsOption vo = statisticsService.statisticsLine(params);
 
         return R.ok().put("data", vo);
     }
 	
-	@RequestMapping("/bar")
+	@RequestMapping("/teacher/bar")
     //@RequiresPermissions("ims:campus:list")
     public R barline(@RequestParam Map<String, Object> params){
 		
-        EchartsStatisticsVo vo = statisticsService.statisticsBar(params);
+        EchartsOption vo = statisticsService.statisticsBar(params);
 
         return R.ok().put("data", vo);
     }
 	
-	@RequestMapping("/pie")
+	@RequestMapping("/teacher/pie")
     //@RequiresPermissions("ims:campus:list")
     public R pie(@RequestParam Map<String, Object> params){
 		
-        EchartsStatisticsVo vo = statisticsService.statisticsPie(params);
+        EchartsOption vo = statisticsService.statisticsPie(params);
 
         return R.ok().put("data", vo);
     }
 	
-	@RequestMapping("/scatter")
+	@RequestMapping("/teacher/scatter")
     //@RequiresPermissions("ims:campus:list")
     public R scatter(@RequestParam Map<String, Object> params){
 		
-        EchartsStatisticsVo vo = statisticsService.statisticsScatter(params);
+        EchartsOption vo = statisticsService.statisticsScatter(params);
 
         return R.ok().put("data", vo);
     }
 	
-	@RequestMapping("/table")
+	@RequestMapping("/teacher/table")
     //@RequiresPermissions("ims:campus:list")
     public R table(@RequestParam Map<String, Object> params){
 		
@@ -71,7 +71,7 @@ public class TeacherStatisticsController {
 
         return R.ok().put("data", vo);
     }
-	@RequestMapping("/teacher")
+	@RequestMapping("/teacher/count")
     //@RequiresPermissions("ims:campus:list")
     public R teachers(@RequestParam Map<String, Object> params){
 		

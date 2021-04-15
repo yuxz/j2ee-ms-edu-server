@@ -1,4 +1,4 @@
-package com.yxz.base.common.vo.echarts;
+package com.yxz.base.common.utils.echarts;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class EchartsStatisticsVo {
+public class EchartsOption {
 	
 	/*
 	 * "折线图堆叠",
@@ -34,7 +34,7 @@ public class EchartsStatisticsVo {
 	/*
 	 * 
 	 */
-	private List<EchartsSeriesVo> series;
+	private List<EchartsOptionSeries> series;
 	
 
 }

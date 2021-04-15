@@ -52,7 +52,7 @@ export default {
 	  getChartBarData(){
 		//get data from server
 		this.$http({
-			url: this.$http.adornUrl("/ims/statistics/bar"),
+			url: this.$http.adornUrl("/ims/statistics/class/bar"),
 			method: "get",
 			}).then(({ data }) => {
 				console.log("成功获取Bar数据...", data.data);
