@@ -6,16 +6,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.stereotype.Component;
-
 import com.alibaba.excel.EasyExcel;
 
 //@Component
-public class EasyExcelComponent<T> {
+public class EasyExcelUtilComponent<T> {
 	
 	private final Class<T> clazz;
 
-    public EasyExcelComponent(Class<T> clazz) {
+    public EasyExcelUtilComponent(Class<T> clazz) {
         this.clazz = clazz;
     }
 	

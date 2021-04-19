@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.excel.EasyExcel;
-import com.yxz.base.thirdparty.component.EasyExcelComponent;
+import com.yxz.base.thirdparty.component.EasyExcelListenerComponent;
+import com.yxz.base.thirdparty.component.EasyExcelUtilComponent;
 import com.yxz.base.thirdparty.entity.Student;
-import com.yxz.base.thirdparty.listener.StudentListener;
 import com.yxz.base.thirdparty.service.StudentService;
 
 @Controller
@@ -64,26 +64,11 @@ public class EasyExcelController {
 	public void exportStudentInfos(HttpServletResponse response, HttpServletRequest request)
 			throws IOException, ParseException {	
 
-		List<Student> studentList = studentService.list();
 		
-		EasyExcelComponent<Student> easyExcelComponent = new EasyExcelComponent<>(Student.class);			
-		easyExcelComponent.exportFile(response,studentList, "学生花名册", "学生花名册");
+		studentService.exportInfo(response, "学生花名册", "学生花名册"); 
 	}
 	
-//	private void  exportFile(HttpServletResponse response, List<Student> studentList, String fileName, String SheetName) throws IOException {
-//		// 设置响应类型
-//				response.setContentType("application/vnd.ms-excel");
-//				// 设置字符编码
-//				response.setCharacterEncoding("utf-8");
-//				// 设置响应头信息
-//				response.setHeader("Content-disposition",
-//						"attachment;filename*=utf-8''" + URLEncoder.encode(fileName,  "UTF-8") + ".xlsx");
-//
-////				List<Student> studentList = studentService.list();
-//				// 写入文件
-//				EasyExcel.write(response.getOutputStream(), Student.class).sheet(SheetName).doWrite(studentList);
-//	}
-//	
+
 	/**
 	 * 读取Excel
 	 * 
@@ -92,9 +77,9 @@ public class EasyExcelController {
 	@RequestMapping(value = "/readExcel")
 	public List<Student> readExcel() {
 		String fileName = "d:\\花名册.xlsx";
-		StudentListener studentListener = new StudentListener();
+		EasyExcelListenerComponent<Student> studentListener = new EasyExcelListenerComponent<>();
 		EasyExcel.read(fileName, Student.class, studentListener).sheet().doRead();
-		return studentListener.getStudentList();
+		return studentListener.getList();
 	}
 
 	/**

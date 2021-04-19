@@ -1,4 +1,4 @@
-package com.yxz.base.thirdparty.listener;
+package com.yxz.base.thirdparty.component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,22 +15,22 @@ import lombok.Getter;
  * @author CL
  *
  */
-public class StudentListener extends AnalysisEventListener<Student> {
+public class EasyExcelListenerComponent<T> extends AnalysisEventListener<T> {
 
 	@Getter
-	private List<Student> studentList = new ArrayList<Student>();
+	private List<T> list = new ArrayList<T>();
 
-	public StudentListener() {
+	public EasyExcelListenerComponent() {
 		super();
-		studentList.clear();
+		list.clear();
 	}
 
 	/**
 	 * 每一条数据解析都会调用
 	 */
 	@Override
-	public void invoke(Student student, AnalysisContext context) {
-		studentList.add(student);
+	public void invoke(T entity, AnalysisContext context) {
+		list.add(entity);
 	}
 
 	/**
@@ -38,7 +38,7 @@ public class StudentListener extends AnalysisEventListener<Student> {
 	 */
 	@Override
 	public void doAfterAllAnalysed(AnalysisContext context) {
-		studentList.forEach(System.out::println);
+		list.forEach(System.out::println);
 	}
 
 }
