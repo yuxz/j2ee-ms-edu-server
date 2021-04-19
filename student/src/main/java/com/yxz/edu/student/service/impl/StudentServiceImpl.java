@@ -31,8 +31,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentDao, StudentEntity> i
 	@Autowired
 	InstitutionFeignService institutionFeignService;
 	@Autowired
-	StudentClassService studentClassService
-	;
+	StudentClassService studentClassService;
 	@Override
 	public PageUtils queryPage(Map<String, Object> params) {
 

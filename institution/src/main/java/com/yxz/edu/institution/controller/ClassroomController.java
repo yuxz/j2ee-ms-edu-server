@@ -1,6 +1,7 @@
 package com.yxz.edu.institution.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -77,6 +78,8 @@ public class ClassroomController {
     @RequestMapping("/save")
     //@RequiresPermissions("ims:classroom:save")
     public R save(@Validated({AddGroup.class}) @RequestBody ClassroomEntity classroom){
+    	classroom.setCreated(new Date());
+    	classroom.setUpdated(new Date());
 		classroomService.save(classroom);
 
         return R.ok();
@@ -88,6 +91,7 @@ public class ClassroomController {
     @RequestMapping("/update")
     //@RequiresPermissions("ims:classroom:update")
     public R update(@Validated(UpdateGroup.class)  @RequestBody ClassroomEntity classroom){
+    	classroom.setUpdated(new Date());
 		classroomService.updateById(classroom);
 
         return R.ok();

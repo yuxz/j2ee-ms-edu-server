@@ -1,6 +1,7 @@
 package com.yxz.edu.teacher.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -78,6 +79,8 @@ public class TeacherClassController {
     public R save(@Validated({AddGroup.class}) @RequestBody TeacherClassVo teacherClassVo){
     	TeacherClassEntity  teacherClassEntity = new  TeacherClassEntity();
     	BeanUtils.copyProperties( teacherClassVo,  teacherClassEntity);
+    	teacherClassEntity.setCreateTime(new Date());
+    	teacherClassEntity.setUpdateTime(new Date());
 		teacherClassService.save(teacherClassEntity);
 
         return R.ok();
@@ -91,6 +94,8 @@ public class TeacherClassController {
     public R save(@Validated({AddGroup.class}) @RequestBody List<TeacherClassVo> teacherClassVos){
 //    	TeacherClassEntity  teacherClassEntity = new  TeacherClassEntity();
 //    	BeanUtils.copyProperties( teacherClassVo,  teacherClassEntity);
+    	//Todo teacher SaveBatch
+//    	teacherClassEntity.setUpdateTime(new Date());
 		teacherClassService.saveBatch(teacherClassVos);
 
         return R.ok();
@@ -106,6 +111,7 @@ public class TeacherClassController {
     	TeacherClassEntity  teacherClassEntity = new  TeacherClassEntity();
     	BeanUtils.copyProperties( teacherClassVo,  teacherClassEntity);
     	
+    	teacherClassEntity.setUpdateTime(new Date());
 		teacherClassService.updateById(teacherClassEntity);
 
         return R.ok();

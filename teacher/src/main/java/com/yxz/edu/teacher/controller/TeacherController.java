@@ -1,6 +1,7 @@
 package com.yxz.edu.teacher.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
@@ -70,6 +71,8 @@ public class TeacherController {
     public R save(@Validated({AddGroup.class}) @RequestBody TeacherVo teacherVo){
     	TeacherEntity  teacherEntity = new  TeacherEntity();
     	BeanUtils.copyProperties( teacherVo,  teacherEntity);
+    	teacherEntity.setCreated(new Date());
+    	teacherEntity.setUpdated(new Date());
 		teacherService.save(teacherEntity);
 
 		//注册机构账号		
@@ -92,6 +95,7 @@ public class TeacherController {
     	TeacherEntity  teacherEntity = new  TeacherEntity();
     	BeanUtils.copyProperties( teacherVo,  teacherEntity);
     	
+    	teacherEntity.setUpdated(new Date());
 		teacherService.updateById(teacherEntity);
 
         return R.ok();

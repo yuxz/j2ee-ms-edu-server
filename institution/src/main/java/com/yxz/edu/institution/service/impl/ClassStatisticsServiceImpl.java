@@ -75,7 +75,7 @@ public class ClassStatisticsServiceImpl implements ClassStatisticsService {
 
 		// 2. get class type name
 		List<ClassTypeEntity> classTypeList = classTypeService.list();
-		List<ClassStatisticsTableVo> statisticsVoList = classList.stream().map(classEntity -> {
+		List<ClassStatisticsTableVo<Integer>> statisticsVoList = classList.stream().map(classEntity -> {
 			ClassStatisticsTableVo<Integer> classStatisticsVo = new ClassStatisticsTableVo<>();
 			
 			BeanUtils.copyProperties(classEntity, classStatisticsVo);
@@ -92,7 +92,7 @@ public class ClassStatisticsServiceImpl implements ClassStatisticsService {
 
 		// 2. change to Echarts Style Data
 
-		EchartsUtils<ClassStatisticsTableVo> echartsUtils = new EchartsUtils<ClassStatisticsTableVo>();
+		EchartsUtils<ClassStatisticsTableVo<Integer>> echartsUtils = new EchartsUtils<ClassStatisticsTableVo<Integer>>();
 
 		return echartsUtils.setEcharts("各校區招生数量", statisticsVoList);
 	}
@@ -111,7 +111,7 @@ public class ClassStatisticsServiceImpl implements ClassStatisticsService {
 		List<ClassTypeEntity> classTypeList = classTypeService.list();
 
 		// 3. create List<EchartsSeriesDataVo>
-		List<ClassStatisticsTableVo> statisticsVoList = classList.stream().map(classEntity -> {
+		List<ClassStatisticsTableVo<EchartsOptionSeriesDataPie>> statisticsVoList = classList.stream().map(classEntity -> {
 			ClassStatisticsTableVo<EchartsOptionSeriesDataPie> statisticsVo = new ClassStatisticsTableVo<>();
 			EchartsOptionSeriesDataPie echartsOptionSeriesDataPie = new EchartsOptionSeriesDataPie();
 			for (ClassTypeEntity classTypeEntity : classTypeList) {
@@ -150,7 +150,7 @@ public class ClassStatisticsServiceImpl implements ClassStatisticsService {
 
 		// 2. change to Echarts Style Data
 
-		EchartsUtils<ClassStatisticsTableVo> echartsUtils = new EchartsUtils<ClassStatisticsTableVo>();
+		EchartsUtils<ClassStatisticsTableVo<EchartsOptionSeriesDataPie>> echartsUtils = new EchartsUtils<ClassStatisticsTableVo<EchartsOptionSeriesDataPie>>();
 
 		return echartsUtils.setEcharts("各类型招生比例", statisticsVoList);
 	}

@@ -1,6 +1,7 @@
 package com.yxz.edu.student.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -94,6 +95,8 @@ public class StudentController {
     public R save(@Validated({AddGroup.class}) @RequestBody StudentVo studentVo){
     	StudentEntity  studentEntity = new  StudentEntity();
     	BeanUtils.copyProperties( studentVo,  studentEntity);
+    	studentEntity.setCreated(new Date());
+    	studentEntity.setUpdated(new Date());
 		studentService.save(studentEntity);
 
 		
@@ -115,7 +118,7 @@ public class StudentController {
     public R update(@Validated(UpdateGroup.class)  @RequestBody StudentVo studentVo){
     	StudentEntity  studentEntity = new  StudentEntity();
     	BeanUtils.copyProperties( studentVo,  studentEntity);
-    	
+    	studentEntity.setUpdated(new Date());
 		studentService.updateById(studentEntity);
 
         return R.ok();

@@ -1,6 +1,7 @@
 package com.yxz.edu.institution.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -69,6 +70,8 @@ public class InstitutionController {
     @RequestMapping("/save")
     //@RequiresPermissions("ims:institution:save")
     public R save(@Validated({AddGroup.class}) @RequestBody InstitutionEntity institution){
+    	institution.setCreated(new Date());
+    	institution.setUpdated(new Date());
 		institutionService.save(institution);
 		
 		//注册机构账号		
@@ -88,6 +91,7 @@ public class InstitutionController {
     @RequestMapping("/update")
     //@RequiresPermissions("ims:institution:update")
     public R update(@Validated(UpdateGroup.class)  @RequestBody InstitutionEntity institution){
+    	institution.setUpdated(new Date());
 		institutionService.updateById(institution);
 
         return R.ok();

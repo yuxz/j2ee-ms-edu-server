@@ -1,6 +1,7 @@
 package com.yxz.edu.teacher.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -66,6 +67,8 @@ public class TeacherExperienceController {
     public R save(@Validated({AddGroup.class}) @RequestBody TeacherExperienceVo teacherExperienceVo){
     	TeacherExperienceEntity  teacherExperienceEntity = new  TeacherExperienceEntity();
     	BeanUtils.copyProperties( teacherExperienceVo,  teacherExperienceEntity);
+    	teacherExperienceEntity.setCreated(new Date());
+    	teacherExperienceEntity.setUpdated(new Date());
 		teacherExperienceService.save(teacherExperienceEntity);
 
         return R.ok();
@@ -80,6 +83,7 @@ public class TeacherExperienceController {
     	TeacherExperienceEntity  teacherExperienceEntity = new  TeacherExperienceEntity();
     	BeanUtils.copyProperties( teacherExperienceVo,  teacherExperienceEntity);
     	
+    	teacherExperienceEntity.setUpdated(new Date());
 		teacherExperienceService.updateById(teacherExperienceEntity);
 
         return R.ok();

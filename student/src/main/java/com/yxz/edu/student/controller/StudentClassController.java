@@ -1,6 +1,7 @@
 package com.yxz.edu.student.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -77,6 +78,8 @@ public class StudentClassController {
     public R save(@Validated({AddGroup.class}) @RequestBody StudentClassVo studentClassVo){
     	StudentClassEntity  studentClassEntity = new  StudentClassEntity();
     	BeanUtils.copyProperties( studentClassVo,  studentClassEntity);
+    	studentClassEntity.setCreateTime(new Date());
+    	studentClassEntity.setUpdateTime(new Date());
 		studentClassService.save(studentClassEntity);
 
         return R.ok();
@@ -88,6 +91,7 @@ public class StudentClassController {
     @RequestMapping("/saveBatch")
     //@RequiresPermissions("sms:studentclass:save")
     public R saveBatch(@Validated({AddGroup.class}) @RequestBody List<StudentClassVo> studentClassVos){
+    	//Todo save Batch Created or updated
 		studentClassService.saveBatch(studentClassVos);
 
         return R.ok();
@@ -115,7 +119,7 @@ public class StudentClassController {
     public R update(@Validated(UpdateGroup.class)  @RequestBody StudentClassVo studentClassVo){
     	StudentClassEntity  studentClassEntity = new  StudentClassEntity();
     	BeanUtils.copyProperties( studentClassVo,  studentClassEntity);
-    	
+    	studentClassEntity.setUpdateTime(new Date());
 		studentClassService.updateById(studentClassEntity);
 
         return R.ok();

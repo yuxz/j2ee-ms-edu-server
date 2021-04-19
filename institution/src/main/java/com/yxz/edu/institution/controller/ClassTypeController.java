@@ -1,6 +1,7 @@
 package com.yxz.edu.institution.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -63,6 +64,8 @@ public class ClassTypeController {
     @RequestMapping("/save")
     //@RequiresPermissions("ims:classtype:save")
     public R save(@Validated({AddGroup.class}) @RequestBody ClassTypeEntity classType){
+    	classType.setCreated(new Date());
+    	classType.setUpdated(new Date());
 		classTypeService.save(classType);
 
         return R.ok();

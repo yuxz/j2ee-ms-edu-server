@@ -1,6 +1,7 @@
 package com.yxz.edu.institution.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -66,6 +67,8 @@ public class ClassLevelController {
     public R save(@Validated({AddGroup.class}) @RequestBody ClassLevelVo classLevelVo){
     	ClassLevelEntity  classLevelEntity = new  ClassLevelEntity();
     	BeanUtils.copyProperties( classLevelVo,  classLevelEntity);
+    	classLevelEntity.setCreated(new Date());
+    	classLevelEntity.setUpdated(new Date());
 		classLevelService.save(classLevelEntity);
 
         return R.ok();
@@ -79,7 +82,7 @@ public class ClassLevelController {
     public R update(@Validated(UpdateGroup.class)  @RequestBody ClassLevelVo classLevelVo){
     	ClassLevelEntity  classLevelEntity = new  ClassLevelEntity();
     	BeanUtils.copyProperties( classLevelVo,  classLevelEntity);
-    	
+    	classLevelEntity.setUpdated(new Date());
 		classLevelService.updateById(classLevelEntity);
 
         return R.ok();

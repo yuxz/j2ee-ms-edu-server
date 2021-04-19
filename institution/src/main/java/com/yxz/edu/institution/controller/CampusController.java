@@ -1,6 +1,9 @@
 package com.yxz.edu.institution.controller;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -71,6 +74,8 @@ public class CampusController {
     @RequestMapping("/save")
     //@RequiresPermissions("ims:campus:save")
     public R save(@Validated({AddGroup.class}) @RequestBody CampusEntity campus){
+    	campus.setCreated(new Date());
+    	campus.setUpdated(new Date());
 		campusService.save(campus);
 
         return R.ok();
@@ -82,6 +87,7 @@ public class CampusController {
     @RequestMapping("/update")
     //@RequiresPermissions("ims:campus:update")
     public R update(@Validated(UpdateGroup.class)  @RequestBody CampusEntity campus){
+    	campus.setUpdated(new Date());
 		campusService.updateById(campus);
 
         return R.ok();

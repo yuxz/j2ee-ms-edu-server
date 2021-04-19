@@ -1,6 +1,7 @@
 package com.yxz.base.member.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +106,7 @@ public class MemberController {
 	@RequestMapping("/save")
 	// @RequiresPermissions("member:member:save")
 	public R save(@RequestBody MemberEntity member) {
+		member.setCreated(new Date());
 		memberService.save(member);
 
 		return R.ok();

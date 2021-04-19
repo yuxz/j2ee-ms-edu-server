@@ -1,6 +1,7 @@
 package com.yxz.edu.institution.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -72,8 +73,11 @@ public class CampusTrainingScheduleController {
     @RequestMapping("/save")
     //@RequiresPermissions("institution:campustrainingschedule:save")
     public R save(@Validated({AddGroup.class}) @RequestBody CampusTrainingScheduleVo campusTrainingScheduleVo){
+    	
     	CampusTrainingScheduleEntity  campusTrainingScheduleEntity = new  CampusTrainingScheduleEntity();
     	BeanUtils.copyProperties( campusTrainingScheduleVo,  campusTrainingScheduleEntity);
+    	campusTrainingScheduleEntity.setCreated(new Date());
+    	campusTrainingScheduleEntity.setUpdated(new Date());
 		campusTrainingScheduleService.save(campusTrainingScheduleEntity);
 
         return R.ok();
@@ -87,7 +91,7 @@ public class CampusTrainingScheduleController {
     public R update(@Validated(UpdateGroup.class)  @RequestBody CampusTrainingScheduleVo campusTrainingScheduleVo){
     	CampusTrainingScheduleEntity  campusTrainingScheduleEntity = new  CampusTrainingScheduleEntity();
     	BeanUtils.copyProperties( campusTrainingScheduleVo,  campusTrainingScheduleEntity);
-    	
+    	campusTrainingScheduleEntity.setUpdated(new Date());
 		campusTrainingScheduleService.updateById(campusTrainingScheduleEntity);
 
         return R.ok();

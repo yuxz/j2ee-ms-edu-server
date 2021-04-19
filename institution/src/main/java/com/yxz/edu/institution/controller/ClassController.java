@@ -1,6 +1,7 @@
 package com.yxz.edu.institution.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -84,7 +85,8 @@ public class ClassController {
     public R save(@Validated({AddGroup.class}) @RequestBody ClassVo classVo){
     	ClassEntity classEntity = new ClassEntity();
     	BeanUtils.copyProperties(classVo, classEntity);
-    	
+    	classEntity.setCreated(new Date());
+    	classEntity.setUpdated(new Date());
 		classService.save(classEntity);
 
         return R.ok();
@@ -96,6 +98,7 @@ public class ClassController {
     @RequestMapping("/update")
     //@RequiresPermissions("ims:class:update")
     public R update(@Validated(UpdateGroup.class)  @RequestBody ClassEntity classEntity){
+    	classEntity.setUpdated(new Date());
 		classService.updateById(classEntity);
 
         return R.ok();

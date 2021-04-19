@@ -1,13 +1,14 @@
 package com.yxz.edu.student.service.impl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
-import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -104,8 +105,8 @@ public class StudentStatisticsServiceImpl implements StudentStatisticsService {
 //			if (institution != null)
 //				statisticsTableVo.setInstitutionName((String)institution.get("name"));
 			// query Campus Schedule
-			HashMap<String, String> campus = (HashMap<String, String>) institutionFeignService
-					.campusInfo(mapper.getCampusId()).get("campus");
+			Object obj = institutionFeignService.campusInfo(mapper.getCampusId()).get("campus");
+			HashMap<String, String> campus = (HashMap<String, String>)obj; 
 			if (campus != null) {
 
 				statisticsTableVo.setCampusName((String) campus.get("name"));
@@ -241,27 +242,48 @@ public class StudentStatisticsServiceImpl implements StudentStatisticsService {
 		List<StudentEntity> list = dao.selectList(wrapper);
 
 		// 1.2 campus_id -> campusName
-		Map<String, Object> tempVal = new HashMap<>();
-
-		List<StudentEchartsStatisticsVo<Integer>> statisticsVoList = list.stream().map(entity -> {
-
-			StudentEchartsStatisticsVo<Integer> statisticsVo = new StudentEchartsStatisticsVo<>();
-			if (entity.getClassTypeId() != tempVal.get("id")) {
-				Map campus = (Map) institutionFeignService.campusInfo(entity.getCampusId()).get("campus");
-				tempVal.put("id", entity.getCampusId());
-				if (campus != null) {
-					tempVal.put("name", campus.get("name"));
-				} else {
-					tempVal.put("name", "anonymity");
-				}
+		Map campus = null;
+		Map<String, Object> anonymity = new HashMap<>();
+		anonymity.put("name", "anonymity");
+		long tempId = 0;
+		List<StudentEchartsStatisticsVo<Integer>> statisticsVoList = new ArrayList<>();
+		for (StudentEntity entity : list) {
+			StudentEchartsStatisticsVo<Integer> statisticsVo = new StudentEchartsStatisticsVo<Integer>();
+			if (entity.getClassTypeId() != tempId) {
+				campus = (Map) institutionFeignService.campusInfo(entity.getCampusId()).get("campus");
+				tempId = entity.getCampusId();
 			}
-			;
-			statisticsVo.setLegend((String) tempVal.get("name"));
+			
+			statisticsVo.setLegend((String) Optional.ofNullable(campus).orElse(anonymity).get("name"));
 			statisticsVo.setXAxis(entity.getQuarter());
 			statisticsVo.setValue(entity.getTotalCount());//
-
-			return statisticsVo;
-		}).collect(Collectors.toList());
+			statisticsVoList.add(statisticsVo);
+			
+		}
+			
+//			
+//		List<StudentEchartsStatisticsVo<Integer>> statisticsVoList = list.stream().map(entity -> {
+//
+//			StudentEchartsStatisticsVo<Integer> statisticsVo = new StudentEchartsStatisticsVo<Integer>();
+//			if (entity.getClassTypeId() != anonymity.get("id")) {
+//				campus = (Map) institutionFeignService.campusInfo(entity.getCampusId()).get("campus");
+//				anonymity.put("id", entity.getCampusId());
+////				Map<String,String> anonymity= new HashMap<>();
+//								
+////				if (campus != null) {
+////					tempVal.put("name", campus.get("name"));
+////				} else {
+////					tempVal.put("name", "anonymity");
+////				}
+//			}
+//			;
+////			statisticsVo.setLegend((String) tempVal.get("name"));
+//			statisticsVo.setLegend((String) Optional.ofNullable(campus).orElse(anonymity).get("n"));
+//			statisticsVo.setXAxis(entity.getQuarter());
+//			statisticsVo.setValue(entity.getTotalCount());//
+//
+//			return statisticsVo;
+//		}).collect(Collectors.toList());
 
 		// 2. change to Echarts Style Data
 
@@ -283,8 +305,7 @@ public class StudentStatisticsServiceImpl implements StudentStatisticsService {
 
 		String endedV = (String) params.get("ended");
 		if (StringUtils.isNumeric(endedV))
-			ended = Integer.valueOf((String) params.get("started")).intValue();
-		
+			ended = Integer.valueOf((String) params.get("started")).intValue();	
 
 	}
 
