@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.yxz.base.common.constant.IamServerConstant;
 import com.yxz.base.common.exception.BizCodeEnume;
 import com.yxz.base.common.utils.R;

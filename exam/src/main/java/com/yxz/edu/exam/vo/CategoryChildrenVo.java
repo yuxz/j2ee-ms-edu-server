@@ -2,10 +2,7 @@ package com.yxz.edu.exam.vo;
 
 import java.util.List;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.yxz.edu.exam.entity.CategoryEntity;
-
 import lombok.Data;
 
 @Data

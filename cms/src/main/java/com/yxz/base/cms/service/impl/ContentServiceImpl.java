@@ -12,7 +12,6 @@ import com.yxz.base.common.utils.PageUtils;
 import com.yxz.base.common.utils.Query;
 
 import com.yxz.base.cms.dao.ContentDao;
-import com.yxz.base.cms.entity.CategoryEntity;
 import com.yxz.base.cms.entity.ContentEntity;
 import com.yxz.base.cms.service.ContentService;
 

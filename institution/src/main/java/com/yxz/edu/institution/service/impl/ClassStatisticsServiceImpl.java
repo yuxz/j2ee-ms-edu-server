@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yxz.base.common.utils.echarts.EchartsOption;
 import com.yxz.base.common.utils.echarts.EchartsOptionSeriesDataPie;
 import com.yxz.base.common.utils.echarts.EchartsUtils;

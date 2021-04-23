@@ -1,10 +1,5 @@
 package com.yxz.base.member.vo;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.yxz.base.common.valid.AddGroup;
-import com.yxz.base.common.valid.ListValue;
-import com.yxz.base.common.valid.UpdateGroup;
-
 import java.util.Date;
 import lombok.Data;
 

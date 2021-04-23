@@ -3,8 +3,6 @@ package com.yxz.base.thirdparty.component;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.TimeZone;
 
 import javax.crypto.Mac;
@@ -12,7 +10,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.shiro.codec.Hex;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import lombok.Data;

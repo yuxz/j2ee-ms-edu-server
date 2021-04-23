@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.EasyExcelFactory;
 import com.yxz.base.thirdparty.component.EasyExcelListenerComponent;
-import com.yxz.base.thirdparty.component.EasyExcelUtilComponent;
 import com.yxz.base.thirdparty.entity.Student;
 import com.yxz.base.thirdparty.service.StudentService;
 
@@ -78,7 +78,7 @@ public class EasyExcelController {
 	public List<Student> readExcel() {
 		String fileName = "d:\\花名册.xlsx";
 		EasyExcelListenerComponent<Student> studentListener = new EasyExcelListenerComponent<>();
-		EasyExcel.read(fileName, Student.class, studentListener).sheet().doRead();
+		EasyExcelFactory.read(fileName, Student.class, studentListener).sheet().doRead();
 		return studentListener.getList();
 	}
 
@@ -101,7 +101,7 @@ public class EasyExcelController {
 			}
 		};
 
-		EasyExcel.write(fileName, Student.class).sheet("学生信息2").doWrite(studentList);
+		EasyExcelFactory.write(fileName, Student.class).sheet("学生信息2").doWrite(studentList);
 		return true;
 	}
 	

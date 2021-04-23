@@ -109,7 +109,7 @@ public class StudentStatisticsServiceImpl implements StudentStatisticsService {
 			HashMap<String, String> campus = (HashMap<String, String>)obj; 
 			if (campus != null) {
 
-				statisticsTableVo.setCampusName((String) campus.get("name"));
+				statisticsTableVo.setCampusName(campus.get("name"));
 			} else {
 				statisticsTableVo.setCampusName("anonymity");
 			}

@@ -1,11 +1,6 @@
 package com.yxz.base.cms.vo;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.yxz.base.common.valid.AddGroup;
-import com.yxz.base.common.valid.ListValue;
-import com.yxz.base.common.valid.UpdateGroup;
-
 import java.util.Date;
 import lombok.Data;
 

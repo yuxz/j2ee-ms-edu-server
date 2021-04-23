@@ -1,31 +1,15 @@
 package com.yxz.edu.institution.service.impl;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yxz.base.common.utils.echarts.EchartsOption;
-import com.yxz.base.common.utils.echarts.EchartsOptionSeries;
-import com.yxz.base.common.utils.echarts.EchartsOptionSeriesDataPie;
-import com.yxz.base.common.utils.echarts.EchartsUtils;
 import com.yxz.edu.institution.dao.CampusDao;
 import com.yxz.edu.institution.dao.ClassDao;
-import com.yxz.edu.institution.entity.ClassEntity;
-import com.yxz.edu.institution.entity.ClassTypeEntity;
 import com.yxz.edu.institution.service.ClassTypeService;
 import com.yxz.edu.institution.service.InstitutionStatisticsService;
-import com.yxz.edu.institution.vo.ClassStatisticsTableVo;
 import com.yxz.edu.institution.vo.StatisticsTableVo;
 
 @Service("statisticsService")

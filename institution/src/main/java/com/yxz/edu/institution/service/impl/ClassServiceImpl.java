@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.aspectj.weaver.NewConstructorTypeMunger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +25,6 @@ import com.yxz.edu.institution.service.CampusService;
 import com.yxz.edu.institution.service.ClassService;
 import com.yxz.edu.institution.service.ClassTypeService;
 import com.yxz.edu.institution.service.ClassroomService;
-import com.yxz.edu.institution.vo.ClassAssignVo;
 import com.yxz.edu.institution.vo.ClassDetailVo;
 import com.yxz.edu.institution.vo.ClassListVo;
 

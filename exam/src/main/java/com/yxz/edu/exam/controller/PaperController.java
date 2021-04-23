@@ -19,7 +19,6 @@ import com.yxz.base.common.utils.PageUtils;
 import com.yxz.base.common.utils.R;
 import com.yxz.base.common.valid.AddGroup;
 import com.yxz.edu.exam.entity.PaperEntity;
-import com.yxz.edu.exam.entity.PaperItemEntity;
 import com.yxz.edu.exam.service.CategoryService;
 import com.yxz.edu.exam.service.PaperItemService;
 import com.yxz.edu.exam.service.PaperService;

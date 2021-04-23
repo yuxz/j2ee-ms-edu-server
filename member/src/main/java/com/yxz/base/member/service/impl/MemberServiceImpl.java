@@ -15,7 +15,6 @@ import com.yxz.base.common.utils.Query;
 import com.yxz.base.common.vo.MemberLoginVo;
 import com.yxz.base.common.vo.MemberSignUpVo;
 import com.yxz.base.member.Exception.EmailExistedException;
-import com.yxz.base.member.Exception.EmailNotExistedException;
 import com.yxz.base.member.Exception.MobileExistedException;
 import com.yxz.base.member.Exception.UsernameExistedException;
 import com.yxz.base.member.dao.MemberDao;

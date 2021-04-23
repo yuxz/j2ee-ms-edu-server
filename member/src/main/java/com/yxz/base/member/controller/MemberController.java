@@ -18,7 +18,6 @@ import com.yxz.base.common.utils.R;
 import com.yxz.base.common.vo.MemberLoginVo;
 import com.yxz.base.common.vo.MemberSignUpVo;
 import com.yxz.base.member.Exception.EmailExistedException;
-import com.yxz.base.member.Exception.EmailNotExistedException;
 import com.yxz.base.member.entity.MemberEntity;
 import com.yxz.base.member.feign.CouponFeignService;
 import com.yxz.base.member.service.MemberService;

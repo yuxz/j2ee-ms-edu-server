@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 
-import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.EasyExcelFactory;
 import com.yxz.base.thirdparty.component.EasyExcelListenerComponent;
 import com.yxz.base.thirdparty.component.EasyExcelUtilComponent;
 import com.yxz.base.thirdparty.entity.Student;
@@ -24,7 +24,7 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> importInfo(InputStream fis) {
 
 		EasyExcelListenerComponent<Student> studentListener = new EasyExcelListenerComponent<>();
-		EasyExcel.read(fis, Student.class, studentListener).sheet().doRead();
+		EasyExcelFactory.read(fis, Student.class, studentListener).sheet().doRead();
 
 		return studentListener.getList();
 	}

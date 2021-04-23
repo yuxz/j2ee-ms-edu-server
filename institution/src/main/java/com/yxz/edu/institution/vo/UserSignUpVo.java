@@ -2,8 +2,6 @@ package com.yxz.edu.institution.vo;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-
 import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yxz.base.common.utils.PageUtils;
-import com.yxz.edu.student.entity.StudentClassEntity;
 import com.yxz.edu.student.entity.StudentEntity;
 import com.yxz.edu.student.vo.SchoolsVo;
 

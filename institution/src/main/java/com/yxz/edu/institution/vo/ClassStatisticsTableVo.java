@@ -1,7 +1,5 @@
 package com.yxz.edu.institution.vo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.yxz.base.common.utils.echarts.EchartsOptionSeriesData;
 import com.yxz.base.common.utils.echarts.BaseEchartsStatisticsVo;
 
 import lombok.Data;

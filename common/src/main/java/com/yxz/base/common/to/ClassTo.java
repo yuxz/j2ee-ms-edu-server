@@ -1,11 +1,5 @@
 package com.yxz.base.common.to;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-
-import com.yxz.base.common.valid.AddGroup;
-import com.yxz.base.common.valid.UpdateGroup;
-
 import lombok.Data;
 
 @Data

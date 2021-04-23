@@ -22,7 +22,6 @@ import com.yxz.base.common.valid.UpdateGroup;
 import com.yxz.edu.teacher.entity.TeacherClassEntity;
 import com.yxz.edu.teacher.entity.TeacherEntity;
 import com.yxz.edu.teacher.service.TeacherClassService;
-import com.yxz.edu.teacher.vo.TeacherClassListVo;
 import com.yxz.edu.teacher.vo.TeacherClassVo;
 
 /**

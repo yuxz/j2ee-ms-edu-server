@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.EasyExcelFactory;
 
 //@Component
 public class EasyExcelUtilComponent<T> {
@@ -28,7 +29,7 @@ public class EasyExcelUtilComponent<T> {
 
 //				List<Student> studentList = studentService.list();
 				// 写入文件
-				EasyExcel.write(response.getOutputStream(), clazz).sheet(SheetName).doWrite(list);
+				EasyExcelFactory.write(response.getOutputStream(), clazz).sheet(SheetName).doWrite(list);
 	}
 
 }

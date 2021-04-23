@@ -1,7 +1,5 @@
 package com.yxz.base.common.constant;
 
-import lombok.Data;
-
 public class ProductConstant {
 
 
