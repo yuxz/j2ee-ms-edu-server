@@ -3,7 +3,7 @@
 <br>
 
 
-**How to communicate, give feedback, and contribute? **
+**How to communicate, give feedback, and contribute?** 
 - Git repository: https://gitee.com/renrenio/renren-generator
 - [Everyone open source] (https://www.renren.io): https://www.renren.io
 - [Renren Open Source Community](https://www.renren.io/community): https://www.renren.io/community
@@ -15,7 +15,7 @@
 <br>
 <br>
 
-  **local deployment**
+**local deployment**
 - Download source code via git
 - Modify application.yml, update MySQL account and password, database name
 - Eclipse and IDEA run RenrenApplication.java, then the project can be started
